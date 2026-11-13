@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile } from '../data/profile';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects', ({ data }) => data.featured);
+const blogPosts = await getCollection('blog', ({ data }) => data.published);
+const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()).slice(0, 3);
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-8">
+        <span class="text-xs sm:text-sm font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+          FULL STACK SOFTWARE ENGINEER
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-primary dark:text-primary-dark mt-3 mb-4">
+          {profile.name}
+        </h1>
+        <p class="text-xl sm:text-2xl font-medium text-slate-700 dark:text-slate-200 mb-4 leading-relaxed">
+          {profile.heroHeadline}
+        </p>
+        <p class="text-base sm:text-lg text-muted dark:text-muted-dark mb-8 leading-relaxed max-w-2xl">
+          {profile.heroSpecialization}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/projects"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors focus-ring"
+          >
+            Explore Projects
+          </a>
+          <a
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+          >
+            Download CV
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Visual -->
+      <div class="lg:col-span-4 flex justify-center">
+        <div class="w-64 h-64 sm:w-72 sm:h-72 rounded-2xl bg-gradient-to-tr from-blue-600/20 to-indigo-600/10 border border-border dark:border-border-dark p-6 flex flex-col justify-between shadow-sm">
+          <div class="space-y-2">
+            <div class="w-10 h-10 rounded-lg bg-accent text-white flex items-center justify-center font-bold font-mono">
+              FH
+            </div>
+            <p class="text-sm font-semibold text-primary dark:text-primary-dark mt-4">Backend & Distributed Systems</p>
+            <p class="text-xs text-muted dark:text-muted-dark">C# • ASP.NET Core • Angular • PostgreSQL</p>
+          </div>
+          <div class="text-xs font-mono text-muted dark:text-muted-dark border-t border-border dark:border-border-dark pt-3">
+            Dhaka, Bangladesh
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Projects Section -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border dark:border-border-dark">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-primary dark:text-primary-dark">
+          Selected Projects
+        </h2>
+        <p class="text-sm sm:text-base text-muted dark:text-muted-dark mt-1">
+          Full-stack web applications, database architectures, and distributed systems.
+        </p>
+      </div>
+      <a href="/projects" class="text-sm font-semibold text-accent dark:text-accent-dark hover:underline">
+        View all projects &rarr;
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        projects.map((project) => (
+          <article class="flex flex-col justify-between p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark transition-all hover:shadow-md">
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                {project.data.technologies.slice(0, 3).map((tech) => (
+                  <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <h3 class="text-xl font-bold text-primary dark:text-primary-dark mb-2">
+                <a href={`/projects/${project.id}`} class="hover:text-accent dark:hover:text-accent-dark focus-ring rounded">
+                  {project.data.title}
+                </a>
+              </h3>
+              <p class="text-sm text-muted dark:text-muted-dark leading-relaxed line-clamp-3">
+                {project.data.summary}
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-border dark:border-border-dark flex items-center justify-between text-sm">
+              <a href={`/projects/${project.id}`} class="font-semibold text-accent dark:text-accent-dark hover:underline">
+                Case Study &rarr;
+              </a>
+              {project.data.repositoryUrl && (
+                <a
+                  href={project.data.repositoryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark"
+                >
+                  Source &nearr;
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Recent Writing Section -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border dark:border-border-dark">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-primary dark:text-primary-dark">
+          Recent Writing
+        </h2>
+        <p class="text-sm sm:text-base text-muted dark:text-muted-dark mt-1">
+          Technical articles on .NET architecture, distributed systems, and clean code.
+        </p>
+      </div>
+      <a href="/blog" class="text-sm font-semibold text-accent dark:text-accent-dark hover:underline">
+        View all articles &rarr;
+      </a>
+    </div>
+
+    {
+      recentPosts.length === 0 ? (
+        <p class="text-muted dark:text-muted-dark py-8">Articles are currently being prepared for publication.</p>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recentPosts.map((post) => (
+            <article class="flex flex-col justify-between p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark transition-all hover:shadow-md">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/40 text-accent dark:text-accent-dark mb-3">
+                  {post.data.category}
+                </span>
+                <h3 class="text-lg font-bold text-primary dark:text-primary-dark mb-2">
+                  <a href={`/blog/${post.id}`} class="hover:text-accent dark:hover:text-accent-dark focus-ring rounded">
+                    {post.data.title}
+                  </a>
+                </h3>
+                <p class="text-sm text-muted dark:text-muted-dark leading-relaxed line-clamp-3">
+                  {post.data.excerpt}
+                </p>
+              </div>
+              <div class="mt-6 pt-4 border-t border-border dark:border-border-dark flex items-center justify-between text-xs text-muted dark:text-muted-dark">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </time>
+                <a href={`/blog/${post.id}`} class="font-semibold text-accent dark:text-accent-dark hover:underline">
+                  Read article &rarr;
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )
+    }
+  </section>
+</BaseLayout>
+

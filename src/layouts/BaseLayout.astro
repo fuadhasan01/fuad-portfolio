@@ -1,0 +1,40 @@
+---
+import SEOHead from '../components/common/SEOHead.astro';
+import SiteHeader from '../components/navigation/SiteHeader.astro';
+import SiteFooter from '../components/navigation/SiteFooter.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+}
+
+const { title, description, image, article = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEOHead title={title} description={description} image={image} article={article} />
+  </head>
+  <body class="bg-canvas-light dark:bg-canvas-dark text-primary dark:text-primary-dark transition-colors duration-200">
+    <!-- Skip to main content for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-accent text-white font-medium rounded-lg shadow-lg focus-ring"
+    >
+      Skip to main content
+    </a>
+
+    <SiteHeader />
+
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>
+

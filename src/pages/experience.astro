@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { experiences } from '../data/experience';
+---
+
+<BaseLayout
+  title="Experience | Fuad Hasan"
+  description="Professional software engineering work history and verified contributions of Fuad Hasan."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <header class="mb-12">
+      <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+        CAREER HISTORY
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mt-2 mb-4">
+        Work Experience
+      </h1>
+      <p class="text-lg text-muted dark:text-muted-dark leading-relaxed">
+        Chronological overview of my professional roles, architectural responsibilities, and engineering impact.
+      </p>
+    </header>
+
+    <!-- Timeline -->
+    <div class="space-y-10">
+      {
+        experiences.map((exp) => (
+          <article class="p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+              <h2 class="text-xl font-bold text-primary dark:text-primary-dark">
+                {exp.role}
+              </h2>
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/40 text-accent dark:text-accent-dark w-fit">
+                {exp.startDate} – {exp.endDate}
+              </span>
+            </div>
+            <p class="text-base font-semibold text-slate-700 dark:text-slate-300 mb-4">
+              {exp.company} • <span class="text-muted dark:text-muted-dark font-normal">{exp.location}</span>
+            </p>
+
+            <!-- Key Contributions -->
+            <div class="mb-6">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-muted dark:text-muted-dark mb-3">
+                Key Contributions
+              </h3>
+              <ul class="space-y-2 text-sm text-slate-700 dark:text-slate-300 list-disc list-inside">
+                {exp.contributions.map((point) => (
+                  <li class="leading-relaxed">{point}</li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Technologies -->
+            <div class="border-t border-border dark:border-border-dark pt-4 flex flex-wrap gap-2">
+              {exp.technologies.map((tech) => (
+                <span class="px-2.5 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+

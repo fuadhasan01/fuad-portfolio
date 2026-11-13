@@ -1,0 +1,65 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getReadingTime } from '../utils/readingTime';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const readingTime = getReadingTime(post.body || '');
+const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+---
+
+<BaseLayout
+  title={`${post.data.title} | Fuad Hasan`}
+  description={post.data.excerpt}
+  image={post.data.cover}
+  article={true}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-sm text-muted dark:text-muted-dark mb-6" aria-label="Breadcrumb">
+      <a href="/blog" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Blog</a>
+      <span>/</span>
+      <span class="text-primary dark:text-primary-dark font-medium">{post.data.category}</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-8">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
+        {post.data.title}
+      </h1>
+      <p class="text-lg text-muted dark:text-muted-dark mb-4 leading-relaxed">
+        {post.data.excerpt}
+      </p>
+      <div class="flex flex-wrap items-center gap-3 text-sm text-muted dark:text-muted-dark pb-6 border-b border-border dark:border-border-dark">
+        <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+        <span>•</span>
+        <span>{readingTime.text}</span>
+        <span>•</span>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-950/50 text-accent dark:text-accent-dark">
+          {post.data.category}
+        </span>
+      </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="prose prose-slate dark:prose-invert max-w-none">
+      <slot />
+    </article>
+
+    <!-- Back to blog -->
+    <div class="mt-12 pt-6 border-t border-border dark:border-border-dark">
+      <a href="/blog" class="inline-flex items-center text-sm font-semibold text-accent dark:text-accent-dark hover:underline">
+        &larr; Back to all articles
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+

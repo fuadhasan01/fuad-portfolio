@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout
+  title="Contact | Fuad Hasan"
+  description="Get in touch with Fuad Hasan for software engineering opportunities, technical discussions, and collaborations."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <header class="mb-12">
+      <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+        CONNECT
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mt-2 mb-4">
+        Get In Touch
+      </h1>
+      <p class="text-lg text-muted dark:text-muted-dark leading-relaxed">
+        I am open to full-time software engineering roles, technical consultations, and architecture discussions. Feel free to reach out directly through the channels below.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Direct Email Card -->
+      <div class="p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-accent dark:text-accent-dark flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h2 class="text-xl font-bold text-primary dark:text-primary-dark mb-2">Direct Email</h2>
+          <p class="text-sm text-muted dark:text-muted-dark leading-relaxed mb-6">
+            Best way to reach me for professional opportunities, questions regarding my projects, or architecture collaboration.
+          </p>
+        </div>
+
+        <div>
+          <a
+            id="email-cta"
+            href="mailto:contact@fuadhasan.dev"
+            class="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-semibold rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors focus-ring"
+          >
+            Send Email
+          </a>
+          <button
+            id="copy-email-btn"
+            type="button"
+            class="mt-3 w-full inline-flex items-center justify-center px-4 py-2 text-xs font-semibold rounded-lg border border-border dark:border-border-dark text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring"
+          >
+            Copy Email Address
+          </button>
+          <p id="copy-feedback" class="text-xs text-center text-green-600 dark:text-green-400 mt-2 hidden" role="status" aria-live="polite">
+            Email address copied to clipboard!
+          </p>
+        </div>
+      </div>
+
+      <!-- Professional Profiles Card -->
+      <div class="p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>
+          </div>
+          <h2 class="text-xl font-bold text-primary dark:text-primary-dark mb-2">Professional Profiles</h2>
+          <p class="text-sm text-muted dark:text-muted-dark leading-relaxed mb-6">
+            Inspect my open-source code repositories, competitive programming track record, and verified career background.
+          </p>
+        </div>
+
+        <ul class="space-y-3">
+          {
+            profile.socialLinks.map((social) => (
+              <li>
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center justify-between p-3 rounded-xl border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors focus-ring"
+                >
+                  <span class="text-sm font-semibold text-primary dark:text-primary-dark">{social.name}</span>
+                  <span class="text-xs text-muted dark:text-muted-dark">&nearr;</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  function setupCopyEmail() {
+    const copyBtn = document.getElementById('copy-email-btn');
+    const feedback = document.getElementById('copy-feedback');
+    const emailCta = document.getElementById('email-cta') as HTMLAnchorElement | null;
+
+    if (!copyBtn || !feedback) return;
+
+    copyBtn.addEventListener('click', async () => {
+      const email = emailCta?.getAttribute('href')?.replace('mailto:', '') || 'contact@fuadhasan.dev';
+      try {
+        await navigator.clipboard.writeText(email);
+        feedback.classList.remove('hidden');
+        setTimeout(() => feedback.classList.add('hidden'), 3000);
+      } catch (err) {
+        console.error('Failed to copy email:', err);
+      }
+    });
+  }
+
+  setupCopyEmail();
+  document.addEventListener('astro:after-swap', setupCopyEmail);
+</script>
+

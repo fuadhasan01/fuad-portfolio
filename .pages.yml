@@ -1,0 +1,114 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: blog
+    label: Technical Blog Posts
+    type: collection
+    path: src/content/blog
+    format: frontmatter
+    view:
+      fields: [title, published, pubDate, category]
+      primary: title
+    fields:
+      - name: title
+        label: Article Title
+        type: string
+        required: true
+      - name: excerpt
+        label: Excerpt / Short Summary
+        type: text
+        required: true
+      - name: published
+        label: Published (Uncheck for Draft)
+        type: boolean
+        default: false
+      - name: pubDate
+        label: Publication Date
+        type: date
+        required: true
+      - name: updatedDate
+        label: Last Updated Date
+        type: date
+      - name: category
+        label: Category
+        type: select
+        options:
+          - ASP.NET Core
+          - Architecture
+          - Distributed Systems
+          - Databases
+          - Angular
+          - Engineering Notes
+        required: true
+      - name: tags
+        label: Tags
+        type: list
+      - name: cover
+        label: Cover Image
+        type: image
+        media:
+          input: public/images/blog
+          output: /images/blog
+      - name: coverAlt
+        label: Cover Image Alt Text
+        type: string
+        required: true
+      - name: seoTitle
+        label: SEO Title Override
+        type: string
+      - name: seoDescription
+        label: SEO Meta Description
+        type: text
+      - name: body
+        label: Markdown Article Content
+        type: rich-text
+
+  - name: projects
+    label: Project Case Studies
+    type: collection
+    path: src/content/projects
+    format: frontmatter
+    view:
+      fields: [title, featured, status]
+      primary: title
+    fields:
+      - name: title
+        label: Project Name
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+      - name: featured
+        label: Featured on Homepage
+        type: boolean
+        default: false
+      - name: status
+        label: Project Status
+        type: select
+        options: [completed, in-progress, archived]
+      - name: technologies
+        label: Technologies
+        type: list
+      - name: cover
+        label: Cover Screenshot
+        type: image
+        media:
+          input: public/images/projects
+          output: /images/projects
+      - name: coverAlt
+        label: Screenshot Alt Text
+        type: string
+      - name: repositoryUrl
+        label: GitHub Repository URL
+        type: string
+      - name: demoUrl
+        label: Live Demo URL
+        type: string
+      - name: body
+        label: Case Study Markdown Body
+        type: rich-text
+

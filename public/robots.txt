@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fuadhasan.is-a.dev/sitemap-index.xml
+

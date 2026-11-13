@@ -1,0 +1,62 @@
+---
+import { siteSettings } from '../../data/siteSettings';
+import { buildCanonicalUrl, buildSocialImageUrl } from '../../utils/seo';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+}
+
+const {
+  title = siteSettings.defaultTitle,
+  description = siteSettings.defaultDescription,
+  image,
+  article = false
+} = Astro.props;
+
+const canonicalUrl = buildCanonicalUrl(Astro.url.pathname);
+const socialImageUrl = buildSocialImageUrl(image);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="canonical" href={canonicalUrl} />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="author" content={siteSettings.author} />
+
+<!-- OpenGraph / Facebook -->
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageUrl} />
+<meta property="og:site_name" content={siteSettings.siteName} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImageUrl} />
+
+<!-- RSS Feed Auto-discovery -->
+<link rel="alternate" type="application/rss+xml" title={siteSettings.siteName} href="/rss.xml" />
+
+<!-- Zero-flash theme initialization script -->
+<script is:inline>
+  (function() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+</script>
+

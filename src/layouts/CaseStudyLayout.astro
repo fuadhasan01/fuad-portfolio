@@ -1,0 +1,90 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout
+  title={`${project.data.title} - Case Study | Fuad Hasan`}
+  description={project.data.summary}
+  image={project.data.cover}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-sm text-muted dark:text-muted-dark mb-6" aria-label="Breadcrumb">
+      <a href="/projects" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Projects</a>
+      <span>/</span>
+      <span class="text-primary dark:text-primary-dark font-medium">{project.data.title}</span>
+    </nav>
+
+    <!-- Case Study Header -->
+    <header class="mb-10">
+      <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+        PROJECT CASE STUDY
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mt-2 mb-4">
+        {project.data.title}
+      </h1>
+      <p class="text-lg text-muted dark:text-muted-dark leading-relaxed mb-6">
+        {project.data.summary}
+      </p>
+
+      <!-- Tech Badges -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        {
+          project.data.technologies.map((tech) => (
+            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              {tech}
+            </span>
+          ))
+        }
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap gap-3 pt-2">
+        {
+          project.data.repositoryUrl && (
+            <a
+              href={project.data.repositoryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 text-sm font-semibold rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors focus-ring"
+            >
+              View Repository &rarr;
+            </a>
+          )
+        }
+        {
+          project.data.demoUrl && (
+            <a
+              href={project.data.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 text-sm font-semibold rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+            >
+              Live Demo &rarr;
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <!-- Case Study Body -->
+    <article class="prose prose-slate dark:prose-invert max-w-none border-t border-border dark:border-border-dark pt-8">
+      <slot />
+    </article>
+
+    <!-- Back to projects -->
+    <div class="mt-12 pt-6 border-t border-border dark:border-border-dark">
+      <a href="/projects" class="inline-flex items-center text-sm font-semibold text-accent dark:text-accent-dark hover:underline">
+        &larr; Back to all projects
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+

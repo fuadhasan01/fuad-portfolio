@@ -1,0 +1,84 @@
+---
+import { profile } from '../../data/profile';
+
+interface Props {
+  showEmailDirect?: boolean;
+}
+
+const { showEmailDirect = true } = Astro.props;
+---
+
+<div class="space-y-4">
+  {showEmailDirect && (
+    <div class="p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
+      <h3 class="text-lg font-bold text-primary dark:text-primary-dark mb-2">Direct Email</h3>
+      <p class="text-sm text-muted dark:text-muted-dark mb-4">
+        Reach out directly for full-stack engineering roles, technical architecture, or consulting.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a
+          id="contact-email-link"
+          href="mailto:contact@fuadhasan.dev"
+          class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors focus-ring"
+        >
+          Send Email &rarr;
+        </a>
+        <button
+          id="contact-copy-email-btn"
+          type="button"
+          class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus-ring"
+        >
+          Copy Email Address
+        </button>
+      </div>
+      <p id="contact-copy-status" class="text-xs text-green-600 dark:text-green-400 mt-2 hidden" role="status" aria-live="polite">
+        Email address copied to clipboard!
+      </p>
+    </div>
+  )}
+
+  <div class="p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
+    <h3 class="text-lg font-bold text-primary dark:text-primary-dark mb-2">Public Engineering Channels</h3>
+    <p class="text-sm text-muted dark:text-muted-dark mb-4">
+      Inspect open-source repositories, problem-solving profiles, and professional network.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      {profile.socialLinks.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-3 rounded-xl border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors focus-ring"
+        >
+          <span class="text-sm font-semibold text-primary dark:text-primary-dark">{link.name}</span>
+          <span class="text-xs text-muted dark:text-muted-dark">&nearr;</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupContactCopy() {
+    const copyBtn = document.getElementById('contact-copy-email-btn');
+    const status = document.getElementById('contact-copy-status');
+    const emailLink = document.getElementById('contact-email-link') as HTMLAnchorElement | null;
+
+    if (!copyBtn || !status) return;
+
+    copyBtn.addEventListener('click', async () => {
+      const email = emailLink?.getAttribute('href')?.replace('mailto:', '') || 'contact@fuadhasan.dev';
+      try {
+        await navigator.clipboard.writeText(email);
+        status.classList.remove('hidden');
+        setTimeout(() => status.classList.add('hidden'), 3000);
+      } catch (err) {
+        console.error('Failed to copy email:', err);
+      }
+    });
+  }
+
+  setupContactCopy();
+  document.addEventListener('astro:after-swap', setupContactCopy);
+</script>
+

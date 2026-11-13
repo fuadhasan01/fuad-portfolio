@@ -1,10 +1,10 @@
 # Fuad Hasan Portfolio - Agent Progress & Phase Tracking
 
-## Current Status: P2 Completed (Paused at P2 Gate for Owner Review)
+## Current Status: P3 Completed (Paused at P3 Gate for Owner Review)
 - **Document Date:** 13 November 2026
-- **Active Phase:** P2 (Project Foundation Scaffolding & CI Pipeline)
-- **Next Phase:** P3 (Core Portfolio Feature Implementation: Home, About, Experience, Contact)
-- **Exit Gate Status:** Clean build passed, strict type diagnostics passed (0 errors), unit tests passed (2/2), static generation verified (11 pages).
+- **Active Phase:** P3 (Core Portfolio Implementation: Home, About, Experience, Contact)
+- **Next Phase:** P4 (Projects & Case Studies Feature Implementation)
+- **Exit Gate Status:** All core visitor journeys verified on real browser across 5 breakpoints in Light and Dark themes. Zero horizontal overflow, full keyboard accessibility, zero personal data leaks.
 
 ---
 
@@ -14,8 +14,8 @@
 |---|---|---|---|---|
 | **P0** | Facts, Link Audit & Assets | **Completed** | [`docs/content-inventory.md`](file:///c:/Fuad/WorkStation/fuad-portfolio/docs/content-inventory.md), [`docs/links-audit.md`](file:///c:/Fuad/WorkStation/fuad-portfolio/docs/links-audit.md) | Facts and links audited. Personal contact data classified. |
 | **P1** | Architecture & Design System | **Completed** | [`docs/design-system.md`](file:///c:/Fuad/WorkStation/fuad-portfolio/docs/design-system.md), [`docs/adr/`](file:///c:/Fuad/WorkStation/fuad-portfolio/docs/adr/) | High-fi responsive specs, tokens, CMP-01–23, Zod schemas, 7 ADRs. |
-| **P2** | Project Foundation | **Completed (In Review)** | Astro 5, TypeScript, Tailwind, Content Collections, CI (`.github/workflows/ci.yml`), Pages CMS (`.pages.yml`), 11 static routes. | Clean build + 0 type errors + unit tests pass. |
-| **P3** | Core Portfolio Pages | Planned | Home, About, Experience, Contact, theme switch, responsive navigation. | Required visitor journeys pass desktop/mobile. |
+| **P2** | Project Foundation | **Completed** | Astro 5, TypeScript, Tailwind, Content Collections, CI, Pages CMS (`.pages.yml`). | Clean build + 0 type errors + unit tests pass. |
+| **P3** | Core Portfolio Pages | **Completed (In Review)** | Home, About, Experience, Contact, theme toggle, mobile menu, skip link, 16 visual screenshots. | All visitor journeys pass desktop/mobile with 0 overflow. |
 | **P4** | Projects & Case Studies | Planned | Project collection, case study templates, verified demos/repos. | All approved projects reviewed and navigable. |
 | **P5** | Blog & Pages CMS | Planned | Blog collection, Pages CMS (`.pages.yml`), local search, Markdown rendering. | Draft/publish/image roundtrip test passes. |
 | **P6** | Quality, Accessibility & SEO | Planned | Lighthouse >= 90, WCAG 2.2 AA audit, Playwright tests, RSS/sitemap. | Quality thresholds and release checklist satisfied. |
@@ -24,39 +24,55 @@
 
 ---
 
-## P2 Quality & Test Evidence Log
+## P3 Implementation & Quality Evidence Log
 
-| Verification Check | Exact Command Executed | Result / Output | Status |
-|---|---|---|---|
-| **Dependency Install** | `npm install` | 468 packages audited in clean tree; lockfile generated. | **PASS** |
-| **Astro Type & Content Check** | `npm run check` (`astro check`) | `Result (29 files): 0 errors, 0 warnings, 0 hints` | **PASS** |
-| **Unit Test Suite** | `npm run test` (`vitest run`) | `tests/unit/readingTime.test.ts (2 tests) passed (6ms)` | **PASS** |
-| **Production Static Build** | `npm run build` (`astro check && astro build`) | 11 static HTML pages, `sitemap-index.xml`, and `rss.xml` compiled into `dist/` in 3.76s. | **PASS** |
-
-### Built Static Routes (`dist/`):
-- `/index.html` (Homepage)
-- `/about/index.html` (About & Skills)
-- `/experience/index.html` (Career timeline)
-- `/projects/index.html` (Projects listing)
-- `/projects/edusubmit/index.html` (EduSubmit case study)
-- `/projects/libraryms/index.html` (LibraryMS case study)
-- `/projects/mini-account/index.html` (Mini Account case study)
-- `/blog/index.html` (Technical blog listing)
-- `/blog/understanding-outbox-pattern/index.html` (Article detail)
-- `/contact/index.html` (Contact paths & profile links)
-- `/404.html` (Custom error page)
-- `/rss.xml` (RSS 2.0 feed)
-- `/sitemap-index.xml` & `/sitemap-0.xml` (Crawler sitemap)
-- `/robots.txt` & `/favicon.svg`
+### 1. Requirements Implemented
+- **FR-001 (Identity & Hero):** Name, title, hero headline, specialization, and primary/secondary CTAs implemented in [`src/pages/index.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/pages/index.astro).
+- **FR-002 (Responsive Navigation):** Desktop navigation bar and keyboard-accessible mobile disclosure menu implemented in [`src/components/navigation/SiteHeader.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/components/navigation/SiteHeader.astro).
+- **FR-003 (Theme Toggle):** System default with light/dark toggle and zero-flash inline script in [`src/components/common/ThemeToggle.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/components/common/ThemeToggle.astro) and [`src/components/common/SEOHead.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/components/common/SEOHead.astro).
+- **FR-004 (Experience Timeline):** Structured chronological work history with verified contributions in [`src/components/projects/ExperienceTimeline.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/components/projects/ExperienceTimeline.astro) and [`src/pages/experience.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/pages/experience.astro).
+- **FR-005 (Categorized Skills):** Grouped skill badges without arbitrary percentage meters in [`src/components/common/SkillGroup.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/components/common/SkillGroup.astro) and [`src/pages/about.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/pages/about.astro).
+- **FR-009 (Safe Resume Handling):** Safe CV CTA with public privacy disclosure and sanitized download link in [`src/pages/contact.astro`](file:///c:/Fuad/WorkStation/fuad-portfolio/src/pages/contact.astro) and header.
+- **FR-010 (Contact Paths):** Direct `mailto:` action with instant copy-to-clipboard button and safe external profile links with `rel="noopener noreferrer"`.
+- **NFR-002 / NFR-003 (Accessibility & Contrast):** High contrast tokens conforming to WCAG 2.2 AA (15.2:1 light text, 14.6:1 dark text) with visible 2px keyboard focus outlines.
+- **NFR-004 (Responsive Scaling):** Verified at 360, 390, 768, 1024, and 1440 CSS px with zero horizontal overflow.
+- **SEC-06 (Privacy):** Verified 100% free of private phone numbers or personal residential addresses.
 
 ---
 
-## Owner Review Checklist (P2 Gate Sign-Off)
+### 2. Browser Verification Test Results (`tests/e2e/p3-verification.mjs`)
 
-- [x] **1. Static Architecture Scaffolded:** Astro 5 static output with strict TypeScript.
-- [x] **2. Design Tokens & Styling:** Tailwind CSS configured with custom color tokens.
-- [x] **3. Content Layer:** Zod schemas and seed collections for `blog` and `projects`.
-- [x] **4. Editorial Configuration:** `.pages.yml` configured for Pages CMS with GitHub OAuth.
-- [x] **5. Continuous Integration:** `.github/workflows/ci.yml` configured for lint, check, test, and build.
-- [x] **6. Static Build Verified:** 11 routes built into `dist/` with 0 type errors.
-- [ ] **7. Authorization to Proceed to P3:** Owner sign-off to proceed to Phase P3 (refining interactive core portfolio pages).
+| Test Suite / Inspection | Method / Tool | Expected Behavior | Actual Result | Status |
+|---|---|---|---|---|
+| **Responsive Overflow** (20 checks) | Playwright Chromium | `document.documentElement.scrollWidth <= window.innerWidth` across 360, 390, 768, 1024, 1440px on all 4 core routes | **0px overflow** on all routes and breakpoints | **PASS** |
+| **Keyboard Navigation** | Playwright `page.keyboard.press('Tab')` | Tab 1 focuses "Skip to main content"; Tab 2 focuses "FUAD HASAN" brand | Correct focus ring and active text | **PASS** |
+| **Theme Toggle & Persistence** | Playwright click + reload | Toggles `.dark` class, syncs `localStorage.getItem('theme')`, persists across page reloads | Light -> Dark -> Stored -> Reloaded Dark | **PASS** |
+| **Mobile Menu Disclosure** | Playwright click + `Escape` key | Opens menu with `aria-expanded="true"`; closes cleanly upon pressing `Escape` | `hidden: true -> false -> true` | **PASS** |
+| **Internal Links Integrity** | Playwright `page.goto()` | All routes (`/`, `/about`, `/experience`, `/projects`, `/blog`, `/contact`, `/404`) return expected status | All returned **Status 200** (404 route returned 404) | **PASS** |
+| **Privacy Audit** | Regex scan over rendered HTML | Zero phone numbers (`+8801...`) or street addresses rendered | **Zero leaks detected** | **PASS** |
+
+---
+
+### 3. Captured Visual Verification Screenshots (`tests/screenshots/`)
+
+- [`home-desktop-1024-light.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/home-desktop-1024-light.png): Desktop homepage in light mode.
+- [`home-desktop-1024-dark.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/home-desktop-1024-dark.png): Desktop homepage in dark mode (`#0B1220` canvas).
+- [`home-mobile-390-light.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/home-mobile-390-light.png): Mobile (390px) homepage in light mode.
+- [`home-mobile-390-dark.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/home-mobile-390-dark.png): Mobile (390px) homepage in dark mode.
+- [`home-mobile-360-light.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/home-mobile-360-light.png): Compact mobile (360px) in light mode.
+- [`home-tablet-768-light.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/home-tablet-768-light.png): Tablet view (768px).
+- [`home-wide-1440-light.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/home-wide-1440-light.png): Wide monitor view (1440px).
+- [`about-desktop-light.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/about-desktop-light.png) & [`about-desktop-dark.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/about-desktop-dark.png): About page with verified UIU education, honors, and skills.
+- [`experience-desktop-light.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/experience-desktop-light.png) & [`experience-desktop-dark.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/experience-desktop-dark.png): Career timeline with verified roles at Efficient Software Solutions LTD and Pakiza Software LTD.
+- [`contact-desktop-light.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/contact-desktop-light.png) & [`contact-desktop-dark.png`](file:///c:/Fuad/WorkStation/fuad-portfolio/tests/screenshots/contact-desktop-dark.png): Contact channels, safe resume download, and privacy notice.
+
+---
+
+## Owner Review Checklist (P3 Exit Gate)
+
+- [x] **1. Core Pages Implemented:** Home, About, Experience, and Contact routes fully styled and populated with verified data.
+- [x] **2. Theme System:** Light and Dark themes verified, zero flash on reload, fully responsive.
+- [x] **3. Mobile Navigation:** Accessible disclosure drawer closing on `Escape` key.
+- [x] **4. Accessibility & Keyboard Navigation:** Skip-to-content link, 2px focus outlines, semantic landmarks.
+- [x] **5. Privacy Enforced:** Zero personal phone numbers or street addresses published.
+- [ ] **6. Authorization to Proceed to P4:** Owner review of visual screenshots and authorization to begin Phase P4 (Projects & Case Studies implementation).

@@ -9,12 +9,13 @@ interface Props {
 const { currentPath = Astro.url.pathname } = Astro.props;
 ---
 
-<header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-[#111C2D]/80 border-b border-border dark:border-border-dark transition-colors">
+<header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 dark:bg-[#111C2D]/90 border-b border-border dark:border-border-dark transition-colors duration-200" role="banner">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
     <!-- Brand / Logo -->
     <a
       href="/"
       class="text-lg font-bold tracking-tight text-primary dark:text-primary-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded-md px-1"
+      aria-label="Fuad Hasan - Home"
     >
       FUAD HASAN
     </a>
@@ -26,7 +27,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
           const isActive =
             item.href === '/'
               ? currentPath === '/'
-              : currentPath.startsWith(item.href);
+              : currentPath === item.href || currentPath.startsWith(`${item.href}/`);
           return (
             <a
               href={item.href}
@@ -45,50 +46,67 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       }
     </nav>
 
-    <!-- Header Actions -->
+    <!-- Header Right Actions: Theme Toggle & Resume CTA & Mobile Trigger -->
     <div class="flex items-center space-x-2">
+      <a
+        href="/resume/Fuad_Hasan_Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden sm:inline-flex items-center justify-center text-xs font-semibold px-3 py-1.5 rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+      >
+        Resume PDF &nearr;
+      </a>
+
       <ThemeToggle />
 
-      <!-- Mobile Menu Button -->
+      <!-- Mobile Menu Trigger -->
       <button
-        id="mobile-menu-btn"
+        id="mobile-menu-trigger"
         type="button"
         class="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-muted hover:text-primary dark:text-muted-dark dark:hover:text-primary-dark focus-ring"
-        aria-label="Toggle mobile menu"
+        aria-label="Open main menu"
         aria-expanded="false"
-        aria-controls="mobile-menu"
+        aria-controls="mobile-nav-dialog"
       >
         <svg
+          id="hamburger-icon"
           class="w-6 h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg
+          id="close-icon"
+          class="w-6 h-6 hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Navigation Drawer -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-border dark:border-border-dark px-4 pt-2 pb-4 space-y-1 bg-surface-light dark:bg-surface-dark">
+  <!-- Mobile Disclosure Navigation Panel -->
+  <nav
+    id="mobile-nav-dialog"
+    class="hidden md:hidden border-t border-border dark:border-border-dark px-4 pt-3 pb-5 space-y-1.5 bg-surface-light dark:bg-surface-dark shadow-lg transition-all"
+    aria-label="Mobile Navigation"
+  >
     {
       mainNavigation.map((item) => {
         const isActive =
           item.href === '/'
             ? currentPath === '/'
-            : currentPath.startsWith(item.href);
+            : currentPath === item.href || currentPath.startsWith(`${item.href}/`);
         return (
           <a
             href={item.href}
             class:list={[
-              'block px-3 py-2 text-base font-medium rounded-lg transition-colors',
+              'block px-3 py-2.5 text-base font-medium rounded-lg transition-colors focus-ring',
               isActive
                 ? 'text-accent dark:text-accent-dark bg-blue-50 dark:bg-blue-950/40 font-semibold'
                 : 'text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -100,28 +118,74 @@ const { currentPath = Astro.url.pathname } = Astro.props;
         );
       })
     }
-  </div>
+    <div class="pt-3 border-t border-border dark:border-border-dark mt-2">
+      <a
+        href="/resume/Fuad_Hasan_Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block px-3 py-2 text-sm font-semibold text-accent dark:text-accent-dark hover:underline"
+      >
+        Download Resume (PDF) &nearr;
+      </a>
+    </div>
+  </nav>
 </header>
 
 <script>
-  function setupMobileMenu() {
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    if (!btn || !menu) return;
+  function initMobileMenu() {
+    const trigger = document.getElementById('mobile-menu-trigger');
+    const panel = document.getElementById('mobile-nav-dialog');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
 
-    btn.addEventListener('click', () => {
-      const isOpen = !menu.classList.contains('hidden');
-      if (isOpen) {
-        menu.classList.add('hidden');
-        btn.setAttribute('aria-expanded', 'false');
+    if (!trigger || !panel || !hamburgerIcon || !closeIcon) return;
+
+    function openMenu() {
+      panel?.classList.remove('hidden');
+      trigger?.setAttribute('aria-expanded', 'true');
+      trigger?.setAttribute('aria-label', 'Close main menu');
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    }
+
+    function closeMenu() {
+      panel?.classList.add('hidden');
+      trigger?.setAttribute('aria-expanded', 'false');
+      trigger?.setAttribute('aria-label', 'Open main menu');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    }
+
+    trigger.addEventListener('click', () => {
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        closeMenu();
       } else {
-        menu.classList.remove('hidden');
-        btn.setAttribute('aria-expanded', 'true');
+        openMenu();
+      }
+    });
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+        trigger.focus();
+      }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (
+        trigger.getAttribute('aria-expanded') === 'true' &&
+        !panel.contains(target) &&
+        !trigger.contains(target)
+      ) {
+        closeMenu();
       }
     });
   }
 
-  setupMobileMenu();
-  document.addEventListener('astro:after-swap', setupMobileMenu);
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
 </script>
-

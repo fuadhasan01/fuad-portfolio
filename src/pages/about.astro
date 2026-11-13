@@ -1,98 +1,119 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { skillCategories } from '../data/skills';
+import SkillGroup from '../components/common/SkillGroup.astro';
+import ButtonLink from '../components/common/ButtonLink.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
 ---
 
 <BaseLayout
   title="About | Fuad Hasan"
-  description="Background, engineering principles, education, and technical skills of Fuad Hasan."
+  description="Background, engineering principles, education, and technical expertise of Fuad Hasan, Full Stack Software Engineer."
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
     <!-- Header -->
     <header class="mb-12">
-      <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+      <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase block mb-1">
         BACKGROUND & PHILOSOPHY
       </span>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mt-2 mb-4">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
         About Me
       </h1>
-      <p class="text-lg text-muted dark:text-muted-dark leading-relaxed">
-        I am a Full Stack Software Engineer based in Dhaka, Bangladesh, specializing in C#, ASP.NET Core, Angular, SQL Server, and scalable application architecture.
+      <p class="text-lg sm:text-xl text-muted dark:text-muted-dark leading-relaxed">
+        Full Stack Software Engineer based in Dhaka, Bangladesh, with a focus on building dependable backends, data-driven systems, and clean web applications.
       </p>
     </header>
 
-    <!-- Engineering Principles -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold text-primary dark:text-primary-dark mb-4">
-        Engineering Philosophy
-      </h2>
+    <!-- Engineering Philosophy -->
+    <section class="mb-14 border-t border-border dark:border-border-dark pt-10" aria-labelledby="philosophy-heading">
+      <SectionHeading
+        eyebrow="HOW I WORK"
+        title="Engineering Philosophy"
+        id="philosophy-heading"
+      />
       <div class="space-y-4 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
         <p>
-          I focus on building dependable software systems that solve real business problems without unnecessary complexity. In backend development, I emphasize clean architecture, transactional consistency, and query efficiency.
+          I approach software engineering with a strong focus on system dependability and domain clarity. My core experience centers on modern C# and ASP.NET Core, where I prioritize clean architecture boundaries, robust transactional consistency, and predictable API contracts.
         </p>
         <p>
-          Whether implementing asynchronous event workflows with MassTransit or designing relational schemas in PostgreSQL and SQL Server, my priority is code maintainability, data integrity, and clear domain boundaries.
+          In distributed and enterprise environments, I use patterns like the Transactional Outbox and asynchronous messaging with MassTransit and RabbitMQ to avoid dual-write pitfalls and maintain reliability. When working with databases—whether PostgreSQL or SQL Server—I focus on query optimization, thoughtful indexing, and avoiding performance bottlenecks.
+        </p>
+        <p>
+          On the frontend, I develop structured, reactive user interfaces with Angular and TypeScript, keeping code modular, strictly typed, and aligned with backend contracts.
         </p>
       </div>
     </section>
 
     <!-- Technical Skills -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold text-primary dark:text-primary-dark mb-6">
-        Technical Expertise
-      </h2>
+    <section class="mb-14 border-t border-border dark:border-border-dark pt-10" aria-labelledby="skills-heading">
+      <SectionHeading
+        eyebrow="TECHNICAL EXPERTISE"
+        title="Skills & Technologies"
+        description="Core technologies and architectural paradigms applied across enterprise systems and production projects."
+        id="skills-heading"
+      />
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {
-          skillCategories.map((cat) => (
-            <div class="p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
-              <h3 class="text-lg font-bold text-primary dark:text-primary-dark mb-3">
-                {cat.title}
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {cat.skills.map((skill) => (
-                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))
-        }
+        {skillCategories.map((cat) => (
+          <SkillGroup title={cat.title} skills={cat.skills} />
+        ))}
       </div>
     </section>
 
     <!-- Education & Achievements -->
-    <section class="border-t border-border dark:border-border-dark pt-12">
-      <h2 class="text-2xl font-bold text-primary dark:text-primary-dark mb-6">
-        Education & Achievements
-      </h2>
+    <section class="mb-14 border-t border-border dark:border-border-dark pt-10" aria-labelledby="education-heading">
+      <SectionHeading
+        eyebrow="CREDENTIALS"
+        title="Education & Academic Honors"
+        id="education-heading"
+      />
       <div class="space-y-6">
+        <!-- Degree -->
         <div class="p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
             <h3 class="text-lg font-bold text-primary dark:text-primary-dark">
               United International University (UIU)
             </h3>
-            <span class="text-xs font-medium text-muted dark:text-muted-dark">2020 – 2024</span>
+            <span class="text-xs font-mono font-medium text-muted dark:text-muted-dark">2020 – 2024</span>
           </div>
           <p class="text-sm font-semibold text-accent dark:text-accent-dark mb-2">
-            BSc in Computer Science and Engineering (Software Engineering Major)
+            Bachelor of Science in Computer Science and Engineering (BSc in CSE)
           </p>
-          <p class="text-sm text-muted dark:text-muted-dark">
-            Graduated with CGPA 3.6 / 4.0.
+          <p class="text-sm text-slate-700 dark:text-slate-300">
+            Graduated with a CGPA of <strong>3.6 / 4.0</strong>, with a major concentration in Software Engineering.
           </p>
         </div>
 
+        <!-- Recognition -->
         <div class="p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
-          <h3 class="text-lg font-bold text-primary dark:text-primary-dark mb-3">
-            Honors & Recognition
+          <h3 class="text-lg font-bold text-primary dark:text-primary-dark mb-4">
+            Honors & Achievements
           </h3>
-          <ul class="list-disc list-inside space-y-2 text-sm text-slate-700 dark:text-slate-300">
-            <li><strong>UIU Project Show Champion:</strong> Awarded champion for ArtPatio digital art gallery application.</li>
-            <li><strong>UIU Merit Scholarship:</strong> Awarded across 7 academic trimesters for consistent academic excellence.</li>
-            <li><strong>Algorithmic Problem Solving:</strong> Solved 500+ problems across competitive programming platforms.</li>
+          <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="text-accent dark:text-accent-dark font-bold">•</span>
+              <span><strong>UIU Project Show Champion:</strong> Awarded champion for the ArtPatio project (digital art gallery web platform).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-accent dark:text-accent-dark font-bold">•</span>
+              <span><strong>UIU Merit Scholarship:</strong> Awarded across 7 academic trimesters based on academic standing.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-accent dark:text-accent-dark font-bold">•</span>
+              <span><strong>Competitive Problem Solving:</strong> Solved 500+ algorithmic challenges across competitive programming platforms.</span>
+            </li>
           </ul>
         </div>
       </div>
     </section>
+
+    <!-- Navigation Next -->
+    <div class="border-t border-border dark:border-border-dark pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <ButtonLink href="/experience" variant="primary">
+        View Career Experience &rarr;
+      </ButtonLink>
+      <ButtonLink href="/projects" variant="outline">
+        Explore Case Studies
+      </ButtonLink>
+    </div>
   </div>
 </BaseLayout>

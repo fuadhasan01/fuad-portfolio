@@ -1,0 +1,36 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  external?: boolean;
+  class?: string;
+  download?: boolean | string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  external = false,
+  class: className = '',
+  download
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-lg transition-colors focus-ring text-sm sm:text-base px-5 py-2.5';
+
+const variantStyles = {
+  primary: 'bg-accent text-white hover:bg-accent-hover shadow-sm',
+  secondary: 'bg-slate-100 dark:bg-slate-800 text-primary dark:text-primary-dark hover:bg-slate-200 dark:hover:bg-slate-700',
+  outline: 'border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:bg-slate-50 dark:hover:bg-slate-800/60'
+};
+---
+
+<a
+  href={href}
+  class:list={[baseStyles, variantStyles[variant], className]}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  download={download ? (typeof download === 'string' ? download : true) : undefined}
+>
+  <slot />
+</a>
+

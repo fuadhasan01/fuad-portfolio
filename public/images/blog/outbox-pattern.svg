@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <path d="M 25 0 L 0 0 0 25" fill="none" stroke="#334155" stroke-width="0.7" stroke-opacity="0.25" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGrad)" rx="16" />
+  <rect width="800" height="450" fill="url(#grid)" rx="16" />
+
+  <!-- Title Badge -->
+  <g transform="translate(60, 40)">
+    <rect width="180" height="28" rx="14" fill="#2563EB" fill-opacity="0.2" stroke="#3B82F6" stroke-width="1" />
+    <text x="90" y="18" fill="#60A5FA" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">DISTRIBUTED PATTERNS</text>
+  </g>
+
+  <!-- Diagram Container -->
+  <g transform="translate(60, 90)">
+    <!-- Boundary Box: Single Atomic Transaction -->
+    <rect x="0" y="0" width="420" height="280" rx="12" fill="#1E293B" fill-opacity="0.7" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="6,4" />
+    <text x="20" y="30" fill="#93C5FD" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600">Database Transaction Boundary (Atomic Commit)</text>
+
+    <!-- Business Entity Card -->
+    <rect x="30" y="60" width="360" height="80" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+    <circle cx="56" cy="100" r="14" fill="#2563EB" fill-opacity="0.2" />
+    <text x="56" y="105" fill="#60A5FA" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">1</text>
+    <text x="85" y="92" fill="#F8FAFC" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">Business Aggregate State</text>
+    <text x="85" y="114" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="12">Orders, Customers, Inventory tables updated</text>
+
+    <!-- Outbox Table Card -->
+    <rect x="30" y="165" width="360" height="80" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+    <circle cx="56" cy="205" r="14" fill="#10B981" fill-opacity="0.2" />
+    <text x="56" y="210" fill="#34D399" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">2</text>
+    <text x="85" y="197" fill="#F8FAFC" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">Transactional Outbox Table</text>
+    <text x="85" y="219" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="12">IntegrationEvent payload stored in same commit</text>
+
+    <!-- Arrow from DB to Publisher -->
+    <path d="M 430 205 L 500 205" fill="none" stroke="#60A5FA" stroke-width="2" marker-end="url(#arrow)" />
+
+    <!-- Outbox Relay / MassTransit Background Worker -->
+    <g transform="translate(510, 50)">
+      <rect x="0" y="0" width="180" height="110" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1.5" />
+      <text x="90" y="32" fill="#F8FAFC" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Outbox Publisher</text>
+      <text x="90" y="52" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="11" text-anchor="middle">(MassTransit Worker)</text>
+      <rect x="25" y="68" width="130" height="24" rx="12" fill="#2563EB" fill-opacity="0.3" />
+      <text x="90" y="84" fill="#93C5FD" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500" text-anchor="middle">Polls &amp; Dispatches</text>
+
+      <!-- Arrow down to Message Broker -->
+      <path d="M 90 120 L 90 160" fill="none" stroke="#34D399" stroke-width="2" />
+
+      <!-- Message Broker -->
+      <g transform="translate(0, 165)">
+        <rect x="0" y="0" width="180" height="65" rx="10" fill="#0F172A" stroke="#10B981" stroke-width="1.5" />
+        <text x="90" y="28" fill="#34D399" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Message Broker</text>
+        <text x="90" y="48" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="11" text-anchor="middle">RabbitMQ / Azure SB</text>
+      </g>
+    </g>
+  </g>
+</svg>
+

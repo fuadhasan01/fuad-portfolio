@@ -71,7 +71,7 @@ content:
     path: src/content/projects
     format: frontmatter
     view:
-      fields: [title, featured, status]
+      fields: [title, category, featured, status]
       primary: title
     fields:
       - name: title
@@ -81,6 +81,14 @@ content:
       - name: summary
         label: Summary
         type: text
+        required: true
+      - name: category
+        label: Category
+        type: select
+        options:
+          - Full Stack
+          - Backend & Systems
+          - Architecture & ERP
         required: true
       - name: featured
         label: Featured on Homepage
@@ -103,12 +111,20 @@ content:
         label: Screenshot Alt Text
         type: string
       - name: repositoryUrl
-        label: GitHub Repository URL
+        label: Primary / Backend GitHub Repository URL
+        type: string
+      - name: frontendRepositoryUrl
+        label: Frontend GitHub Repository URL (Optional)
         type: string
       - name: demoUrl
-        label: Live Demo URL
+        label: Live Demo URL (Optional)
+        type: string
+      - name: role
+        label: Engineering Role
+        type: string
+      - name: timeline
+        label: Timeline / Year
         type: string
       - name: body
         label: Case Study Markdown Body
         type: rich-text
-

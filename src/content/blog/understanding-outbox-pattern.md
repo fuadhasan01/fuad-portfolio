@@ -6,7 +6,7 @@ pubDate: 2026-11-13
 updatedDate: 2026-11-13
 category: "Distributed Systems"
 tags: ["ASP.NET Core", "MassTransit", "Architecture", "PostgreSQL"]
-cover: "/images/blog/outbox-pattern.webp"
+cover: "/images/blog/outbox-pattern.svg"
 coverAlt: "Outbox processing flow diagram showing transactional boundaries"
 seoTitle: "Outbox Pattern in .NET Applications | Fuad Hasan"
 seoDescription: "A practical guide to implementing the transactional outbox pattern with ASP.NET Core and MassTransit."

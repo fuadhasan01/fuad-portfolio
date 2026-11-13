@@ -1,13 +1,23 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/blog/TableOfContents.astro';
+import RelatedArticles from '../components/blog/RelatedArticles.astro';
 import type { CollectionEntry } from 'astro:content';
 import { getReadingTime } from '../utils/readingTime';
 
-interface Props {
-  post: CollectionEntry<'blog'>;
+interface MarkdownHeading {
+  depth: number;
+  slug: string;
+  text: string;
 }
 
-const { post } = Astro.props;
+interface Props {
+  post: CollectionEntry<'blog'>;
+  headings?: MarkdownHeading[];
+  allPosts?: CollectionEntry<'blog'>[];
+}
+
+const { post, headings = [], allPosts = [] } = Astro.props;
 const readingTime = getReadingTime(post.body || '');
 const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -22,44 +32,155 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
   image={post.data.cover}
   article={true}
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <!-- Breadcrumb -->
-    <nav class="flex items-center space-x-2 text-sm text-muted dark:text-muted-dark mb-6" aria-label="Breadcrumb">
-      <a href="/blog" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Blog</a>
-      <span>/</span>
-      <span class="text-primary dark:text-primary-dark font-medium">{post.data.category}</span>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <!-- Breadcrumb (wireframe_article.png) -->
+    <nav class="flex items-center space-x-2 text-sm text-muted dark:text-muted-dark mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/blog" class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">Blog</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-primary dark:text-primary-dark font-medium truncate" aria-current="page">{post.data.category}</span>
     </nav>
 
-    <!-- Header -->
-    <header class="mb-8">
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
-        {post.data.title}
-      </h1>
-      <p class="text-lg text-muted dark:text-muted-dark mb-4 leading-relaxed">
-        {post.data.excerpt}
-      </p>
-      <div class="flex flex-wrap items-center gap-3 text-sm text-muted dark:text-muted-dark pb-6 border-b border-border dark:border-border-dark">
-        <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
-        <span>•</span>
-        <span>{readingTime.text}</span>
-        <span>•</span>
-        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-950/50 text-accent dark:text-accent-dark">
+    <!-- Article Header -->
+    <header class="mb-10 max-w-4xl">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+          ENGINEERING ARTICLE
+        </span>
+        <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+        <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-accent dark:text-accent-dark border border-blue-100 dark:border-blue-900/50">
           {post.data.category}
         </span>
       </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
+        {post.data.title}
+      </h1>
+
+      <p class="text-base sm:text-lg text-muted dark:text-muted-dark leading-relaxed mb-6">
+        {post.data.excerpt}
+      </p>
+
+      <!-- Metadata Bar -->
+      <div class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted dark:text-muted-dark py-4 border-y border-border dark:border-border-dark">
+        <time datetime={post.data.pubDate.toISOString()} class="font-medium text-primary dark:text-primary-dark">
+          {formattedDate}
+        </time>
+        <span aria-hidden="true">•</span>
+        <span>{readingTime.text}</span>
+        <span aria-hidden="true">•</span>
+        <div class="flex flex-wrap gap-1.5" aria-label="Article tags">
+          {post.data.tags.map((tag) => (
+            <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </div>
     </header>
 
-    <!-- Article Content -->
-    <article class="prose prose-slate dark:prose-invert max-w-none">
-      <slot />
-    </article>
+    <!-- Split 2-Column Grid (wireframe_article.png) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <!-- Left Column: Article Body (lg:col-span-8) -->
+      <main class="lg:col-span-8 max-w-none">
+        <!-- Hero Cover Image -->
+        <figure class="mb-10 rounded-2xl overflow-hidden border border-border dark:border-border-dark bg-slate-900 shadow-sm">
+          <img
+            src={post.data.cover}
+            alt={post.data.coverAlt}
+            width="800"
+            height="450"
+            class="w-full h-auto object-cover"
+            loading="eager"
+          />
+          <figcaption class="p-3 text-center text-xs text-slate-400 bg-slate-900/90 border-t border-slate-800">
+            {post.data.coverAlt}
+          </figcaption>
+        </figure>
 
-    <!-- Back to blog -->
-    <div class="mt-12 pt-6 border-t border-border dark:border-border-dark">
-      <a href="/blog" class="inline-flex items-center text-sm font-semibold text-accent dark:text-accent-dark hover:underline">
-        &larr; Back to all articles
-      </a>
+        <!-- Mobile TOC Accordion -->
+        <TableOfContents headings={headings} />
+
+        <!-- Markdown Body -->
+        <article class="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-a:text-accent dark:prose-a:text-accent-dark hover:prose-a:underline prose-pre:rounded-xl prose-pre:border prose-pre:border-border dark:prose-pre:border-border-dark prose-pre:relative">
+          <slot />
+        </article>
+
+        <!-- Article Footer: Back Link -->
+        <div class="mt-14 pt-8 border-t border-border dark:border-border-dark flex items-center justify-between">
+          <a
+            href="/blog"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-accent dark:text-accent-dark hover:underline focus-ring rounded"
+          >
+            <span aria-hidden="true">&larr;</span> Back to all articles
+          </a>
+          <a
+            href="#top"
+            class="text-xs text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring rounded"
+          >
+            Back to top &uarr;
+          </a>
+        </div>
+      </main>
+
+      <!-- Right Column: Sticky Sidebar (lg:col-span-4) -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-24 space-y-6">
+        <TableOfContents headings={headings} />
+        {allPosts.length > 0 && (
+          <RelatedArticles
+            currentSlug={post.id}
+            category={post.data.category}
+            tags={post.data.tags}
+            posts={allPosts}
+          />
+        )}
+      </aside>
     </div>
   </div>
 </BaseLayout>
 
+<script>
+  // Add copy-code buttons to all <pre> elements (CMP-16, FR-024)
+  function initCodeCopyButtons() {
+    const preBlocks = document.querySelectorAll('pre');
+
+    preBlocks.forEach((pre) => {
+      // Avoid duplicate copy buttons
+      if (pre.querySelector('.code-copy-btn')) return;
+
+      const copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.className =
+        'code-copy-btn absolute top-3 right-3 px-2.5 py-1 text-xs font-medium rounded-md bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-accent transition-colors shadow-sm';
+      copyBtn.setAttribute('aria-label', 'Copy code snippet to clipboard');
+      copyBtn.innerHTML = 'Copy';
+
+      copyBtn.addEventListener('click', async () => {
+        const codeElement = pre.querySelector('code');
+        const textToCopy = codeElement ? codeElement.innerText : pre.innerText;
+
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          copyBtn.innerHTML = 'Copied!';
+          copyBtn.classList.add('bg-emerald-800', 'text-emerald-100');
+          setTimeout(() => {
+            copyBtn.innerHTML = 'Copy';
+            copyBtn.classList.remove('bg-emerald-800', 'text-emerald-100');
+          }, 2000);
+        } catch {
+          copyBtn.innerHTML = 'Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = 'Copy';
+          }, 2000);
+        }
+      });
+
+      pre.style.position = 'relative';
+      pre.appendChild(copyBtn);
+    });
+  }
+
+  initCodeCopyButtons();
+  document.addEventListener('astro:page-load', initCodeCopyButtons);
+</script>

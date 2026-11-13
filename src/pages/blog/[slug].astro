@@ -3,18 +3,18 @@ import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
 export async function getStaticPaths() {
+  // CRITICAL FR-013, FR-022: Only generate public routes for published articles
   const posts = await getCollection('blog', ({ data }) => data.published);
   return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post }
+    props: { post, allPosts: posts }
   }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { post, allPosts } = Astro.props;
+const { Content, headings } = await render(post);
 ---
 
-<ArticleLayout post={post}>
+<ArticleLayout post={post} headings={headings} allPosts={allPosts}>
   <Content />
 </ArticleLayout>
-

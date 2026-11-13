@@ -294,6 +294,44 @@ Screenshots stored in [`tests/screenshots/`](file:///c:/Fuad/WorkStation/fuad-po
 - **Exit Gate: "Owner can independently operate content workflow"** — **SATISFIED**.
 - All documentation, checklists, maintenance plans, and automated verification suites are complete and reproducible.
 
+---
+
+## Homepage UI & UX Enhancements (14 November 2026)
+
+### 1. Default Dark Theme Architecture
+- **Default Dark Mode:** Updated [`src/layouts/BaseLayout.astro`](file:///d:/Playground/fuad-portfolio/src/layouts/BaseLayout.astro) (`<html class="dark">`) and [`src/components/common/SEOHead.astro`](file:///d:/Playground/fuad-portfolio/src/components/common/SEOHead.astro) inline initialization script. Any fresh visitor without a saved preference receives Dark Mode by default, regardless of OS system theme.
+- **Zero FOUC:** The pre-rendered static HTML comes bundled with `class="dark"`. Inline head script removes `dark` only if `localStorage.getItem('theme') === 'light'`.
+- **Toggle & Persistence:** Fully functional toggle preserved in [`src/components/common/ThemeToggle.astro`](file:///d:/Playground/fuad-portfolio/src/components/common/ThemeToggle.astro), persisting selection to `localStorage`.
+
+### 2. Authentic Brand Social Icons
+- **Replaced Abbreviations:** Eliminated `GI`, `LI`, `LE`, and `EM` placeholders.
+- **New Components:**
+  - [`src/components/common/SocialIcon.astro`](file:///d:/Playground/fuad-portfolio/src/components/common/SocialIcon.astro): Rendered SVGs for GitHub, LinkedIn, LeetCode, Direct Email, and RSS.
+  - [`src/components/common/SocialLinks.astro`](file:///d:/Playground/fuad-portfolio/src/components/common/SocialLinks.astro): Unified icon container with accessible `aria-label`, tooltips, keyboard focus rings, and dark/light hover states.
+- **Applied Everywhere:** Used in the Homepage Hero, Site Footer, and Contact sections.
+
+### 3. Balanced 2-Column Hero Section
+- **Removed Vertical Void:** Replaced `min-h-screen justify-end` and `pt-32` with compact, balanced padding (`pt-10 md:pt-14 pb-12 sm:pb-16`).
+- **2-Column Layout:**
+  - **Left:** Availability status with pulsing accent indicator, prominent H1 name (`Fuad Hasan`), engineering introduction, credentials, CTAs, and social icon buttons.
+  - **Right:** Existing profile image (`/images/profile.jpg`) styled in a luxury dark frame with subtle glow, grayscale-to-color transition, and floating glass status pill.
+  - Both name and image are 100% visible immediately upon initial page visit without scrolling.
+- **Responsive Adaptability:** Stacked cleanly on mobile without horizontal overflow or clipping.
+
+### 4. About Section Streamlining
+- **Removed Duplicate Photo:** Eliminated the redundant profile image from the homepage About section (`#about`), keeping the photo exclusively showcased in the hero section above the fold.
+- **Enhanced Split Layout:** Replaced the previous split with a balanced 12-column layout: left column contains the editorial narrative (`lg:col-span-7`), and right column houses the 4-category technical capabilities matrix (`lg:col-span-5`) in a clean glassmorphic card.
+- **Consistent Section Header:** Added section action link (`Full Story →`) pointing to `/about`.
+
+### 5. Verification Evidence
+- `tests/e2e/verify-hero-and-theme.mjs`: **43 / 43 assertions passed** (including confirmation of 0 images in `#about`).
+- `tests/e2e/p6-verification.mjs`: **49 / 49 assertions passed** (0 Axe WCAG 2.2 AA violations, Lighthouse 98–100).
+- `npm run check`: **60 files, 0 errors, 0 warnings**.
+- `npm test`: **5 / 5 unit tests passed**.
+- `npm run build`: **13 static routes compiled cleanly**.
+- Screenshots captured across 1440, 1024, 768, 390, and 360 px viewports in `tests/screenshots/`.
+
+
 
 
 

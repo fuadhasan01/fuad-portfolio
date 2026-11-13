@@ -1,5 +1,6 @@
 ---
 import { profile } from '../../data/profile';
+import SocialIcon from './SocialIcon.astro';
 
 interface Props {
   showEmailDirect?: boolean;
@@ -50,7 +51,10 @@ const { showEmailDirect = true } = Astro.props;
           rel="noopener noreferrer"
           class="flex items-center justify-between p-3 rounded-xl border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors focus-ring"
         >
-          <span class="text-sm font-semibold text-primary dark:text-primary-dark">{link.name}</span>
+          <div class="flex items-center gap-2.5">
+            <SocialIcon name={link.icon || link.name} class="w-4 h-4 text-muted dark:text-muted-dark" />
+            <span class="text-sm font-semibold text-primary dark:text-primary-dark">{link.name}</span>
+          </div>
           <span class="text-xs text-muted dark:text-muted-dark">&nearr;</span>
         </a>
       ))}

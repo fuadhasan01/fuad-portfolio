@@ -106,21 +106,29 @@ async function runP6Verification() {
     const heroH1 = await page.locator('h1').textContent();
     assert(heroH1.includes('Fuad Hasan'), 'Home hero renders identity "Fuad Hasan"', 'TC-001');
 
-    // Theme toggle test
+    // Theme toggle test (Default: Dark Mode)
+    const initialIsDark = await page.evaluate(() => document.documentElement.classList.contains('dark'));
+    assert(initialIsDark, 'Default theme is dark mode on initial visit', 'TC-002');
+
     const themeBtn = page.locator('#theme-toggle').first();
     assert(await themeBtn.isVisible(), 'Theme toggle button is present');
+    
+    // Toggle to Light
     await themeBtn.click();
     await page.waitForTimeout(300);
-    const isDark = await page.evaluate(() => document.documentElement.classList.contains('dark'));
-    assert(isDark, 'Theme toggles to dark class', 'TC-002');
+    const isLight = await page.evaluate(() => !document.documentElement.classList.contains('dark'));
+    assert(isLight, 'Theme toggles to light mode', 'TC-002');
 
+    // Verify Light persistence
     await page.reload({ waitUntil: 'networkidle' });
-    const isDarkAfterReload = await page.evaluate(() => document.documentElement.classList.contains('dark'));
-    assert(isDarkAfterReload, 'Dark theme persists across page reload without flash', 'TC-002');
+    const isLightAfterReload = await page.evaluate(() => !document.documentElement.classList.contains('dark'));
+    assert(isLightAfterReload, 'Light theme preference persists across page reload', 'TC-002');
 
-    // Reset back to light mode
+    // Reset back to Dark mode
     await themeBtn.click();
     await page.waitForTimeout(300);
+    const isDarkAgain = await page.evaluate(() => document.documentElement.classList.contains('dark'));
+    assert(isDarkAgain, 'Theme toggles back to dark mode', 'TC-002');
 
     // ----------------------------------------------------
     // TC-003: Experience and Skills Verification

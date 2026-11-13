@@ -140,15 +140,18 @@ const articleSchema = article
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 )}
 
-<!-- Zero-flash theme initialization script (FR-003, TC-002) -->
+<!-- Zero-flash theme initialization script (Default: Dark Mode) -->
 <script is:inline>
   (function() {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (_) {
       document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
     }
   })();
 </script>

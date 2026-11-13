@@ -4,6 +4,7 @@ import { profile } from '../data/profile';
 import { experiences } from '../data/experience';
 import { getCollection } from 'astro:content';
 import { getReadingTime } from '../utils/readingTime';
+import SocialLinks from '../components/common/SocialLinks.astro';
 
 const projects = await getCollection('projects', ({ data }) => data.featured);
 const blogPosts = await getCollection('blog', ({ data }) => data.published);
@@ -11,60 +12,92 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
 ---
 
 <BaseLayout>
-  <!-- Hero Section (Matching Editorial Aesthetic) -->
-  <section class="min-h-[85vh] md:min-h-screen flex flex-col justify-end pb-16 md:pb-20 px-6 md:px-12 max-w-6xl mx-auto pt-24 md:pt-32" aria-label="Introduction">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-      <!-- Hero Left: Identity & Specialization -->
-      <div class="md:col-span-8">
-        <p class="text-accent dark:text-accent-dark text-xs sm:text-sm tracking-widest uppercase mb-6 font-mono font-medium">
-          — Available for select engagements & roles
-        </p>
-        <h1 class="text-[clamp(3.5rem,10vw,8.5rem)] leading-[0.92] tracking-tight mb-8 text-primary dark:text-primary-dark font-serif font-normal">
-          Fuad <span class="block text-accent dark:text-accent-dark italic font-normal">Hasan</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-muted dark:text-muted-dark max-w-xl leading-relaxed font-light font-sans">
-          Full Stack Software Engineer specializing in C#, ASP.NET Core, Angular, SQL Server, and distributed architecture. Building dependable systems that don't fall down.
-        </p>
-      </div>
-
-      <!-- Hero Right: Quick Metadata & Direct Social Channels -->
-      <div class="md:col-span-4 flex flex-col items-start md:items-end gap-5 pb-2">
-        <div class="font-mono text-xs text-muted dark:text-muted-dark space-y-1 text-left md:text-right">
-          <p class="font-medium text-primary dark:text-primary-dark">Efficient Software Solutions LTD</p>
-          <p>BSc in CSE • UIU (Summa / Honors)</p>
-          <p>Dhaka, Bangladesh</p>
+  <!-- Hero Section (Balanced 2-Column Editorial Layout) -->
+  <section class="pt-8 sm:pt-10 md:pt-14 pb-12 sm:pb-16 px-6 md:px-12 max-w-6xl mx-auto" aria-label="Introduction">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <!-- Hero Left: Identity, Intro, CTAs & Social Links -->
+      <div class="lg:col-span-7 flex flex-col justify-center">
+        <!-- Availability Status -->
+        <div class="inline-flex items-center gap-2 mb-4 font-mono text-xs sm:text-sm tracking-widest uppercase text-accent dark:text-accent-dark font-medium">
+          <span class="w-2 h-2 rounded-full bg-accent dark:bg-accent-dark animate-pulse"></span>
+          <span>Available for select engagements &amp; roles</span>
         </div>
 
-        <!-- Social Channels Minimal Border Boxes -->
-        <div class="flex gap-3 mt-2">
-          {
-            profile.socialLinks.map((social) => (
-              <a
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 border border-border dark:border-border-dark flex items-center justify-center text-xs font-mono text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark hover:border-accent dark:hover:border-accent-dark transition-all duration-200 focus-ring"
-                aria-label={`${social.name.slice(0, 2).toUpperCase()} - ${social.name}`}
-                title={social.name}
-              >
-                {social.name.slice(0, 2).toUpperCase()}
-              </a>
-            ))
-          }
+        <!-- Prominent Headline Name -->
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem] xl:text-[5.75rem] leading-[0.94] tracking-tight mb-5 text-primary dark:text-primary-dark font-serif font-normal">
+          Fuad <span class="text-accent dark:text-accent-dark italic font-normal">Hasan</span>
+        </h1>
+
+        <!-- Professional Introduction -->
+        <p class="text-lg sm:text-xl text-muted dark:text-muted-dark max-w-xl leading-relaxed font-light font-sans mb-6">
+          Full Stack Software Engineer specializing in C#, ASP.NET Core, Angular, SQL Server, and distributed architecture. Building dependable systems that don't fall down.
+        </p>
+
+        <!-- Quick Credentials / Location -->
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-muted dark:text-muted-dark mb-8">
+          <span class="text-primary dark:text-primary-dark font-medium">Efficient Software Solutions LTD</span>
+          <span class="text-border dark:text-border-dark">•</span>
+          <span>BSc in CSE • UIU (Summa / Honors)</span>
+          <span class="text-border dark:text-border-dark">•</span>
+          <span>Dhaka, Bangladesh</span>
+        </div>
+
+        <!-- Hero Actions: Primary CTAs + Real Brand Social Icons -->
+        <div class="flex flex-wrap items-center gap-4">
           <a
-            href="mailto:contact@fuadhasan.dev"
-            class="w-10 h-10 border border-border dark:border-border-dark flex items-center justify-center text-xs font-mono text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark hover:border-accent dark:hover:border-accent-dark transition-all duration-200 focus-ring"
-            aria-label="EM - Direct Email"
-            title="Email"
+            href="#work"
+            class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold rounded-lg bg-accent dark:bg-accent-dark text-white dark:text-[#09090E] hover:opacity-90 transition-opacity focus-ring shadow-sm"
           >
-            EM
+            View Work &darr;
           </a>
+          <a
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-medium rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-accent dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring"
+          >
+            Download CV &nearr;
+          </a>
+
+          <!-- Social Icons (GitHub, LinkedIn, LeetCode, Email) -->
+          <SocialLinks size="md" includeEmail={true} includeRss={false} />
+        </div>
+      </div>
+
+      <!-- Hero Right: Profile Image Frame -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-[340px] xl:max-w-[360px]">
+          <!-- Glow accent in dark mode -->
+          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-accent/20 to-transparent dark:from-accent-dark/20 opacity-70 blur-lg transition-all duration-500"></div>
+
+          <!-- Portrait Image Frame -->
+          <div class="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-xl group">
+            <img
+              src={profile.avatarUrl}
+              alt="Portrait of Fuad Hasan"
+              width="480"
+              height="600"
+              class="w-full h-full object-cover object-center grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <!-- Subtle status pill on image -->
+            <div class="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-surface-light/85 dark:bg-surface-dark/85 backdrop-blur-md border border-border dark:border-border-dark flex items-center justify-between text-xs font-mono">
+              <div>
+                <p class="font-medium text-primary dark:text-primary-dark leading-tight">Fuad Hasan</p>
+                <p class="text-[11px] text-muted dark:text-muted-dark leading-tight">Full Stack Engineer</p>
+              </div>
+              <span class="text-accent dark:text-accent-dark font-semibold px-2 py-0.5 rounded border border-accent/40 dark:border-accent-dark/40 text-[10px] tracking-wider uppercase">
+                Available
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Bottom Metric Bento Row -->
-    <div class="mt-16 border-t border-border dark:border-border-dark pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="mt-12 sm:mt-16 border-t border-border dark:border-border-dark pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
       <div class="flex flex-wrap gap-8 sm:gap-12">
         <div>
           <p class="text-2xl md:text-3xl font-serif text-primary dark:text-primary-dark">3+</p>
@@ -76,7 +109,7 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
         </div>
         <div>
           <p class="text-2xl md:text-3xl font-serif text-primary dark:text-primary-dark">3.6 / 4.0</p>
-          <p class="text-xs text-muted dark:text-muted-dark mt-1 font-mono tracking-wide">CGPA • UIU CSE</p>
+          <p class="text-xs text-muted dark:text-muted-dark mt-1 font-mono tracking-wide">CGPA • UIU Honors</p>
         </div>
       </div>
 
@@ -189,54 +222,46 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
     </div>
   </section>
 
-  <!-- About Section (12-Col Split Layout) -->
+  <!-- About Section -->
   <section id="about" class="py-24 px-6 md:px-12 max-w-6xl mx-auto border-t border-border dark:border-border-dark" aria-labelledby="about-heading">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
-      <!-- Left Visual Card Frame / Image Space -->
-      <div class="md:col-span-5">
-        <h2 id="about-heading" class="text-4xl md:text-5xl text-primary dark:text-primary-dark font-serif font-normal mb-8">
-          About
-        </h2>
-        <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark relative shadow-sm group">
-          <img
-            src={profile.avatarUrl}
-            alt="Portrait of Fuad Hasan"
-            width="600"
-            height="750"
-            class="w-full h-full object-cover object-center grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
-            loading="lazy"
-          />
-          <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-surface-light/85 dark:bg-surface-dark/85 backdrop-blur-md border border-border dark:border-border-dark flex items-center justify-between text-xs font-mono">
-            <div>
-              <p class="font-medium text-primary dark:text-primary-dark">Fuad Hasan</p>
-              <p class="text-[11px] text-muted dark:text-muted-dark">Full Stack Engineer</p>
-            </div>
-            <span class="text-accent dark:text-accent-dark font-semibold px-2 py-0.5 rounded border border-accent/40 dark:border-accent-dark/40 text-[10px] tracking-wider uppercase">
-              Available
-            </span>
-          </div>
-        </div>
-      </div>
+    <div class="flex items-baseline justify-between mb-16">
+      <h2 id="about-heading" class="text-4xl md:text-5xl text-primary dark:text-primary-dark font-serif font-normal">
+        About
+      </h2>
+      <a
+        href="/about"
+        class="text-xs font-mono uppercase tracking-widest text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring"
+      >
+        Full Story &rarr;
+      </a>
+    </div>
 
-      <!-- Right Editorial Narrative & Skills Matrix -->
-      <div class="md:col-span-7 flex flex-col justify-center">
-        <p class="text-xl text-primary dark:text-primary-dark leading-relaxed mb-6 font-light font-sans">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <!-- Left: Editorial Narrative -->
+      <div class="lg:col-span-7 flex flex-col justify-center">
+        <p class="text-xl md:text-2xl text-primary dark:text-primary-dark leading-relaxed mb-6 font-light font-sans">
           I build systems designed to last. My work sits at the intersection of transactional correctness, query performance, and maintainable software architecture.
         </p>
         <p class="text-sm md:text-base text-muted dark:text-muted-dark leading-relaxed mb-6 font-sans">
           My primary focus centers on modern C# and ASP.NET Core, where I design clean domain boundaries, resilient RESTful contracts, and event-driven workflows. In distributed environments, I implement asynchronous messaging and Transactional Outbox patterns with MassTransit and RabbitMQ to guarantee reliable event delivery.
         </p>
-        <p class="text-sm md:text-base text-muted dark:text-muted-dark leading-relaxed mb-10 font-sans">
+        <p class="text-sm md:text-base text-muted dark:text-muted-dark leading-relaxed font-sans">
           I hold a Bachelor of Science in Computer Science and Engineering from <strong>United International University (UIU)</strong>, graduating with a CGPA of <strong>3.6 / 4.0</strong>. I was recognized as the <strong>UIU Project Show Champion</strong> for ArtPatio and awarded the merit scholarship across 7 academic trimesters.
         </p>
+      </div>
 
-        <!-- 4-Category Technical Skills Grid -->
-        <div class="grid grid-cols-2 gap-8 border-t border-border dark:border-border-dark pt-8">
+      <!-- Right: Technical Capabilities Matrix Card -->
+      <div class="lg:col-span-5 p-8 rounded-2xl border border-border dark:border-border-dark bg-surface-light/40 dark:bg-surface-dark/40 backdrop-blur-sm">
+        <h3 class="text-xs font-mono uppercase tracking-widest text-accent dark:text-accent-dark mb-6 font-medium">
+          Core Domains & Skills
+        </h3>
+
+        <div class="grid grid-cols-2 gap-8">
           <div>
-            <p class="text-xs text-accent dark:text-accent-dark tracking-widest uppercase mb-3 font-mono font-medium">
+            <p class="text-xs text-primary dark:text-primary-dark tracking-wider uppercase mb-3 font-mono font-medium">
               Languages
             </p>
-            <ul class="space-y-1.5 text-sm font-sans text-muted dark:text-muted-dark">
+            <ul class="space-y-1.5 text-xs font-sans text-muted dark:text-muted-dark">
               <li>C# (.NET 8/9)</li>
               <li>TypeScript</li>
               <li>JavaScript</li>
@@ -246,10 +271,10 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
           </div>
 
           <div>
-            <p class="text-xs text-accent dark:text-accent-dark tracking-widest uppercase mb-3 font-mono font-medium">
-              Backend & Architecture
+            <p class="text-xs text-primary dark:text-primary-dark tracking-wider uppercase mb-3 font-mono font-medium">
+              Backend & Arch
             </p>
-            <ul class="space-y-1.5 text-sm font-sans text-muted dark:text-muted-dark">
+            <ul class="space-y-1.5 text-xs font-sans text-muted dark:text-muted-dark">
               <li>ASP.NET Core Web API</li>
               <li>Clean Architecture & CQRS</li>
               <li>MassTransit & RabbitMQ</li>
@@ -259,10 +284,10 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
           </div>
 
           <div>
-            <p class="text-xs text-accent dark:text-accent-dark tracking-widest uppercase mb-3 font-mono font-medium">
+            <p class="text-xs text-primary dark:text-primary-dark tracking-wider uppercase mb-3 font-mono font-medium">
               Databases & Storage
             </p>
-            <ul class="space-y-1.5 text-sm font-sans text-muted dark:text-muted-dark">
+            <ul class="space-y-1.5 text-xs font-sans text-muted dark:text-muted-dark">
               <li>Microsoft SQL Server</li>
               <li>PostgreSQL</li>
               <li>Redis Distributed Caching</li>
@@ -272,10 +297,10 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
           </div>
 
           <div>
-            <p class="text-xs text-accent dark:text-accent-dark tracking-widest uppercase mb-3 font-mono font-medium">
+            <p class="text-xs text-primary dark:text-primary-dark tracking-wider uppercase mb-3 font-mono font-medium">
               Frontend & Tools
             </p>
-            <ul class="space-y-1.5 text-sm font-sans text-muted dark:text-muted-dark">
+            <ul class="space-y-1.5 text-xs font-sans text-muted dark:text-muted-dark">
               <li>Angular & RxJS</li>
               <li>Tailwind CSS</li>
               <li>Docker & Containers</li>

@@ -24,7 +24,7 @@
     <rect x="0" y="0" width="320" height="40" rx="12" fill="#EF4444" fill-opacity="0.2" />
     <text x="20" y="26" fill="#F87171" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700">Anti-Pattern: N+1 &amp; Full Entity Loading</text>
     
-    <text x="20" y="70" fill="#CBD5E1" font-family="Inter, system-ui, sans-serif" font-size="12 font-weight="500">var orders = await ctx.Orders.ToListAsync();</text>
+    <text x="20" y="70" fill="#CBD5E1" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500">var orders = await ctx.Orders.ToListAsync();</text>
     <text x="20" y="95" fill="#CBD5E1" font-family="Inter, system-ui, sans-serif" font-size="12">foreach(var o in orders) {</text>
     <text x="35" y="115" fill="#F87171" font-family="Inter, system-ui, sans-serif" font-size="12">  // Triggers separate DB roundtrip!</text>
     <text x="35" y="135" fill="#CBD5E1" font-family="Inter, system-ui, sans-serif" font-size="12">  var items = await ctx.Items...</text>

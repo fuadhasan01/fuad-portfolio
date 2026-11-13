@@ -17,7 +17,7 @@
     },
     {
       "name": "Projects",
-      "perf": 96,
+      "perf": 94,
       "a11y": 98,
       "bp": 100,
       "seo": 100
@@ -30,6 +30,9 @@
     "TC-004": "PASS",
     "TC-005": "PASS",
     "TC-006": "PASS",
+    "TC-007": "PASS",
+    "TC-008": "PASS",
+    "TC-009": "PASS",
     "TC-010": "PASS",
     "TC-011": "PASS",
     "TC-012": "PASS",

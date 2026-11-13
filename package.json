@@ -10,7 +10,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:cms:publish": "node tests/e2e/test-zero-code-cms-publish.mjs",
+    "smoke:prod": "node tests/e2e/smoke-test-production.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

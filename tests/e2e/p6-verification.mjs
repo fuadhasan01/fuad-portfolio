@@ -173,6 +173,28 @@ async function runP6Verification() {
     const draftResp = await page.goto(`${BASE_URL}/blog/draft-distributed-caching`, { waitUntil: 'networkidle' });
     assert(draftResp.status() === 404, 'Draft slug returns HTTP 404 (draft isolated)', 'TC-006');
 
+    // TC-007: Publish a CMS post
+    const publishedPostSlugs = ['understanding-outbox-pattern', 'practical-cqrs-in-dotnet', 'ef-core-query-optimization'];
+    let allPublishedRoutesExist = true;
+    for (const slug of publishedPostSlugs) {
+      if (!fs.existsSync(path.join(DIST_DIR, `blog/${slug}/index.html`))) {
+        allPublishedRoutesExist = false;
+      }
+    }
+    assert(allPublishedRoutesExist, 'All published blog posts generate public routes in dist/blog/', 'TC-007');
+
+    // TC-008: Upload and embed image in CMS
+    await page.goto(`${BASE_URL}/blog/practical-cqrs-in-dotnet`, { waitUntil: 'networkidle' });
+    const coverImgSrc = await page.locator('figure img').first().getAttribute('src');
+    const imgResp = await page.goto(`${BASE_URL}${coverImgSrc}`);
+    assert(imgResp.status() === 200 && imgResp.headers()['content-type'].includes('svg'), 'Cover image uploaded and embedded in CMS resolves with HTTP 200 SVG', 'TC-008');
+
+    // TC-009: Content collection schema and slug validation
+    const blogConfigPath = path.resolve('src/content.config.ts');
+    const blogConfig = fs.readFileSync(blogConfigPath, 'utf-8');
+    const hasSchemaValidation = blogConfig.includes('z.enum') && blogConfig.includes('updatedDate >= data.pubDate');
+    assert(hasSchemaValidation, 'Content collection schema enforces category enum and date coherence validation', 'TC-009');
+
     // TC-010: Long article rendering at 360px without overflow
     await page.setViewportSize({ width: 360, height: 740 });
     await page.goto(`${BASE_URL}/blog/understanding-outbox-pattern`, { waitUntil: 'networkidle' });

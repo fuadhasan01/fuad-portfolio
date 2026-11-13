@@ -61,11 +61,11 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
         </span>
       </div>
 
-      <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-primary dark:text-primary-dark mb-4 leading-tight">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-normal tracking-tight text-primary dark:text-primary-dark mb-5 leading-[1.18]">
         {post.data.title}
       </h1>
 
-      <p class="text-base sm:text-lg text-muted dark:text-muted-dark font-sans leading-relaxed mb-6">
+      <p class="text-base sm:text-lg lg:text-xl text-muted dark:text-muted-dark font-sans leading-relaxed mb-6 max-w-3xl">
         {post.data.excerpt}
       </p>
 
@@ -87,30 +87,34 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
       </div>
     </header>
 
-    <!-- Split 2-Column Grid (wireframe_article.png) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-      <!-- Left Column: Article Body (lg:col-span-8) -->
-      <main class="lg:col-span-8 max-w-none">
+    <!-- Split 2-Column Grid (wireframe_article.png) with min-w-0 for grid overflow containment -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <!-- Left Column: Article Body (lg:col-span-8 min-w-0 prevents code overflow) -->
+      <main class="lg:col-span-8 min-w-0 max-w-full">
         <!-- Hero Cover Image -->
-        <figure class="mb-10 rounded-2xl overflow-hidden border border-border dark:border-border-dark bg-slate-900 shadow-sm">
-          <img
-            src={post.data.cover}
-            alt={post.data.coverAlt}
-            width="800"
-            height="450"
-            class="w-full h-auto object-cover"
-            loading="eager"
-          />
-          <figcaption class="p-3 text-center font-mono text-xs text-slate-300 dark:text-slate-400 bg-slate-900/90 border-t border-slate-800">
-            {post.data.coverAlt}
-          </figcaption>
-        </figure>
+        {post.data.cover && (
+          <figure class="mb-10 rounded-2xl overflow-hidden border border-border dark:border-border-dark bg-slate-900 shadow-sm">
+            <img
+              src={post.data.cover}
+              alt={post.data.coverAlt}
+              width="800"
+              height="450"
+              class="w-full h-auto object-cover"
+              loading="eager"
+            />
+            {post.data.coverAlt && (
+              <figcaption class="p-3 text-center font-mono text-xs text-slate-300 dark:text-slate-400 bg-slate-900/90 border-t border-slate-800">
+                {post.data.coverAlt}
+              </figcaption>
+            )}
+          </figure>
+        )}
 
-        <!-- Mobile TOC Accordion -->
-        <TableOfContents headings={headings} />
+        <!-- Mobile TOC: ONLY renders the collapsible accordion, hidden on desktop (lg:hidden) -->
+        <TableOfContents headings={headings} variant="mobile" />
 
-        <!-- Markdown Body -->
-        <article class="prose prose-slate dark:prose-invert max-w-none font-sans prose-headings:font-serif prose-headings:font-normal prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-a:text-accent dark:prose-a:text-accent-dark hover:prose-a:underline prose-pre:rounded-xl prose-pre:border prose-pre:border-border dark:prose-pre:border-border-dark prose-pre:relative">
+        <!-- Markdown Body (Uses our dedicated .article-content and .prose typography) -->
+        <article class="article-content prose max-w-none">
           <slot />
         </article>
 
@@ -132,8 +136,9 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
       </main>
 
       <!-- Right Column: Sticky Sidebar (lg:col-span-4) -->
-      <aside class="hidden lg:block lg:col-span-4 sticky top-24 space-y-6">
-        <TableOfContents headings={headings} />
+      <aside class="hidden lg:block lg:col-span-4 min-w-0 sticky top-24 space-y-6">
+        <!-- Desktop TOC: ONLY renders the desktop sidebar card -->
+        <TableOfContents headings={headings} variant="desktop" />
         {allPosts.length > 0 && (
           <RelatedArticles
             currentSlug={post.id}
@@ -148,46 +153,206 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 </BaseLayout>
 
 <script>
-  // Add copy-code buttons to all <pre> elements (CMP-16, FR-024)
-  function initCodeCopyButtons() {
-    const preBlocks = document.querySelectorAll('pre');
+  // Technical Blog Enhancement Scripts:
+  // 1. Wrap code blocks with macOS header bar, language badge, and copy button (CMP-16, FR-024)
+  // 2. Wrap tables with horizontal scroll containers
+  // 3. Table of contents scrollspy (active heading indicator)
+  // 4. Smooth scroll with sticky navbar offset
+
+  function initTechnicalArticleEnhancements() {
+    initCodeBlockWrappers();
+    initResponsiveTables();
+    initScrollSpy();
+    initSmoothAnchorScrolling();
+  }
+
+  function initCodeBlockWrappers() {
+    const preBlocks = document.querySelectorAll('.article-content pre.astro-code, article pre');
 
     preBlocks.forEach((pre) => {
-      // Avoid duplicate copy buttons
-      if (pre.querySelector('.code-copy-btn')) return;
+      // Avoid duplicate wrapping
+      if (pre.closest('.code-block-wrapper')) return;
 
+      // Extract language from data-language attribute or class
+      let lang = pre.getAttribute('data-language') || '';
+      if (!lang) {
+        const classMatch = pre.className.match(/language-(\w+)/);
+        if (classMatch) lang = classMatch[1];
+      }
+
+      // Friendly display mapping
+      const langMap: Record<string, string> = {
+        csharp: 'C#',
+        cs: 'C#',
+        typescript: 'TypeScript',
+        ts: 'TypeScript',
+        javascript: 'JavaScript',
+        js: 'JavaScript',
+        sql: 'SQL',
+        json: 'JSON',
+        bash: 'Bash',
+        sh: 'Bash',
+        shell: 'Shell',
+        html: 'HTML',
+        css: 'CSS',
+        yaml: 'YAML',
+        yml: 'YAML',
+        markdown: 'Markdown',
+        md: 'Markdown',
+        xml: 'XML',
+        dockerfile: 'Docker',
+        diff: 'Diff'
+      };
+
+      const normalized = lang.toLowerCase();
+      const displayLang = langMap[normalized] || (lang ? lang.toUpperCase() : 'CODE');
+
+      // Create outer wrapper
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-wrapper';
+
+      // Create top toolbar
+      const header = document.createElement('div');
+      header.className = 'code-block-header';
+
+      // Left meta: terminal indicator dots + language badge
+      const meta = document.createElement('div');
+      meta.className = 'code-block-meta';
+      meta.innerHTML = `
+        <div class="code-terminal-dots" aria-hidden="true">
+          <span class="code-terminal-dot"></span>
+          <span class="code-terminal-dot"></span>
+          <span class="code-terminal-dot"></span>
+        </div>
+        <span class="code-language-tag">${displayLang}</span>
+      `;
+
+      // Right action: Accessible Copy Button
       const copyBtn = document.createElement('button');
       copyBtn.type = 'button';
-      copyBtn.className =
-        'code-copy-btn absolute top-3 right-3 px-2.5 py-1 text-xs font-mono font-medium rounded bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-accent transition-colors shadow-sm';
-      copyBtn.setAttribute('aria-label', 'Copy code snippet to clipboard');
-      copyBtn.innerHTML = 'Copy';
+      copyBtn.className = 'code-copy-btn';
+      copyBtn.setAttribute('aria-label', `Copy ${displayLang} code snippet to clipboard`);
+      copyBtn.innerHTML = `
+        <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span class="copy-text">Copy</span>
+      `;
 
       copyBtn.addEventListener('click', async () => {
         const codeElement = pre.querySelector('code');
-        const textToCopy = codeElement ? codeElement.innerText : pre.innerText;
+        const textToCopy = (codeElement ? codeElement.innerText : (pre as HTMLElement).innerText).replace(/\n$/, '');
 
         try {
           await navigator.clipboard.writeText(textToCopy);
-          copyBtn.innerHTML = 'Copied!';
-          copyBtn.classList.add('bg-emerald-800', 'text-emerald-100');
+          copyBtn.classList.add('copied');
+          copyBtn.innerHTML = `
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="copy-text">Copied!</span>
+          `;
           setTimeout(() => {
-            copyBtn.innerHTML = 'Copy';
-            copyBtn.classList.remove('bg-emerald-800', 'text-emerald-100');
+            copyBtn.classList.remove('copied');
+            copyBtn.innerHTML = `
+              <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span class="copy-text">Copy</span>
+            `;
           }, 2000);
         } catch {
-          copyBtn.innerHTML = 'Copied!';
+          copyBtn.classList.add('copied');
+          copyBtn.innerHTML = '<span class="copy-text">Copied!</span>';
           setTimeout(() => {
-            copyBtn.innerHTML = 'Copy';
+            copyBtn.classList.remove('copied');
+            copyBtn.innerHTML = '<span class="copy-text">Copy</span>';
           }, 2000);
         }
       });
 
-      pre.style.position = 'relative';
-      pre.appendChild(copyBtn);
+      header.appendChild(meta);
+      header.appendChild(copyBtn);
+
+      // Insert wrapper before pre, then move pre inside wrapper
+      pre.parentNode?.insertBefore(wrapper, pre);
+      wrapper.appendChild(header);
+      wrapper.appendChild(pre);
     });
   }
 
-  initCodeCopyButtons();
-  document.addEventListener('astro:page-load', initCodeCopyButtons);
+  function initResponsiveTables() {
+    const tables = document.querySelectorAll('.article-content table');
+    tables.forEach((table) => {
+      if (table.parentElement?.classList.contains('article-table-container')) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'article-table-container';
+      table.parentNode?.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    });
+  }
+
+  function initScrollSpy() {
+    const headings = document.querySelectorAll('.article-content h2[id], .article-content h3[id]');
+    const desktopTocLinks = document.querySelectorAll('aside .toc-link[data-toc-slug]');
+    if (headings.length === 0 || desktopTocLinks.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            desktopTocLinks.forEach((link) => {
+              if (link.getAttribute('data-toc-slug') === id) {
+                link.classList.add('is-active');
+              } else {
+                link.classList.remove('is-active');
+              }
+            });
+          }
+        });
+      },
+      {
+        rootMargin: '-80px 0px -70% 0px',
+        threshold: 0
+      }
+    );
+
+    headings.forEach((h) => observer.observe(h));
+  }
+
+  function initSmoothAnchorScrolling() {
+    const links = document.querySelectorAll<HTMLAnchorElement>('.toc-container a[href^="#"], a[href^="#"]');
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        const targetId = href.slice(1);
+        if (targetId === 'top') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          history.pushState(null, '', ' ');
+          return;
+        }
+
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          const topOffset = 88; // 64px sticky header + 24px margin
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - topOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          history.pushState(null, '', `#${targetId}`);
+        }
+      });
+    });
+  }
+
+  initTechnicalArticleEnhancements();
+  document.addEventListener('astro:page-load', initTechnicalArticleEnhancements);
 </script>

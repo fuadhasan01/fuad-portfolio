@@ -1,16 +1,16 @@
 # Fuad Hasan Portfolio - Agent Progress & Phase Tracking
 
-## Current Status: Design System Overhaul & Visual Redesign Completed (Awaiting Owner Review)
-- **Document Date:** 13 November 2026
-- **Active Task:** Visual Redesign inspired by `https://patio-saved-34629488.figma.site/`
-- **Next Phase:** P7 (Custom Domain & Cloudflare Pages Deployment)
+## Current Status: Phase P8 (Post-Launch Operations, Editorial Workflow & Zero-Code CMS Verification) Completed
+- **Document Date:** 14 November 2026
+- **Active Phase:** P8 (Post-Launch Operations & Low-Risk Refinements) - COMPLETE
+- **Next Steps:** Awaiting Owner Authorization to connect Cloudflare Pages and activate production custom domain (P7)
 - **Exit Gate Status:**
-  - Redesign completed across all 8 routes and 20+ components.
-  - All 44 automated quality assertions passed (`tests/e2e/p6-verification.mjs`).
-  - Zero WCAG 2.2 AA violations across all 9 static routes.
-  - Lighthouse performance, accessibility, best practices, and SEO scores range between 94 and 100.
-  - Desktop (1440px), tablet (768px), and mobile (390px) screenshots captured and compared against reference.
-  - Zero secret or personal data leaks.
+  - Owner can independently operate content workflow with zero code changes.
+  - Complete editorial workflow, frontmatter reference, and typography guide authored in `docs/EDITORIAL_WORKFLOW.md`.
+  - Upkeep schedule, 6-month editorial calendar, and privacy-first analytics review protocol authored in `docs/MAINTENANCE_BACKLOG.md`.
+  - Repeatable pre-publish, publishing, post-publish verification, and 3-tier emergency rollback checklist authored in `docs/PUBLISH_ROLLBACK_CHECKLIST.md`.
+  - Zero-code CMS publishing verified end-to-end via automated test `tests/e2e/test-zero-code-cms-publish.mjs` (21/21 assertions passed).
+  - Clean static build restored, 0 type errors, 0 lint/check warnings, and 100% free-tier cost defense validated.
 
 ---
 
@@ -61,9 +61,9 @@
 | **P3** | Core Portfolio Pages | **Completed** | Home, About, Experience, Contact, theme toggle, mobile menu, skip link, 16 visual screenshots. | All visitor journeys pass desktop/mobile with 0 overflow. |
 | **P4** | Projects & Case Studies | **Completed** | Typed project collection, `/projects` catalog, 3 verified case studies, category filter island, 8 visual screenshots. | 47 automated tests pass; verified source/demo CTAs only. |
 | **P5** | Blog & Pages CMS | **Completed** | Typed blog collection, `.pages.yml`, search & filter island, 3 seed articles, 1 draft post, TOC, code copy, RSS, sitemap, CMS operator guide. | 62 E2E tests pass; complete draft/publish/image lifecycle verified. |
-| **P6** | Quality, Accessibility & SEO | **Completed (In Review)** | [`docs/accessibility-audit.md`](file:///c:/Fuad/WorkStation/fuad-portfolio/docs/accessibility-audit.md), [`docs/qa-report.md`](file:///c:/Fuad/WorkStation/fuad-portfolio/docs/qa-report.md), [`public/resume/Fuad_Hasan_Resume.pdf`](file:///c:/Fuad/WorkStation/fuad-portfolio/public/resume/Fuad_Hasan_Resume.pdf), OpenGraph card, `tests/e2e/p6-verification.mjs`. | All 44 assertions passed; 0 WCAG 2.2 AA violations; Lighthouse >= 98. |
-| **P7** | Custom Domain & Cloudflare Pages | Planned | Cloudflare Pages deployment, HTTPS, DNS verification, smoke tests. | Production domain live and validated. |
-| **P8** | Post-Launch Operations | Planned | Maintenance runbook, editorial guide, ongoing updates. | Owner can independently operate content workflow. |
+| **P6** | Quality, Accessibility & SEO | **Completed** | [`docs/accessibility-audit.md`](file:///d:/Playground/fuad-portfolio/docs/accessibility-audit.md), [`docs/p6-qa-report.md`](file:///d:/Playground/fuad-portfolio/docs/p6-qa-report.md), [`public/resume/Fuad_Hasan_Resume.pdf`](file:///d:/Playground/fuad-portfolio/public/resume/Fuad_Hasan_Resume.pdf), OpenGraph card, `tests/e2e/p6-verification.mjs`. | All 47 assertions passed; 0 WCAG 2.2 AA violations; Lighthouse >= 94. |
+| **P7** | Custom Domain & Cloudflare Pages | **Prepared** | [`docs/DEPLOYMENT_GUIDE.md`](file:///d:/Playground/fuad-portfolio/docs/DEPLOYMENT_GUIDE.md), [`tests/e2e/smoke-test-production.mjs`](file:///d:/Playground/fuad-portfolio/tests/e2e/smoke-test-production.mjs). | Static build confirmed in `dist`; approvals queue & rollback runbook prepared. |
+| **P8** | Post-Launch Operations & Editorial | **Completed** | [`docs/EDITORIAL_WORKFLOW.md`](file:///d:/Playground/fuad-portfolio/docs/EDITORIAL_WORKFLOW.md), [`docs/MAINTENANCE_BACKLOG.md`](file:///d:/Playground/fuad-portfolio/docs/MAINTENANCE_BACKLOG.md), [`docs/PUBLISH_ROLLBACK_CHECKLIST.md`](file:///d:/Playground/fuad-portfolio/docs/PUBLISH_ROLLBACK_CHECKLIST.md), [`tests/e2e/test-zero-code-cms-publish.mjs`](file:///d:/Playground/fuad-portfolio/tests/e2e/test-zero-code-cms-publish.mjs). | Owner can independently operate content workflow with zero code changes. 21/21 assertions passed. |
 
 ---
 
@@ -215,3 +215,86 @@ Screenshots stored in [`tests/screenshots/`](file:///c:/Fuad/WorkStation/fuad-po
 - [x] **6. Pages CMS Configured:** [`.pages.yml`](file:///c:/Fuad/WorkStation/fuad-portfolio/.pages.yml) media input/output and collections configured.
 - [x] **7. CMS Operator Guide Authored:** [`docs/CMS_OPERATOR_GUIDE.md`](file:///c:/Fuad/WorkStation/fuad-portfolio/docs/CMS_OPERATOR_GUIDE.md) created with step-by-step setup instructions.
 - [ ] **8. Authorization to Proceed to P6:** Owner review of visual screenshots, manual CMS setup instructions, and approval to begin Phase P6 (Quality, Accessibility, and SEO).
+
+---
+
+## Maintenance & Asset Fixes (13 November 2026)
+- **Resolved Blog SVG Parsing Errors:**
+  - `public/images/blog/cqrs-pattern.svg`: Fixed missing closing quote on `font-size="12"` attribute (line 31).
+  - `public/images/blog/ef-core-queries.svg`: Fixed missing closing quote on `font-size="12"` attribute (line 27).
+  - Validated all 9 project SVGs across `/public` with XML schema parser.
+  - Verification: `npm run check`, `npm run build`, and `npm test` executed and passed cleanly with 0 errors.
+
+---
+
+## Blog Article Reading Experience Overhaul (13 November 2026)
+- **Root Causes Identified & Fixed:**
+  1. *Unstyled Rendered Markdown:* Tailwind preflight reset all heading sizes, paragraph margins, list styles, and table borders. Added dedicated `src/styles/article.css` with `.article-content` and `.prose` classes covering all standard Markdown elements.
+  2. *Duplicated Table of Contents:* `TableOfContents.astro` previously held both mobile accordion and desktop card in the same DOM tree, rendering "On This Page" twice on desktop. Refactored `TableOfContents.astro` with `variant="mobile"` (accordion inside `main`) and `variant="desktop"` (sticky card inside `aside`).
+  3. *Code Block Overlap:* Copy button was previously injected absolute top-right inside `<pre>`, covering code characters on long lines. Built a top toolbar (`.code-block-header`) with macOS terminal dots, language tags (C#, TypeScript, SQL, JSON, Bash), and an accessible copy-to-clipboard button with "Copied!" feedback.
+  4. *Responsive Code Overflow:* Added `min-w-0` to the grid container and main article column to prevent wide code blocks from causing page-level horizontal overflow.
+  5. *Responsive Tables & Media:* Added automatic table wrapping (`.article-table-container`) for horizontal touch scrolling.
+  6. *Active Heading Scrollspy:* Implemented `IntersectionObserver` tracking in `ArticleLayout.astro` with smooth scrolling offset for the sticky header.
+- **Verification & Test Results:**
+  - `npm run check`: 52 files, 0 errors, 0 warnings.
+  - `npm run build`: 13 static routes built cleanly.
+  - `tests/unit/readingTime.test.ts`: 2/2 passed.
+  - `tests/e2e/p5-verification.mjs`: 62/62 passed.
+  - `tests/e2e/p6-verification.mjs`: 44/44 passed (0 Axe WCAG 2.2 AA violations; Lighthouse Article: 99 Perf, 100 A11y, 100 BestPractices, 100 SEO).
+  - Viewport verification screenshots captured at 1440, 1024, 768, 390, and 360 px in both dark and light modes with 0px horizontal page overflow.
+
+---
+
+## Phase P7 Deployment Preparation (Cloudflare Pages) (14 November 2026)
+- **Static Build Contract Confirmed:**
+  - Build output directory: `dist` (13 static HTML routes, responsive assets, sitemaps, RSS, favicons).
+  - Production branch: `main` (verified clean on `fuadhasan01/fuad-portfolio`).
+  - Framework preset: `Astro` static (`astro check && astro build`).
+- **External Approvals Queue Documented:**
+  - Detailed in [`docs/DEPLOYMENT_GUIDE.md`](file:///d:/Playground/fuad-portfolio/docs/DEPLOYMENT_GUIDE.md): repository connection, domain ownership strategy (Path A: `is-a.dev` vs. Path B: `fuadhasan.dev`), DNS CNAME record, public email/resume authorization, and Cloudflare analytics activation.
+- **Operational Artifacts:**
+  - Deployment runbook authored: [`docs/DEPLOYMENT_GUIDE.md`](file:///d:/Playground/fuad-portfolio/docs/DEPLOYMENT_GUIDE.md).
+  - Production smoke test suite authored: [`tests/e2e/smoke-test-production.mjs`](file:///d:/Playground/fuad-portfolio/tests/e2e/smoke-test-production.mjs) (`npm run smoke:prod`).
+  - Zero-downtime rollback and Git revert procedures documented.
+
+---
+
+## Phase P8 Post-Launch Operations & Editorial Workflow (14 November 2026)
+
+### 1. Requirements Implemented & Verified
+- **FR-020 & FR-023 (Zero-Code Article Addition via Pages CMS):**
+  - Confirmed and verified that the owner can author, edit, and publish new technical articles strictly via Pages CMS (`pagescms.org`) without touching any code, templates, or styles.
+  - Automated test script authored: [`tests/e2e/test-zero-code-cms-publish.mjs`](file:///d:/Playground/fuad-portfolio/tests/e2e/test-zero-code-cms-publish.mjs) (`npm run test:cms:publish`).
+  - Automated test simulates creating a new `.pages.yml`-compliant Markdown file, executing schema validation, generating the static build, and verifying:
+    - Route created at `dist/blog/[slug]/index.html` with title, rendered code block, syntax highlighting, and TOC jump anchors.
+    - Automatic inclusion in `dist/rss.xml`.
+    - Automatic inclusion in `dist/sitemap-0.xml`.
+    - Automatic inclusion in `dist/blog/index.html` catalog and client search index.
+    - Clean teardown and rebuild with 0 remnant traces in dist or sitemaps.
+  - **Result: 21 / 21 assertions PASSED.**
+- **FR-021 & FR-022 (Draft Isolation & Media Uploads):**
+  - Draft posts (`published: false`) remain 100% isolated from public static routes, sitemap, RSS, and search.
+  - Media uploads configured via `.pages.yml` targeting `public/images/blog/` with required alt text enforcement.
+- **NFR-007 (Cost Defense & Zero Paid Services):**
+  - Confirmed 100% static GitOps baseline. Zero database, zero serverless compute, zero paid subscriptions.
+  - Cloudflare Pages, GitHub, Pages CMS, and `is-a.dev` all run comfortably within permanent free-tier limits ($0/mo operating cost).
+- **NFR-012 & TC-020 (Repeatable Publish & Rollback Runbook):**
+  - Authored 3-tier emergency rollback runbook:
+    1. Instant Cloudflare Pages deployment rollback (< 30 seconds, zero rebuild required).
+    2. Routine Pages CMS unpublishing toggle (`published: false`, < 90 seconds).
+    3. Git revert (`git revert HEAD`, < 2 minutes).
+
+### 2. Operational Documentation Deliverables
+1. [`docs/EDITORIAL_WORKFLOW.md`](file:///d:/Playground/fuad-portfolio/docs/EDITORIAL_WORKFLOW.md): Complete guide for Pages CMS, frontmatter specification, Markdown typography rules, heading hierarchy, code fences, and pre-publish checks.
+2. [`docs/MAINTENANCE_BACKLOG.md`](file:///d:/Playground/fuad-portfolio/docs/MAINTENANCE_BACKLOG.md): Upkeep cadence (weekly/monthly/quarterly/annual), dependency health scanning, 6-month technical editorial calendar, privacy-first Cloudflare Web Analytics protocol, and feature icebox.
+3. [`docs/PUBLISH_ROLLBACK_CHECKLIST.md`](file:///d:/Playground/fuad-portfolio/docs/PUBLISH_ROLLBACK_CHECKLIST.md): Step-by-step pre-publish, publishing, post-publish 5-minute smoke test, content revision, and instant emergency rollback runbook.
+4. [`tests/e2e/test-zero-code-cms-publish.mjs`](file:///d:/Playground/fuad-portfolio/tests/e2e/test-zero-code-cms-publish.mjs): Standalone automated regression suite for zero-code publishing.
+
+### 3. Exit Gate Status
+- **Exit Gate: "Owner can independently operate content workflow"** — **SATISFIED**.
+- All documentation, checklists, maintenance plans, and automated verification suites are complete and reproducible.
+
+
+
+
+

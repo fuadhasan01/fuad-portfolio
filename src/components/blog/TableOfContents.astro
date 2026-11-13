@@ -7,61 +7,81 @@ interface HeadingItem {
 
 interface Props {
   headings: HeadingItem[];
+  variant?: 'mobile' | 'desktop' | 'auto';
 }
 
-const { headings } = Astro.props;
+const { headings, variant = 'auto' } = Astro.props;
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+
+const showMobile = (variant === 'mobile' || variant === 'auto') && tocHeadings.length > 0;
+const showDesktop = (variant === 'desktop' || variant === 'auto') && tocHeadings.length > 0;
+
+const navAriaLabel = variant === 'mobile' ? 'Table of contents (mobile)' : 'Table of contents';
 ---
 
 {
   tocHeadings.length > 0 && (
-    <nav class="toc-container" aria-label="Table of contents">
-      <!-- Mobile Collapsible Accordion -->
-      <details class="lg:hidden mb-8 p-4 rounded-xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark group">
-        <summary class="font-mono text-xs uppercase tracking-wider text-primary dark:text-primary-dark cursor-pointer list-none flex items-center justify-between focus-ring rounded p-1">
-          <span class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-accent dark:text-accent-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-            </svg>
-            <span>Table of Contents</span>
-          </span>
-          <span class="text-xs text-muted dark:text-muted-dark group-open:rotate-180 transition-transform">
-            ▼
-          </span>
-        </summary>
-        <ul class="mt-3 space-y-2 text-xs font-mono border-t border-border dark:border-border-dark pt-3">
-          {tocHeadings.map((h) => (
-            <li class={h.depth === 3 ? 'ml-3' : ''}>
-              <a
-                href={`#${h.slug}`}
-                class="text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark transition-colors block py-0.5 focus-ring rounded"
-              >
-                {h.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </details>
+    <nav
+      class:list={[
+        'toc-container',
+        variant === 'mobile' ? 'lg:hidden' : ''
+      ]}
+      aria-label={navAriaLabel}
+    >
+      {/* Mobile Collapsible Accordion (only on mobile/tablet < 1024px) */}
+      {showMobile && (
+        <details class="p-4 rounded-xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark group mb-8 lg:hidden">
+          <summary class="font-mono text-xs uppercase tracking-wider text-primary dark:text-primary-dark cursor-pointer list-none flex items-center justify-between focus-ring rounded p-1">
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-accent dark:text-accent-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+              </svg>
+              <span class="font-semibold">Table of Contents</span>
+            </span>
+            <span class="text-xs text-muted dark:text-muted-dark group-open:rotate-180 transition-transform" aria-hidden="true">
+              ▼
+            </span>
+          </summary>
+          <ul class="mt-3 space-y-1.5 text-xs font-mono border-t border-border dark:border-border-dark pt-3">
+            {tocHeadings.map((h) => (
+              <li class={h.depth === 3 ? 'ml-3' : ''}>
+                <a
+                  href={`#${h.slug}`}
+                  class="text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark transition-colors block py-1 px-1.5 rounded focus-ring"
+                >
+                  {h.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
 
-      <!-- Desktop Sticky Sidebar Box -->
-      <div class="hidden lg:block p-6 rounded-2xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
-        <h3 class="text-xs font-mono tracking-widest text-accent dark:text-accent-dark uppercase mb-4 flex items-center gap-2 font-medium">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent dark:bg-accent-dark"></span>
-          On This Page
-        </h3>
-        <ul class="space-y-2 text-xs font-mono">
-          {tocHeadings.map((h) => (
-            <li class={h.depth === 3 ? 'ml-3 text-[11px]' : ''}>
-              <a
-                href={`#${h.slug}`}
-                class="text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark transition-colors block py-1 focus-ring rounded leading-relaxed"
-              >
-                {h.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* Desktop Sticky Sidebar Box (only on desktop >= 1024px) */}
+      {showDesktop && (
+        <div class="hidden lg:block p-6 rounded-2xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
+          <h3 class="text-xs font-mono tracking-widest text-accent dark:text-accent-dark uppercase mb-4 flex items-center gap-2 font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent dark:bg-accent-dark" aria-hidden="true"></span>
+            On This Page
+          </h3>
+          <ul class="space-y-1 text-xs font-mono border-l border-border dark:border-border-dark">
+            {tocHeadings.map((h) => (
+              <li class={h.depth === 3 ? 'ml-3' : ''}>
+                <a
+                  href={`#${h.slug}`}
+                  data-toc-slug={h.slug}
+                  class:list={[
+                    'toc-link text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors block py-1.5 px-3 -ml-px border-l-2 border-transparent hover:border-accent/40 rounded-r focus-ring leading-relaxed',
+                    h.depth === 3 ? 'text-[11px]' : ''
+                  ]}
+                >
+                  {h.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   )
 }

@@ -6,56 +6,113 @@ interface Props {
 }
 
 const { project } = Astro.props;
+const {
+  title,
+  summary,
+  category,
+  technologies,
+  cover,
+  coverAlt,
+  repositoryUrl,
+  demoUrl
+} = project.data;
 ---
 
-<article class="flex flex-col justify-between p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark transition-all hover:shadow-md h-full">
+<article
+  class="flex flex-col justify-between rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark transition-all duration-200 hover:shadow-lg overflow-hidden group h-full"
+  data-category={category}
+  data-technologies={technologies.join(',')}
+>
   <div>
-    <!-- Technology tags -->
-    <div class="flex flex-wrap gap-1.5 mb-3" aria-label="Technologies used">
-      {project.data.technologies.slice(0, 3).map((tech) => (
-        <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-          {tech}
-        </span>
-      ))}
-      {project.data.technologies.length > 3 && (
-        <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-50 dark:bg-slate-800/40 text-muted dark:text-muted-dark">
-          +{project.data.technologies.length - 3}
-        </span>
-      )}
-    </div>
-
-    <!-- Title -->
-    <h3 class="text-xl font-bold text-primary dark:text-primary-dark mb-2 tracking-tight">
-      <a href={`/projects/${project.id}`} class="hover:text-accent dark:hover:text-accent-dark focus-ring rounded">
-        {project.data.title}
-      </a>
-    </h3>
-
-    <!-- Summary -->
-    <p class="text-sm text-muted dark:text-muted-dark leading-relaxed line-clamp-3 mb-6">
-      {project.data.summary}
-    </p>
-  </div>
-
-  <!-- Actions / Footer -->
-  <div class="pt-4 border-t border-border dark:border-border-dark flex items-center justify-between text-sm">
+    <!-- Project Thumbnail / Visual Container -->
     <a
       href={`/projects/${project.id}`}
-      class="font-semibold text-accent dark:text-accent-dark hover:underline focus-ring rounded"
+      class="block aspect-[16/10] overflow-hidden bg-slate-900 border-b border-border dark:border-border-dark focus-ring"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <img
+        src={cover}
+        alt={coverAlt}
+        width="600"
+        height="375"
+        class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+        loading="lazy"
+      />
+    </a>
+
+    <div class="p-6">
+      <!-- Category & Technologies Badges -->
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-accent dark:text-accent-dark border border-blue-100 dark:border-blue-900/50">
+          {category}
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h3 class="text-xl font-bold text-primary dark:text-primary-dark mb-2 tracking-tight">
+        <a
+          href={`/projects/${project.id}`}
+          class="hover:text-accent dark:hover:text-accent-dark focus-ring rounded inline-block"
+        >
+          {title}
+        </a>
+      </h3>
+
+      <!-- Summary -->
+      <p class="text-sm text-muted dark:text-muted-dark leading-relaxed line-clamp-3 mb-4">
+        {summary}
+      </p>
+
+      <!-- Technology Pills -->
+      <div class="flex flex-wrap gap-1.5" aria-label="Technologies used">
+        {technologies.slice(0, 4).map((tech) => (
+          <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            {tech}
+          </span>
+        ))}
+        {technologies.length > 4 && (
+          <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100/60 dark:bg-slate-800/40 text-muted dark:text-muted-dark">
+            +{technologies.length - 4}
+          </span>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Links Footer -->
+  <div class="px-6 py-4 border-t border-border dark:border-border-dark flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/30">
+    <a
+      href={`/projects/${project.id}`}
+      class="text-sm font-semibold text-accent dark:text-accent-dark hover:underline focus-ring rounded"
+      aria-label={`Read case study for ${title}`}
     >
       Case Study &rarr;
     </a>
-    {project.data.repositoryUrl && (
-      <a
-        href={project.data.repositoryUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-xs text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark focus-ring rounded p-1"
-        aria-label={`${project.data.title} GitHub repository (opens in new tab)`}
-      >
-        Source &nearr;
-      </a>
-    )}
+
+    <div class="flex items-center space-x-3 text-xs">
+      {repositoryUrl && (
+        <a
+          href={repositoryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark focus-ring rounded p-1 transition-colors"
+          aria-label={`${title} source code on GitHub (opens in new tab)`}
+        >
+          Source &nearr;
+        </a>
+      )}
+      {demoUrl && (
+        <a
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent dark:text-accent-dark font-medium hover:underline focus-ring rounded p-1"
+          aria-label={`${title} live demonstration (opens in new tab)`}
+        >
+          Demo &nearr;
+        </a>
+      )}
+    </div>
   </div>
 </article>
-

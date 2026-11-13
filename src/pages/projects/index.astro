@@ -1,73 +1,64 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/projects/ProjectCard.astro';
+import ProjectFilter from '../../components/projects/ProjectFilter.astro';
+import EmptyState from '../../components/common/EmptyState.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
+
+// Extract unique categories in deterministic order
+const categories = Array.from(new Set(projects.map((p) => p.data.category))).sort();
 ---
 
 <BaseLayout
   title="Projects & Case Studies | Fuad Hasan"
-  description="Software engineering projects, architectural case studies, and code repositories by Fuad Hasan."
+  description="Software engineering systems, architectural case studies, and open-source repositories by Fuad Hasan."
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <!-- Header -->
-    <header class="mb-12">
-      <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
-        PORTFOLIO
-      </span>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mt-2 mb-4">
-        Projects & Case Studies
+    <header class="mb-12 max-w-3xl">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+          PORTFOLIO
+        </span>
+        <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+        <span class="text-xs text-muted dark:text-muted-dark">
+          {projects.length} Case Studies
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
+        Projects &amp; Case Studies
       </h1>
-      <p class="text-lg text-muted dark:text-muted-dark leading-relaxed max-w-3xl">
-        A selection of full-stack systems, architectural implementations, and database-driven applications. Each project includes an in-depth case study of design decisions and technical trade-offs.
+
+      <p class="text-base sm:text-lg text-muted dark:text-muted-dark leading-relaxed">
+        Production systems, domain-driven architectures, and database implementations. Each project includes technical trade-offs, architecture decisions, and verified repository links.
       </p>
     </header>
 
+    <!-- Project Filter Bar (CMP-10 / FR-011) -->
+    <ProjectFilter categories={categories} totalCount={projects.length} />
+
     <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         projects.map((project) => (
-          <article class="flex flex-col justify-between p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark transition-all hover:shadow-md">
-            <div>
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                {project.data.technologies.slice(0, 3).map((tech) => (
-                  <span class="px-2.5 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <h2 class="text-xl font-bold text-primary dark:text-primary-dark mb-2">
-                <a href={`/projects/${project.id}`} class="hover:text-accent dark:hover:text-accent-dark focus-ring rounded">
-                  {project.data.title}
-                </a>
-              </h2>
-              <p class="text-sm text-muted dark:text-muted-dark leading-relaxed mb-4">
-                {project.data.summary}
-              </p>
-            </div>
-
-            <div class="pt-4 border-t border-border dark:border-border-dark flex items-center justify-between">
-              <a
-                href={`/projects/${project.id}`}
-                class="text-sm font-semibold text-accent dark:text-accent-dark hover:underline focus-ring rounded"
-              >
-                Read Case Study &rarr;
-              </a>
-              {project.data.repositoryUrl && (
-                <a
-                  href={project.data.repositoryUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark"
-                >
-                  GitHub &nearr;
-                </a>
-              )}
-            </div>
-          </article>
+          <div data-project-card data-category={project.data.category} class="h-full">
+            <ProjectCard project={project} />
+          </div>
         ))
       }
     </div>
+
+    <!-- Empty State (CMP-22 / FR-011) -->
+    <div id="projects-empty-state" class="hidden mt-8">
+      <EmptyState
+        title="No matching projects"
+        message="No projects found matching the selected category. Try selecting another category or view all projects."
+        resetText="Show All Projects"
+        resetId="empty-state-reset-btn"
+      />
+    </div>
   </div>
 </BaseLayout>
-

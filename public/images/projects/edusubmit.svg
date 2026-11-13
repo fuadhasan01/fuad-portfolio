@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="eduBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="eduAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <pattern id="eduGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#334155" stroke-width="0.7" stroke-opacity="0.3" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#eduBg)" rx="16" />
+  <rect width="800" height="480" fill="url(#eduGrid)" rx="16" />
+
+  <!-- App Window Container -->
+  <g transform="translate(60, 50)">
+    <!-- Window Chrome -->
+    <rect width="680" height="380" rx="12" fill="#1E293B" stroke="#334155" stroke-width="1.5" />
+    <rect width="680" height="40" rx="12" fill="#0F172A" />
+    <!-- Window controls -->
+    <circle cx="24" cy="20" r="5" fill="#EF4444" />
+    <circle cx="42" cy="20" r="5" fill="#F59E0B" />
+    <circle cx="60" cy="20" r="5" fill="#10B981" />
+    <text x="340" y="24" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="12" text-anchor="middle" font-weight="500">EduSubmit — Academic Assignment Portal</text>
+
+    <!-- Sidebar -->
+    <rect x="0" y="40" width="160" height="340" fill="#0F172A" fill-opacity="0.6" />
+    <rect x="16" y="60" width="128" height="24" rx="6" fill="#2563EB" fill-opacity="0.2" />
+    <text x="32" y="76" fill="#60A5FA" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600">Assignments</text>
+    <rect x="16" y="94" width="128" height="24" rx="6" fill="transparent" />
+    <text x="32" y="110" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="12">Submissions</text>
+    <rect x="16" y="128" width="128" height="24" rx="6" fill="transparent" />
+    <text x="32" y="144" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="12">Grading Matrix</text>
+    <rect x="16" y="162" width="128" height="24" rx="6" fill="transparent" />
+    <text x="32" y="178" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="12">RBAC Roles</text>
+
+    <!-- Main Content Area -->
+    <g transform="translate(180, 56)">
+      <!-- Metric Cards -->
+      <rect x="0" y="0" width="150" height="64" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+      <text x="14" y="24" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="11">Active Courses</text>
+      <text x="14" y="50" fill="#F8FAFC" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700">12 Sections</text>
+
+      <rect x="165" y="0" width="150" height="64" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+      <text x="179" y="24" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="11">Submissions</text>
+      <text x="179" y="50" fill="#60A5FA" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700">CQRS Handled</text>
+
+      <rect x="330" y="0" width="150" height="64" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+      <text x="344" y="24" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="11">Authorization</text>
+      <text x="344" y="50" fill="#10B981" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700">JWT Verified</text>
+
+      <!-- Assignment List Preview -->
+      <rect x="0" y="80" width="480" height="150" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+      <text x="16" y="106" fill="#F8FAFC" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600">Recent Assignments &amp; Deadlines</text>
+      
+      <!-- Table Rows -->
+      <rect x="16" y="120" width="448" height="28" rx="4" fill="#1E293B" />
+      <text x="28" y="138" fill="#CBD5E1" font-family="Inter, system-ui, sans-serif" font-size="11">Data Structures - Lab 04</text>
+      <rect x="370" y="124" width="84" height="20" rx="10" fill="#10B981" fill-opacity="0.2" />
+      <text x="412" y="138" fill="#34D399" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" text-anchor="middle">Reviewed</text>
+
+      <rect x="16" y="154" width="448" height="28" rx="4" fill="#1E293B" fill-opacity="0.6" />
+      <text x="28" y="172" fill="#CBD5E1" font-family="Inter, system-ui, sans-serif" font-size="11">Distributed Systems - Assignment 02</text>
+      <rect x="370" y="158" width="84" height="20" rx="10" fill="#F59E0B" fill-opacity="0.2" />
+      <text x="412" y="172" fill="#FBBF24" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" text-anchor="middle">Pending</text>
+
+      <rect x="16" y="188" width="448" height="28" rx="4" fill="#1E293B" fill-opacity="0.4" />
+      <text x="28" y="206" fill="#CBD5E1" font-family="Inter, system-ui, sans-serif" font-size="11">Database Systems - Final Project</text>
+      <rect x="370" y="192" width="84" height="20" rx="10" fill="#60A5FA" fill-opacity="0.2" />
+      <text x="412" y="206" fill="#60A5FA" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" text-anchor="middle">Open</text>
+
+      <!-- Tech Stack Badges at Bottom -->
+      <g transform="translate(0, 244)">
+        <rect x="0" y="0" width="80" height="24" rx="12" fill="#334155" />
+        <text x="40" y="16" fill="#E2E8F0" font-family="Inter, system-ui, sans-serif" font-size="11" text-anchor="middle">.NET 9</text>
+
+        <rect x="88" y="0" width="84" height="24" rx="12" fill="#334155" />
+        <text x="130" y="16" fill="#E2E8F0" font-family="Inter, system-ui, sans-serif" font-size="11" text-anchor="middle">Angular 20</text>
+
+        <rect x="180" y="0" width="80" height="24" rx="12" fill="#334155" />
+        <text x="220" y="16" fill="#E2E8F0" font-family="Inter, system-ui, sans-serif" font-size="11" text-anchor="middle">CQRS</text>
+
+        <rect x="268" y="0" width="94" height="24" rx="12" fill="#334155" />
+        <text x="315" y="16" fill="#E2E8F0" font-family="Inter, system-ui, sans-serif" font-size="11" text-anchor="middle">PostgreSQL</text>
+      </g>
+    </g>
+  </g>
+</svg>
+

@@ -1,0 +1,120 @@
+---
+interface Props {
+  categories: string[];
+  totalCount: number;
+}
+
+const { categories, totalCount } = Astro.props;
+---
+
+<div class="mb-10" role="region" aria-label="Project filters">
+  <!-- Controls Bar: Category Pills + Counter -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <!-- Category Filter Pills -->
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter projects by category">
+      <button
+        type="button"
+        class="filter-pill px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors focus-ring bg-accent text-white"
+        data-filter="all"
+        aria-pressed="true"
+      >
+        All Projects
+      </button>
+      {
+        categories.map((category) => (
+          <button
+            type="button"
+            class="filter-pill px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors focus-ring bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+            data-filter={category}
+            aria-pressed="false"
+          >
+            {category}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Live Results Counter -->
+    <div
+      id="project-filter-count"
+      class="text-xs sm:text-sm text-muted dark:text-muted-dark whitespace-nowrap"
+      aria-live="polite"
+    >
+      Showing <span id="visible-count" class="font-semibold text-primary dark:text-primary-dark">{totalCount}</span> of {totalCount} projects
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupProjectFilters() {
+    const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+    const cards = document.querySelectorAll<HTMLElement>('[data-project-card]');
+    const countSpan = document.getElementById('visible-count');
+    const emptyState = document.getElementById('projects-empty-state');
+    const resetBtn = document.getElementById('empty-state-reset-btn');
+
+    if (!pills.length || !cards.length) return;
+
+    function applyFilter(category: string) {
+      let visible = 0;
+
+      // Update pill states
+      pills.forEach((pill) => {
+        const isActive = (pill.getAttribute('data-filter') || '').toLowerCase() === category.toLowerCase();
+        pill.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        if (isActive) {
+          pill.className = 'filter-pill px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors focus-ring bg-accent text-white shadow-sm';
+        } else {
+          pill.className = 'filter-pill px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors focus-ring bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700';
+        }
+      });
+
+      // Filter cards
+      cards.forEach((card) => {
+        const cardCategory = (card.getAttribute('data-category') || '').trim();
+        const matches = category.toLowerCase() === 'all' || cardCategory.toLowerCase() === category.toLowerCase();
+        
+        if (matches) {
+          card.style.display = '';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Update counter
+      if (countSpan) {
+        countSpan.textContent = visible.toString();
+      }
+
+      // Handle empty state visibility
+      if (emptyState) {
+        if (visible === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+    }
+
+    // Attach pill click events
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const filter = pill.getAttribute('data-filter') || 'all';
+        applyFilter(filter);
+      });
+    });
+
+    // Attach reset button event
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        applyFilter('all');
+      });
+    }
+  }
+
+  // Setup on initial load and view transitions
+  setupProjectFilters();
+  document.addEventListener('astro:page-load', setupProjectFilters);
+</script>
+

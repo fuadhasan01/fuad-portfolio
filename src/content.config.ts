@@ -40,10 +40,12 @@ export const projects = defineCollection({
     summary: z.string().min(10),
     featured: z.boolean().default(false),
     status: z.enum(['completed', 'in-progress', 'archived']).default('completed'),
+    category: z.enum(['Full Stack', 'Backend & Systems', 'Architecture & ERP']).default('Full Stack'),
     technologies: z.array(z.string()).min(1),
     cover: z.string().startsWith('/images/projects/'),
     coverAlt: z.string().min(5),
     repositoryUrl: z.string().url().optional(),
+    frontendRepositoryUrl: z.string().url().optional(),
     demoUrl: z.string().url().optional(),
     role: z.string().default('Lead Engineer / Full Stack Developer'),
     timeline: z.string().optional()

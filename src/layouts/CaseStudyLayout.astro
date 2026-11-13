@@ -7,84 +7,184 @@ interface Props {
 }
 
 const { project } = Astro.props;
+const {
+  title,
+  summary,
+  category,
+  technologies,
+  cover,
+  coverAlt,
+  repositoryUrl,
+  frontendRepositoryUrl,
+  demoUrl,
+  role,
+  timeline,
+  status
+} = project.data;
 ---
 
 <BaseLayout
-  title={`${project.data.title} - Case Study | Fuad Hasan`}
-  description={project.data.summary}
-  image={project.data.cover}
+  title={`${title} - Case Study | Fuad Hasan`}
+  description={summary}
+  image={cover}
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
     <!-- Breadcrumb -->
-    <nav class="flex items-center space-x-2 text-sm text-muted dark:text-muted-dark mb-6" aria-label="Breadcrumb">
-      <a href="/projects" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Projects</a>
-      <span>/</span>
-      <span class="text-primary dark:text-primary-dark font-medium">{project.data.title}</span>
+    <nav class="flex items-center space-x-2 text-sm text-muted dark:text-muted-dark mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/projects" class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">Projects</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-primary dark:text-primary-dark font-medium truncate" aria-current="page">{title}</span>
     </nav>
 
-    <!-- Case Study Header -->
-    <header class="mb-10">
-      <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
-        PROJECT CASE STUDY
-      </span>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mt-2 mb-4">
-        {project.data.title}
-      </h1>
-      <p class="text-lg text-muted dark:text-muted-dark leading-relaxed mb-6">
-        {project.data.summary}
-      </p>
-
-      <!-- Tech Badges -->
-      <div class="flex flex-wrap gap-2 mb-6">
-        {
-          project.data.technologies.map((tech) => (
-            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-              {tech}
+    <!-- Case Study Split Hero Section (wireframe_project.png) -->
+    <header class="mb-14 pb-10 border-b border-border dark:border-border-dark">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <!-- Overview & Action Column (Left) -->
+        <div class="lg:col-span-7">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+              PROJECT CASE STUDY
             </span>
-          ))
-        }
-      </div>
+            <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
+            <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-accent dark:text-accent-dark border border-blue-100 dark:border-blue-900/50">
+              {category}
+            </span>
+          </div>
 
-      <!-- Action Buttons -->
-      <div class="flex flex-wrap gap-3 pt-2">
-        {
-          project.data.repositoryUrl && (
-            <a
-              href={project.data.repositoryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center px-4 py-2 text-sm font-semibold rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors focus-ring"
-            >
-              View Repository &rarr;
-            </a>
-          )
-        }
-        {
-          project.data.demoUrl && (
-            <a
-              href={project.data.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center px-4 py-2 text-sm font-semibold rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
-            >
-              Live Demo &rarr;
-            </a>
-          )
-        }
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
+            {title}
+          </h1>
+
+          <p class="text-base sm:text-lg text-muted dark:text-muted-dark leading-relaxed mb-6">
+            {summary}
+          </p>
+
+          <!-- Metadata Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 py-4 border-y border-border/60 dark:border-border-dark/60 mb-6 text-sm">
+            <div>
+              <span class="block text-xs text-muted dark:text-muted-dark uppercase tracking-wider">Role</span>
+              <span class="font-medium text-primary dark:text-primary-dark">{role}</span>
+            </div>
+            {timeline && (
+              <div>
+                <span class="block text-xs text-muted dark:text-muted-dark uppercase tracking-wider">Timeline</span>
+                <span class="font-medium text-primary dark:text-primary-dark">{timeline}</span>
+              </div>
+            )}
+            <div>
+              <span class="block text-xs text-muted dark:text-muted-dark uppercase tracking-wider">Status</span>
+              <span class="inline-flex items-center gap-1.5 font-medium text-emerald-600 dark:text-emerald-400 capitalize">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                {status}
+              </span>
+            </div>
+          </div>
+
+          <!-- Technologies Badges -->
+          <div class="mb-6">
+            <span class="sr-only">Technologies used:</span>
+            <div class="flex flex-wrap gap-2">
+              {
+                technologies.map((tech) => (
+                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    {tech}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Action Buttons (FR-008: Source & Demo links shown only when verified) -->
+          <div class="flex flex-wrap gap-3">
+            {
+              repositoryUrl && (
+                <a
+                  href={repositoryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors shadow-sm focus-ring"
+                  aria-label={`View ${title} repository on GitHub (opens in new tab)`}
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                  </svg>
+                  <span>{frontendRepositoryUrl ? 'Backend Repo' : 'View Repository'} &rarr;</span>
+                </a>
+              )
+            }
+            {
+              frontendRepositoryUrl && (
+                <a
+                  href={frontendRepositoryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+                  aria-label={`View ${title} frontend repository on GitHub (opens in new tab)`}
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                  </svg>
+                  <span>Frontend Repo &rarr;</span>
+                </a>
+              )
+            }
+            {
+              demoUrl && (
+                <a
+                  href={demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold rounded-lg border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+                  aria-label={`Open live demo for ${title} (opens in new tab)`}
+                >
+                  <span>Live Demo</span>
+                  <span aria-hidden="true">&nearr;</span>
+                </a>
+              )
+            }
+          </div>
+        </div>
+
+        <!-- Cover Preview Container (Right) -->
+        <div class="lg:col-span-5">
+          <figure class="relative overflow-hidden rounded-2xl border border-border dark:border-border-dark shadow-sm bg-slate-900 group">
+            <img
+              src={cover}
+              alt={coverAlt}
+              width="800"
+              height="480"
+              class="w-full h-auto object-cover transform transition-transform duration-300 group-hover:scale-[1.02]"
+              loading="eager"
+            />
+            <figcaption class="p-3 text-center text-xs text-slate-400 bg-slate-900/90 border-t border-slate-800">
+              {coverAlt}
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </header>
 
-    <!-- Case Study Body -->
-    <article class="prose prose-slate dark:prose-invert max-w-none border-t border-border dark:border-border-dark pt-8">
+    <!-- Case Study Body (Prose) -->
+    <article class="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-a:text-accent dark:prose-a:text-accent-dark hover:prose-a:underline prose-img:rounded-xl prose-img:border prose-img:border-border dark:prose-img:border-border-dark">
       <slot />
     </article>
 
-    <!-- Back to projects -->
-    <div class="mt-12 pt-6 border-t border-border dark:border-border-dark">
-      <a href="/projects" class="inline-flex items-center text-sm font-semibold text-accent dark:text-accent-dark hover:underline">
-        &larr; Back to all projects
+    <!-- Back to projects footer -->
+    <div class="mt-14 pt-8 border-t border-border dark:border-border-dark flex items-center justify-between">
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-accent dark:text-accent-dark hover:underline focus-ring rounded"
+      >
+        <span aria-hidden="true">&larr;</span> Back to all projects
+      </a>
+      <a
+        href="#top"
+        class="text-xs text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring rounded"
+      >
+        Back to top &uarr;
       </a>
     </div>
   </div>
 </BaseLayout>
-

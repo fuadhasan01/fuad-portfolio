@@ -1,0 +1,45 @@
+{
+  "axeViolations": [],
+  "lighthouseScores": [
+    {
+      "name": "Home",
+      "perf": 99,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100
+    },
+    {
+      "name": "Article",
+      "perf": 100,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100
+    },
+    {
+      "name": "Projects",
+      "perf": 100,
+      "a11y": 98,
+      "bp": 100,
+      "seo": 100
+    }
+  ],
+  "tcResults": {
+    "TC-001": "PASS",
+    "TC-002": "PASS",
+    "TC-003": "PASS",
+    "TC-004": "PASS",
+    "TC-005": "PASS",
+    "TC-006": "PASS",
+    "TC-010": "PASS",
+    "TC-011": "PASS",
+    "TC-012": "PASS",
+    "TC-013": "PASS",
+    "TC-014": "PASS",
+    "TC-015": "PASS",
+    "TC-016": "PASS",
+    "TC-019": "PASS",
+    "TC-017": "PASS",
+    "TC-018": "PASS",
+    "TC-020": "PASS"
+  }
+}

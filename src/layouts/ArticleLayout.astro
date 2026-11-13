@@ -31,6 +31,13 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
   description={post.data.excerpt}
   image={post.data.cover}
   article={true}
+  articleData={{
+    headline: post.data.title,
+    description: post.data.excerpt,
+    datePublished: post.data.pubDate,
+    dateModified: post.data.updatedDate,
+    image: post.data.cover
+  }}
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
     <!-- Breadcrumb (wireframe_article.png) -->

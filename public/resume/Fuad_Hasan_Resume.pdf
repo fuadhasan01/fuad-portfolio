@@ -1,0 +1,94 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2102 >>
+stream
+BT
+/F1 20 Tf
+50 750 Td
+(FUAD HASAN) Tj
+/F1 12 Tf
+0 -20 Td
+(Full Stack Software Engineer | Dhaka, Bangladesh) Tj
+0 -16 Td
+(Email: fuadhasan573@gmail.com | GitHub: github.com/fuadhasan01 | LinkedIn: linkedin.com/in/fuadhasan01) Tj
+0 -14 Td
+([PUBLIC SANITIZED RESUME - Conforms to Privacy & Security Policies]) Tj
+0 -30 Td
+/F1 14 Tf
+(CORE COMPETENCIES & TECHNICAL SKILLS) Tj
+/F1 10 Tf
+0 -16 Td
+(Backend: C#, .NET 8/9, ASP.NET Core, EF Core, CQRS, DDD, MassTransit, RESTful APIs) Tj
+0 -14 Td
+(Frontend: Angular, TypeScript, RxJS, Tailwind CSS, HTML5, Semantic Web, Responsive UI) Tj
+0 -14 Td
+(Databases & DevOps: SQL Server, PostgreSQL, Docker, Git, CI/CD Workflows) Tj
+0 -30 Td
+/F1 14 Tf
+(PROFESSIONAL EXPERIENCE) Tj
+/F1 11 Tf
+0 -18 Td
+(Efficient Software Solutions LTD - Software Engineer (Oct 2025 - Present)) Tj
+/F1 10 Tf
+0 -14 Td
+(- Designed scalable RESTful APIs using ASP.NET Core and Entity Framework Core) Tj
+0 -14 Td
+(- Implemented asynchronous messaging and outbox patterns using MassTransit) Tj
+0 -14 Td
+(- Optimized SQL Server queries and EF Core operations to eliminate latency bottlenecks) Tj
+0 -14 Td
+(- Collaborated on Angular frontend modules with reactive state patterns) Tj
+/F1 11 Tf
+0 -20 Td
+(Pakiza Software LTD - Jr. Software Developer (Oct 2024 - Sep 2025)) Tj
+/F1 10 Tf
+0 -14 Td
+(- Maintained and expanded enterprise ERP solutions using ASP.NET Core and SQL Server) Tj
+0 -14 Td
+(- Implemented high-precision accounting vouchers with atomic double-entry balance validation) Tj
+0 -30 Td
+/F1 14 Tf
+(SELECTED PROJECTS) Tj
+/F1 10 Tf
+0 -16 Td
+(1. EduSubmit: Full-stack assignment platform with Clean Architecture, CQRS, and JWT auth) Tj
+0 -14 Td
+(2. LibraryMS: Multi-branch library circulation system with Docker and automated fines) Tj
+0 -14 Td
+(3. Mini Account Management System: Financial general ledger and voucher accounting) Tj
+0 -30 Td
+/F1 14 Tf
+(EDUCATION & HONORS) Tj
+/F1 10 Tf
+0 -16 Td
+(United International University (UIU) - B.Sc. in Computer Science and Engineering) Tj
+0 -14 Td
+(CGPA: 3.94 / 4.00 | Honors: Summa Cum Laude | 6 Consecutive Academic Merit Scholarships) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000002395 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2465
+%%EOF

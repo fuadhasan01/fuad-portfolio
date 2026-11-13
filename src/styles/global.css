@@ -46,3 +46,12 @@
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:focus-visible:ring-blue-400 dark:focus-visible:ring-offset-slate-900;
 }
 
+/* Ensure syntax highlighted code comments meet WCAG 2.2 AA contrast (> 4.5:1) */
+.astro-code span[style*="color:#6A737D"],
+.astro-code span[style*="color: #6A737D"],
+.prose pre code span[style*="color:#6A737D"],
+pre code span[style*="color:#6A737D"] {
+  color: #94a3b8 !important;
+}
+
+

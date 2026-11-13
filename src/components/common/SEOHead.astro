@@ -1,23 +1,98 @@
 ---
 import { siteSettings } from '../../data/siteSettings';
+import { profile } from '../../data/profile';
 import { buildCanonicalUrl, buildSocialImageUrl } from '../../utils/seo';
+
+export interface ArticleData {
+  headline: string;
+  description: string;
+  datePublished: Date;
+  dateModified?: Date;
+  image?: string;
+  authorName?: string;
+}
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   article?: boolean;
+  articleData?: ArticleData;
 }
 
 const {
   title = siteSettings.defaultTitle,
   description = siteSettings.defaultDescription,
   image,
-  article = false
+  article = false,
+  articleData
 } = Astro.props;
 
 const canonicalUrl = buildCanonicalUrl(Astro.url.pathname);
 const socialImageUrl = buildSocialImageUrl(image);
+
+// Build Schema.org Structured Data (FR-029)
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteSettings.siteUrl}/#website`,
+      url: `${siteSettings.siteUrl}/`,
+      name: siteSettings.siteName,
+      description: siteSettings.defaultDescription,
+      inLanguage: 'en-US',
+      publisher: {
+        '@id': `${siteSettings.siteUrl}/#person`
+      }
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteSettings.siteUrl}/#person`,
+      name: profile.name,
+      jobTitle: profile.title,
+      url: `${siteSettings.siteUrl}/`,
+      sameAs: profile.socialLinks.map((s) => s.url),
+      knowsAbout: [
+        'C#',
+        'ASP.NET Core',
+        '.NET 9',
+        'Entity Framework Core',
+        'Angular',
+        'PostgreSQL',
+        'Microsoft SQL Server',
+        'CQRS',
+        'Domain-Driven Design',
+        'Distributed Systems'
+      ]
+    }
+  ]
+};
+
+const articleSchema = article
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: articleData?.headline || title,
+      description: articleData?.description || description,
+      datePublished: (articleData?.datePublished || new Date()).toISOString(),
+      dateModified: (articleData?.dateModified || articleData?.datePublished || new Date()).toISOString(),
+      image: buildSocialImageUrl(articleData?.image || image),
+      author: {
+        '@type': 'Person',
+        name: profile.name,
+        url: siteSettings.siteUrl
+      },
+      publisher: {
+        '@type': 'Person',
+        name: profile.name
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalUrl
+      }
+    }
+  : null;
 ---
 
 <meta charset="UTF-8" />
@@ -29,7 +104,7 @@ const socialImageUrl = buildSocialImageUrl(image);
 <meta name="description" content={description} />
 <meta name="author" content={siteSettings.author} />
 
-<!-- OpenGraph / Facebook -->
+<!-- OpenGraph / Facebook (FR-027) -->
 <meta property="og:type" content={article ? 'article' : 'website'} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={title} />
@@ -37,17 +112,23 @@ const socialImageUrl = buildSocialImageUrl(image);
 <meta property="og:image" content={socialImageUrl} />
 <meta property="og:site_name" content={siteSettings.siteName} />
 
-<!-- Twitter -->
+<!-- Twitter (FR-027) -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:url" content={canonicalUrl} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImageUrl} />
 
-<!-- RSS Feed Auto-discovery -->
+<!-- RSS Feed Auto-discovery (FR-025) -->
 <link rel="alternate" type="application/rss+xml" title={siteSettings.siteName} href="/rss.xml" />
 
-<!-- Zero-flash theme initialization script -->
+<!-- Structured Data JSON-LD (FR-029, TC-014) -->
+<script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+{articleSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+)}
+
+<!-- Zero-flash theme initialization script (FR-003, TC-002) -->
 <script is:inline>
   (function() {
     const savedTheme = localStorage.getItem('theme');
@@ -60,3 +141,22 @@ const socialImageUrl = buildSocialImageUrl(image);
   })();
 </script>
 
+<!-- Privacy-Minded Outbound Link Measurement (FR-030, FR-031) -->
+<script is:inline>
+  (function() {
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (href && (href.startsWith('http://') || href.startsWith('https://')) && !href.includes(window.location.hostname)) {
+        try {
+          const url = new URL(href);
+          // Dispatch custom event for privacy-minded observation
+          window.dispatchEvent(new CustomEvent('portfolio:outbound-click', {
+            detail: { destination: url.hostname, pathname: url.pathname }
+          }));
+        } catch (_) {}
+      }
+    });
+  })();
+</script>

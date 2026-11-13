@@ -8,6 +8,7 @@ export interface Profile {
   name: string;
   title: string;
   location: string;
+  email: string;
   heroHeadline: string;
   heroSubhead: string;
   heroSpecialization: string;
@@ -19,6 +20,7 @@ export const profile: Profile = {
   name: 'Fuad Hasan',
   title: 'Full Stack Software Engineer',
   location: 'Dhaka, Bangladesh',
+  email: 'contact@fuadhasan.dev',
   heroHeadline: 'Building reliable systems and thoughtful web experiences.',
   heroSubhead: 'Full Stack Software Engineer focused on C#, ASP.NET Core, Angular, SQL Server, and scalable application architecture.',
   heroSpecialization: 'C# / ASP.NET Core / Angular / PostgreSQL. Enterprise software, maintainable architecture, and practical technical writing.',

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="ogBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1220" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <pattern id="ogGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.8" stroke-opacity="0.3" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#ogBg)" />
+  <rect width="1200" height="630" fill="url(#ogGrid)" />
+
+  <!-- Accent glow in top corner -->
+  <circle cx="1000" cy="120" r="300" fill="#2563EB" fill-opacity="0.12" filter="blur(80px)" />
+  <circle cx="200" cy="500" r="250" fill="#3B82F6" fill-opacity="0.08" filter="blur(80px)" />
+
+  <g transform="translate(100, 100)">
+    <!-- Brand / Eyebrow -->
+    <rect x="0" y="0" width="280" height="36" rx="18" fill="#2563EB" fill-opacity="0.2" stroke="#3B82F6" stroke-width="1.5" />
+    <text x="140" y="23" fill="#60A5FA" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1">FULL STACK SOFTWARE ENGINEER</text>
+
+    <!-- H1 Name -->
+    <text x="0" y="120" fill="#F8FAFC" font-family="Inter, system-ui, sans-serif" font-size="68" font-weight="800" letter-spacing="-1.5">Fuad Hasan</text>
+
+    <!-- Subheadline -->
+    <text x="0" y="190" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="500">Building reliable systems, clean architecture,</text>
+    <text x="0" y="230" fill="#94A3B8" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="500">and thoughtful web experiences.</text>
+
+    <!-- Tech Stack Pill Container -->
+    <g transform="translate(0, 290)">
+      <rect x="0" y="0" width="760" height="60" rx="14" fill="#0F172A" stroke="#334155" stroke-width="1.5" />
+      <text x="380" y="38" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="16" font-weight="600" text-anchor="middle">
+        C#  •  ASP.NET Core  •  Angular  •  PostgreSQL  •  Distributed Systems
+      </text>
+    </g>
+
+    <!-- Footer URL -->
+    <g transform="translate(0, 400)">
+      <text x="0" y="0" fill="#60A5FA" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">fuadhasan.is-a.dev</text>
+      <text x="760" y="0" fill="#64748B" font-family="Inter, system-ui, sans-serif" font-size="16" text-anchor="end">Dhaka, Bangladesh</text>
+    </g>
+  </g>
+</svg>
+

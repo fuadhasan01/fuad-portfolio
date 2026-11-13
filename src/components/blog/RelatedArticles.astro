@@ -28,25 +28,26 @@ const related = posts
 
 {
   related.length > 0 && (
-    <div class="mt-8 p-5 rounded-2xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
-      <h3 class="text-xs font-semibold tracking-wider text-muted dark:text-muted-dark uppercase mb-4">
+    <div class="mt-8 p-6 rounded-2xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
+      <h3 class="text-xs font-mono tracking-widest text-accent dark:text-accent-dark uppercase mb-4 flex items-center gap-2 font-medium">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent dark:bg-accent-dark"></span>
         Related Reading
       </h3>
-      <div class="space-y-4">
+      <div class="space-y-5">
         {related.map((post) => {
           const rt = getReadingTime(post.body || '');
           return (
-            <div class="group">
-              <span class="text-xs font-medium text-accent dark:text-accent-dark block mb-1">
+            <div class="group border-b border-border/50 dark:border-border-dark/50 pb-4 last:border-b-0 last:pb-0">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-accent dark:text-accent-dark block mb-1">
                 {post.data.category}
               </span>
               <a
                 href={`/blog/${post.id}`}
-                class="text-sm font-semibold text-primary dark:text-primary-dark group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2 block mb-1 focus-ring rounded"
+                class="font-serif text-base font-normal text-primary dark:text-primary-dark group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2 block mb-1.5 focus-ring rounded leading-snug"
               >
                 {post.data.title}
               </a>
-              <span class="text-xs text-muted dark:text-muted-dark">
+              <span class="text-xs font-mono text-muted dark:text-muted-dark">
                 {rt.text}
               </span>
             </div>
@@ -56,4 +57,3 @@ const related = posts
     </div>
   )
 }
-

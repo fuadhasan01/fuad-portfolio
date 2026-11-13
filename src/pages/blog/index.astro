@@ -17,24 +17,24 @@ const categories = Array.from(new Set(sortedPosts.map((p) => p.data.category))).
   title="Technical Blog & Engineering Notes | Fuad Hasan"
   description="Practical articles on ASP.NET Core, CQRS, transactional outbox patterns, and high-performance database optimization by Fuad Hasan."
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <div class="max-w-6xl mx-auto px-6 md:px-12 py-16 sm:py-24">
     <!-- Header -->
-    <header class="mb-10 max-w-3xl">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
-          TECHNICAL WRITING
+    <header class="mb-14 max-w-3xl">
+      <div class="flex items-center gap-3 mb-4 font-mono text-xs">
+        <span class="font-medium tracking-widest text-accent dark:text-accent-dark uppercase">
+          Technical Writing
         </span>
-        <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-        <span class="text-xs text-muted dark:text-muted-dark">
+        <span class="text-muted dark:text-muted-dark" aria-hidden="true">•</span>
+        <span class="text-muted dark:text-muted-dark">
           {sortedPosts.length} Articles Published
         </span>
       </div>
 
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-primary dark:text-primary-dark mb-4">
         Blog &amp; Engineering Notes
       </h1>
 
-      <p class="text-base sm:text-lg text-muted dark:text-muted-dark leading-relaxed">
+      <p class="text-lg text-muted dark:text-muted-dark leading-relaxed font-sans">
         Practical guides, architectural patterns, and production lessons on .NET 9, distributed systems, clean architecture, and SQL database tuning.
       </p>
     </header>

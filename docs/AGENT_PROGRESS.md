@@ -1,10 +1,53 @@
 # Fuad Hasan Portfolio - Agent Progress & Phase Tracking
 
-## Current Status: P6 Completed (Paused at P6 Gate for Owner Review)
+## Current Status: Design System Overhaul & Visual Redesign Completed (Awaiting Owner Review)
 - **Document Date:** 13 November 2026
-- **Active Phase:** P6 (Quality, Verification, Analytics & Hardening)
+- **Active Task:** Visual Redesign inspired by `https://patio-saved-34629488.figma.site/`
 - **Next Phase:** P7 (Custom Domain & Cloudflare Pages Deployment)
-- **Exit Gate Status:** All 44 automated quality assertions passed (`tests/e2e/p6-verification.mjs`). Zero WCAG 2.2 AA violations across all 9 routes (`docs/accessibility-audit.md`). Lighthouse performance, accessibility, best practices, and SEO scores range between 98 and 100 (`docs/qa-report.md`). Sanitized resume PDF (%PDF-1.4) and branded social OpenGraph assets generated. Zero PII or secret leaks across static bundles.
+- **Exit Gate Status:**
+  - Redesign completed across all 8 routes and 20+ components.
+  - All 44 automated quality assertions passed (`tests/e2e/p6-verification.mjs`).
+  - Zero WCAG 2.2 AA violations across all 9 static routes.
+  - Lighthouse performance, accessibility, best practices, and SEO scores range between 94 and 100.
+  - Desktop (1440px), tablet (768px), and mobile (390px) screenshots captured and compared against reference.
+  - Zero secret or personal data leaks.
+
+---
+
+## Design System Overhaul (Figma Reference Redesign)
+
+### 1. Visual Direction & Design Tokens
+- **Reference Site:** `https://patio-saved-34629488.figma.site/` (Marcus Ashford Portfolio).
+- **Core Aesthetic:** Dark luxury engineering portfolio featuring high-contrast editorial typography, deep obsidian black canvases, monospace metadata tags, and electric chartreuse/lime accents.
+- **Typography:**
+  - Display / Headings: `Instrument Serif` (400 weight, italic emphasis).
+  - Body & Paragraphs: `DM Sans` (warm, legible editorial text).
+  - Metadata, Badges & Labels: `JetBrains Mono` (precise monospaced engineering feel).
+- **Color Palette:**
+  - Canvas: `#09090E` (Obsidian Black) / Light: `#FBFBFA`
+  - Surface: `#111118` / Light: `#FFFFFF`
+  - Secondary: `#1A1A24` / Light: `#F4F2EE`
+  - Primary Text: `#F0EDE8` (Warm Ivory) / Light: `#111116`
+  - Muted Text: `#8A8A9A` / Light: `#5E5E6E`
+  - Accent: `#C8F73E` (Electric Lime / Chartreuse) in dark mode; `#2563EB` (Deep Royal Blue) in light mode.
+  - Borders: `rgba(240, 237, 232, 0.08)` (Subtle 8% ivory line work).
+
+### 2. Components & Pages Redesigned
+- **Header & Footer:** Minimalist fixed navbar with `FH` monogram, tracking-wide navigation links, "Hire Me" border button, and square border box social icons with monospace abbreviations.
+- **Home (`src/pages/index.astro`):**
+  - Hero with clamp `Instrument Serif` headline (`Fuad Hasan`), quick metadata, social icon boxes, bento metrics row (`3+` projects, `2+` years, `3.6/4.0` CGPA), and "See work ↓".
+  - Selected Work: Numbered list rows (`01`, `02`, `03`) with verified action links and monospace technology pills.
+  - About: 12-column split with dedicated 4:5 portrait frame (`profile.avatarUrl`), editorial narrative, focus areas, and 4 technical skill domains.
+  - Experience: Clean minimalist timeline rows with date on left and role/company on right.
+  - Terminal Quote: Sleek `fuad@workstation ~` card with architectural quote.
+  - Contact Callout: "Let's build something worth building." headline with direct email CTA.
+- **Projects & Case Studies (`src/pages/projects/` & `src/layouts/CaseStudyLayout.astro`):**
+  - Monospace category filter pills, `Instrument Serif` titles, and two-column case study hero layouts with status indicators and verified source/demo CTAs.
+- **Blog & Articles (`src/pages/blog/` & `src/layouts/ArticleLayout.astro`):**
+  - Minimalist search input, topic filters, reading time, sticky table of contents, and responsive code blocks.
+- **About, Experience, Contact & 404:**
+  - About page updated with dedicated 4:5 portrait image space alongside background & philosophy narrative.
+  - Unified display typography, credential boxes, copy-to-clipboard email feedback, and public sanitized CV download.
 
 ---
 

@@ -6,41 +6,47 @@ export default {
     extend: {
       colors: {
         canvas: {
-          light: '#F8FAFC',
-          dark: '#0B1220'
+          light: '#FBFBFA',
+          dark: '#09090E'
         },
         surface: {
           light: '#FFFFFF',
-          dark: '#111C2D'
+          dark: '#111118'
+        },
+        secondary: {
+          light: '#F4F2EE',
+          dark: '#1A1A24'
         },
         primary: {
-          DEFAULT: '#0F172A',
-          dark: '#F8FAFC'
+          DEFAULT: '#111116',
+          dark: '#F0EDE8'
         },
         muted: {
-          DEFAULT: '#475569',
-          dark: '#94A3B8'
+          DEFAULT: '#5E5E6E',
+          dark: '#8A8A9A'
         },
         accent: {
-          DEFAULT: '#1D4ED8',
-          hover: '#1E40AF',
-          dark: '#60A5FA',
-          'dark-hover': '#93C5FD'
+          DEFAULT: '#2563EB',
+          hover: '#1D4ED8',
+          dark: '#C8F73E', // Reference signature electric chartreuse
+          'dark-hover': '#D6FA5E'
         },
         border: {
-          DEFAULT: '#E2E8F0',
-          dark: '#1E293B'
+          DEFAULT: 'rgba(17, 17, 22, 0.08)',
+          dark: 'rgba(240, 237, 232, 0.08)'
         }
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        sans: ['"DM Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
       },
       maxWidth: {
-        'prose-article': '720px'
+        'prose-article': '760px'
       }
     }
   },
   plugins: []
 };
+
 

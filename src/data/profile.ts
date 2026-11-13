@@ -9,6 +9,7 @@ export interface Profile {
   title: string;
   location: string;
   email: string;
+  avatarUrl: string;
   heroHeadline: string;
   heroSubhead: string;
   heroSpecialization: string;
@@ -21,6 +22,7 @@ export const profile: Profile = {
   title: 'Full Stack Software Engineer',
   location: 'Dhaka, Bangladesh',
   email: 'contact@fuadhasan.dev',
+  avatarUrl: '/images/profile.jpg', // Replace with '/images/profile.jpg' when your photo is ready
   heroHeadline: 'Building reliable systems and thoughtful web experiences.',
   heroSubhead: 'Full Stack Software Engineer focused on C#, ASP.NET Core, Angular, SQL Server, and scalable application architecture.',
   heroSpecialization: 'C# / ASP.NET Core / Angular / PostgreSQL. Enterprise software, maintainable architecture, and practical technical writing.',

@@ -13,15 +13,15 @@ const { categories, totalCount } = Astro.props;
     <label for="blog-search-input" class="sr-only">Search articles by title, topic, or tag</label>
     <div class="relative">
       <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted dark:text-muted-dark">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
       </div>
       <input
         type="search"
         id="blog-search-input"
-        class="w-full pl-10 pr-10 py-3 text-sm rounded-xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark text-primary dark:text-primary-dark placeholder-muted dark:placeholder-muted-dark focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accent-dark transition-all"
-        placeholder="Search articles by keyword, technology, or pattern..."
+        class="w-full pl-10 pr-10 py-3 text-xs font-mono rounded-xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark text-primary dark:text-primary-dark placeholder-muted dark:placeholder-muted-dark focus:outline-none focus:ring-1 focus:ring-accent dark:focus:ring-accent-dark transition-all"
+        placeholder="Search articles by keyword, technology, or topic..."
         autocomplete="off"
       />
       <button
@@ -38,12 +38,12 @@ const { categories, totalCount } = Astro.props;
   </div>
 
   <!-- Filter Pills Bar & Counter -->
-  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 font-mono text-xs">
     <!-- Category Pills -->
     <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter articles by category">
       <button
         type="button"
-        class="blog-category-pill px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors focus-ring bg-accent text-white shadow-sm"
+        class="blog-category-pill px-3 py-1 text-xs font-mono transition-colors focus-ring border border-accent dark:border-accent-dark text-accent dark:text-accent-dark bg-transparent font-medium"
         data-category="all"
         aria-pressed="true"
       >
@@ -53,7 +53,7 @@ const { categories, totalCount } = Astro.props;
         categories.map((cat) => (
           <button
             type="button"
-            class="blog-category-pill px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors focus-ring bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+            class="blog-category-pill px-3 py-1 text-xs font-mono transition-colors focus-ring border border-border dark:border-border-dark text-muted dark:text-muted-dark hover:border-primary dark:hover:border-primary-dark hover:text-primary dark:hover:text-primary-dark"
             data-category={cat}
             aria-pressed="false"
           >
@@ -66,7 +66,7 @@ const { categories, totalCount } = Astro.props;
     <!-- Live Results Counter -->
     <div
       id="blog-filter-count"
-      class="text-xs sm:text-sm text-muted dark:text-muted-dark whitespace-nowrap"
+      class="text-xs text-muted dark:text-muted-dark whitespace-nowrap font-mono"
       aria-live="polite"
     >
       Showing <span id="blog-visible-count" class="font-semibold text-primary dark:text-primary-dark">{totalCount}</span> of {totalCount} articles
@@ -136,9 +136,9 @@ const { categories, totalCount } = Astro.props;
         const isActive = cat.toLowerCase() === selectedCategory.toLowerCase();
         pill.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         if (isActive) {
-          pill.className = 'blog-category-pill px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors focus-ring bg-accent text-white shadow-sm';
+          pill.className = 'blog-category-pill px-3 py-1 text-xs font-mono transition-colors focus-ring border border-accent dark:border-accent-dark text-accent dark:text-accent-dark bg-transparent font-medium';
         } else {
-          pill.className = 'blog-category-pill px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors focus-ring bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700';
+          pill.className = 'blog-category-pill px-3 py-1 text-xs font-mono transition-colors focus-ring border border-border dark:border-border-dark text-muted dark:text-muted-dark hover:border-primary dark:hover:border-primary-dark hover:text-primary dark:hover:text-primary-dark';
         }
       });
       filterCards();
@@ -188,4 +188,3 @@ const { categories, totalCount } = Astro.props;
   setupBlogFilters();
   document.addEventListener('astro:page-load', setupBlogFilters);
 </script>
-

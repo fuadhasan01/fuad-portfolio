@@ -6,37 +6,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Page Not Found (404) | Fuad Hasan"
   description="The page you were looking for could not be found."
 >
-  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/40 text-accent dark:text-accent-dark mb-4">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
+    <span class="inline-flex items-center px-3 py-1 rounded font-mono text-xs font-medium border border-accent/40 dark:border-accent-dark/40 text-accent dark:text-accent-dark mb-6 uppercase tracking-widest">
       ERROR 404
     </span>
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
-      Page not found
+    <h1 class="font-serif text-5xl sm:text-6xl font-normal tracking-tight text-primary dark:text-primary-dark mb-4 leading-tight">
+      Page Not Found
     </h1>
-    <p class="text-base sm:text-lg text-muted dark:text-muted-dark mb-8 leading-relaxed">
-      Sorry, the page you are looking for does not exist, has been moved, or is temporarily unavailable.
+    <p class="text-base sm:text-lg text-muted dark:text-muted-dark mb-10 leading-relaxed font-sans max-w-md mx-auto">
+      The coordinates you navigated to do not correspond to an active route on this system.
     </p>
 
-    <div class="flex flex-wrap items-center justify-center gap-4">
+    <div class="flex flex-wrap items-center justify-center gap-3 font-mono text-xs">
       <a
         href="/"
-        class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors focus-ring"
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-accent dark:bg-accent-dark text-white dark:text-[#09090E] hover:opacity-90 transition-opacity focus-ring uppercase tracking-wider font-medium font-semibold"
       >
         Return Home
       </a>
       <a
         href="/projects"
-        class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-primary dark:hover:border-primary-dark transition-colors focus-ring uppercase tracking-wider"
       >
         Explore Projects
       </a>
       <a
         href="/blog"
-        class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-primary dark:hover:border-primary-dark transition-colors focus-ring uppercase tracking-wider"
       >
         Read Blog
       </a>
     </div>
   </div>
 </BaseLayout>
-

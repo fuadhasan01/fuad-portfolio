@@ -40,42 +40,42 @@ const {
 
     <!-- Case Study Split Hero Section (wireframe_project.png) -->
     <header class="mb-14 pb-10 border-b border-border dark:border-border-dark">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         <!-- Overview & Action Column (Left) -->
         <div class="lg:col-span-7">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
-              PROJECT CASE STUDY
+          <div class="flex items-center gap-3 mb-4 font-mono text-xs">
+            <span class="font-medium tracking-widest text-accent dark:text-accent-dark uppercase">
+              Project Case Study
             </span>
-            <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-            <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-accent dark:text-accent-dark border border-blue-100 dark:border-blue-900/50">
+            <span class="text-muted dark:text-muted-dark" aria-hidden="true">•</span>
+            <span class="px-2.5 py-0.5 border border-border dark:border-border-dark text-muted dark:text-muted-dark">
               {category}
             </span>
           </div>
 
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-primary dark:text-primary-dark mb-4">
             {title}
           </h1>
 
-          <p class="text-base sm:text-lg text-muted dark:text-muted-dark leading-relaxed mb-6">
+          <p class="text-base sm:text-lg text-muted dark:text-muted-dark leading-relaxed mb-8 font-sans">
             {summary}
           </p>
 
           <!-- Metadata Grid -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 py-4 border-y border-border/60 dark:border-border-dark/60 mb-6 text-sm">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 py-4 border-y border-border dark:border-border-dark mb-8 text-xs font-mono">
             <div>
-              <span class="block text-xs text-muted dark:text-muted-dark uppercase tracking-wider">Role</span>
-              <span class="font-medium text-primary dark:text-primary-dark">{role}</span>
+              <span class="block text-muted dark:text-muted-dark uppercase tracking-wider mb-1">Role</span>
+              <span class="font-medium text-primary dark:text-primary-dark text-sm">{role}</span>
             </div>
             {timeline && (
               <div>
-                <span class="block text-xs text-muted dark:text-muted-dark uppercase tracking-wider">Timeline</span>
-                <span class="font-medium text-primary dark:text-primary-dark">{timeline}</span>
+                <span class="block text-muted dark:text-muted-dark uppercase tracking-wider mb-1">Timeline</span>
+                <span class="font-medium text-primary dark:text-primary-dark text-sm">{timeline}</span>
               </div>
             )}
             <div>
-              <span class="block text-xs text-muted dark:text-muted-dark uppercase tracking-wider">Status</span>
-              <span class="inline-flex items-center gap-1.5 font-semibold text-emerald-800 dark:text-emerald-300 capitalize">
+              <span class="block text-muted dark:text-muted-dark uppercase tracking-wider mb-1">Status</span>
+              <span class="inline-flex items-center gap-1.5 font-semibold text-emerald-800 dark:text-emerald-300 capitalize text-sm">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
                 {status}
               </span>
@@ -83,12 +83,12 @@ const {
           </div>
 
           <!-- Technologies Badges -->
-          <div class="mb-6">
+          <div class="mb-8">
             <span class="sr-only">Technologies used:</span>
             <div class="flex flex-wrap gap-2">
               {
                 technologies.map((tech) => (
-                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                  <span class="px-2.5 py-0.5 text-xs font-mono border border-border dark:border-border-dark text-muted dark:text-muted-dark">
                     {tech}
                   </span>
                 ))
@@ -97,19 +97,16 @@ const {
           </div>
 
           <!-- Action Buttons (FR-008: Source & Demo links shown only when verified) -->
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap gap-3 font-mono text-xs">
             {
               repositoryUrl && (
                 <a
                   href={repositoryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors shadow-sm focus-ring"
+                  class="inline-flex items-center gap-2 px-5 py-3 font-semibold uppercase tracking-wider border border-accent dark:border-accent-dark text-accent dark:text-accent-dark hover:bg-accent dark:hover:bg-accent-dark hover:text-white dark:hover:text-[#09090E] transition-all duration-200 shadow-sm focus-ring"
                   aria-label={`${frontendRepositoryUrl ? 'Backend Repo' : 'View Repository'}: ${title} on GitHub (opens in new tab)`}
                 >
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-                  </svg>
                   <span>{frontendRepositoryUrl ? 'Backend Repo' : 'View Repository'} &rarr;</span>
                 </a>
               )
@@ -120,12 +117,9 @@ const {
                   href={frontendRepositoryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+                  class="inline-flex items-center gap-2 px-5 py-3 font-semibold uppercase tracking-wider border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-primary dark:hover:border-primary-dark transition-colors focus-ring"
                   aria-label={`Frontend Repo: ${title} on GitHub (opens in new tab)`}
                 >
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-                  </svg>
                   <span>Frontend Repo &rarr;</span>
                 </a>
               )
@@ -136,7 +130,7 @@ const {
                   href={demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold rounded-lg border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark text-primary dark:text-primary-dark hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-ring"
+                  class="inline-flex items-center gap-1.5 px-5 py-3 font-semibold uppercase tracking-wider border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-accent dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring"
                   aria-label={`Live Demo: ${title} (opens in new tab)`}
                 >
                   <span>Live Demo</span>
@@ -149,7 +143,7 @@ const {
 
         <!-- Cover Preview Container (Right) -->
         <div class="lg:col-span-5">
-          <figure class="relative overflow-hidden rounded-2xl border border-border dark:border-border-dark shadow-sm bg-slate-900 group">
+          <figure class="relative overflow-hidden border border-border dark:border-border-dark shadow-sm bg-slate-900 group">
             <img
               src={cover}
               alt={coverAlt}

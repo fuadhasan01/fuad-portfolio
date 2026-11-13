@@ -19,9 +19,10 @@ const {
 ---
 
 <article
-  class="flex flex-col justify-between rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark transition-all duration-200 hover:shadow-lg overflow-hidden group h-full"
+  class="flex flex-col justify-between border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:border-accent dark:hover:border-accent-dark transition-all duration-300 group h-full shadow-sm"
   data-category={category}
   data-technologies={technologies.join(',')}
+  data-project-card
 >
   <div>
     <!-- Project Thumbnail / Visual Container -->
@@ -36,21 +37,21 @@ const {
         alt={coverAlt}
         width="600"
         height="375"
-        class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+        class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
         loading="lazy"
       />
     </a>
 
     <div class="p-6">
-      <!-- Category & Technologies Badges -->
+      <!-- Category Badge -->
       <div class="flex items-center justify-between gap-2 mb-3">
-        <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-accent dark:text-accent-dark border border-blue-100 dark:border-blue-900/50">
+        <span class="text-xs font-mono font-medium px-2.5 py-0.5 border border-border dark:border-border-dark text-accent dark:text-accent-dark">
           {category}
         </span>
       </div>
 
       <!-- Title -->
-      <h3 class="text-xl font-bold text-primary dark:text-primary-dark mb-2 tracking-tight">
+      <h3 class="text-2xl font-serif font-normal text-primary dark:text-primary-dark mb-2 tracking-tight">
         <a
           href={`/projects/${project.id}`}
           class="hover:text-accent dark:hover:text-accent-dark focus-ring rounded inline-block"
@@ -60,19 +61,19 @@ const {
       </h3>
 
       <!-- Summary -->
-      <p class="text-sm text-muted dark:text-muted-dark leading-relaxed line-clamp-3 mb-4">
+      <p class="text-sm text-muted dark:text-muted-dark leading-relaxed line-clamp-3 mb-4 font-sans">
         {summary}
       </p>
 
       <!-- Technology Pills -->
       <div class="flex flex-wrap gap-1.5" aria-label="Technologies used">
         {technologies.slice(0, 4).map((tech) => (
-          <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+          <span class="px-2 py-0.5 text-xs font-mono border border-border dark:border-border-dark text-muted dark:text-muted-dark">
             {tech}
           </span>
         ))}
         {technologies.length > 4 && (
-          <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100/60 dark:bg-slate-800/40 text-muted dark:text-muted-dark">
+          <span class="px-2 py-0.5 text-xs font-mono text-muted dark:text-muted-dark">
             +{technologies.length - 4}
           </span>
         )}
@@ -81,10 +82,10 @@ const {
   </div>
 
   <!-- Action Links Footer -->
-  <div class="px-6 py-4 border-t border-border dark:border-border-dark flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/30">
+  <div class="px-6 py-4 border-t border-border dark:border-border-dark flex items-center justify-between font-mono text-xs">
     <a
       href={`/projects/${project.id}`}
-      class="text-sm font-semibold text-accent dark:text-accent-dark hover:underline focus-ring rounded"
+      class="text-accent dark:text-accent-dark font-medium hover:underline focus-ring rounded"
       aria-label={`Case Study: ${title}`}
     >
       Case Study &rarr;

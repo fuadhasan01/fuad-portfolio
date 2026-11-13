@@ -41,45 +41,45 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
     <!-- Breadcrumb (wireframe_article.png) -->
-    <nav class="flex items-center space-x-2 text-sm text-muted dark:text-muted-dark mb-8" aria-label="Breadcrumb">
+    <nav class="flex items-center space-x-2 font-mono text-xs text-muted dark:text-muted-dark uppercase tracking-wider mb-8" aria-label="Breadcrumb">
       <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">Home</a>
-      <span aria-hidden="true">/</span>
+      <span aria-hidden="true" class="text-border dark:text-border-dark">/</span>
       <a href="/blog" class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">Blog</a>
-      <span aria-hidden="true">/</span>
+      <span aria-hidden="true" class="text-border dark:text-border-dark">/</span>
       <span class="text-primary dark:text-primary-dark font-medium truncate" aria-current="page">{post.data.category}</span>
     </nav>
 
     <!-- Article Header -->
     <header class="mb-10 max-w-4xl">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-xs font-semibold tracking-wider text-accent dark:text-accent-dark uppercase">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="font-mono text-xs font-semibold tracking-widest text-accent dark:text-accent-dark uppercase">
           ENGINEERING ARTICLE
         </span>
-        <span class="text-slate-300 dark:text-slate-700" aria-hidden="true">•</span>
-        <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-accent dark:text-accent-dark border border-blue-100 dark:border-blue-900/50">
+        <span class="text-border dark:text-border-dark" aria-hidden="true">•</span>
+        <span class="font-mono text-[11px] px-2.5 py-0.5 rounded border border-accent/40 dark:border-accent-dark/40 text-accent dark:text-accent-dark uppercase tracking-wider font-medium">
           {post.data.category}
         </span>
       </div>
 
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
+      <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-primary dark:text-primary-dark mb-4 leading-tight">
         {post.data.title}
       </h1>
 
-      <p class="text-base sm:text-lg text-muted dark:text-muted-dark leading-relaxed mb-6">
+      <p class="text-base sm:text-lg text-muted dark:text-muted-dark font-sans leading-relaxed mb-6">
         {post.data.excerpt}
       </p>
 
       <!-- Metadata Bar -->
-      <div class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted dark:text-muted-dark py-4 border-y border-border dark:border-border-dark">
-        <time datetime={post.data.pubDate.toISOString()} class="font-medium text-primary dark:text-primary-dark">
+      <div class="flex flex-wrap items-center gap-3 sm:gap-4 font-mono text-xs text-muted dark:text-muted-dark py-4 border-y border-border dark:border-border-dark">
+        <time datetime={post.data.pubDate.toISOString()} class="text-primary dark:text-primary-dark font-medium">
           {formattedDate}
         </time>
-        <span aria-hidden="true">•</span>
+        <span aria-hidden="true" class="text-border dark:text-border-dark">•</span>
         <span>{readingTime.text}</span>
-        <span aria-hidden="true">•</span>
+        <span aria-hidden="true" class="text-border dark:text-border-dark">•</span>
         <div class="flex flex-wrap gap-1.5" aria-label="Article tags">
           {post.data.tags.map((tag) => (
-            <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded border border-border dark:border-border-dark text-muted dark:text-muted-dark">
               #{tag}
             </span>
           ))}
@@ -101,7 +101,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
             class="w-full h-auto object-cover"
             loading="eager"
           />
-          <figcaption class="p-3 text-center text-xs text-slate-400 bg-slate-900/90 border-t border-slate-800">
+          <figcaption class="p-3 text-center font-mono text-xs text-slate-300 dark:text-slate-400 bg-slate-900/90 border-t border-slate-800">
             {post.data.coverAlt}
           </figcaption>
         </figure>
@@ -110,21 +110,21 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
         <TableOfContents headings={headings} />
 
         <!-- Markdown Body -->
-        <article class="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-a:text-accent dark:prose-a:text-accent-dark hover:prose-a:underline prose-pre:rounded-xl prose-pre:border prose-pre:border-border dark:prose-pre:border-border-dark prose-pre:relative">
+        <article class="prose prose-slate dark:prose-invert max-w-none font-sans prose-headings:font-serif prose-headings:font-normal prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-a:text-accent dark:prose-a:text-accent-dark hover:prose-a:underline prose-pre:rounded-xl prose-pre:border prose-pre:border-border dark:prose-pre:border-border-dark prose-pre:relative">
           <slot />
         </article>
 
         <!-- Article Footer: Back Link -->
-        <div class="mt-14 pt-8 border-t border-border dark:border-border-dark flex items-center justify-between">
+        <div class="mt-14 pt-8 border-t border-border dark:border-border-dark flex items-center justify-between font-mono text-xs">
           <a
             href="/blog"
-            class="inline-flex items-center gap-2 text-sm font-semibold text-accent dark:text-accent-dark hover:underline focus-ring rounded"
+            class="inline-flex items-center gap-2 uppercase tracking-wider text-accent dark:text-accent-dark hover:underline focus-ring rounded font-medium"
           >
             <span aria-hidden="true">&larr;</span> Back to all articles
           </a>
           <a
             href="#top"
-            class="text-xs text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring rounded"
+            class="uppercase tracking-wider text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring rounded"
           >
             Back to top &uarr;
           </a>
@@ -159,7 +159,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
       const copyBtn = document.createElement('button');
       copyBtn.type = 'button';
       copyBtn.className =
-        'code-copy-btn absolute top-3 right-3 px-2.5 py-1 text-xs font-medium rounded-md bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-accent transition-colors shadow-sm';
+        'code-copy-btn absolute top-3 right-3 px-2.5 py-1 text-xs font-mono font-medium rounded bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-accent transition-colors shadow-sm';
       copyBtn.setAttribute('aria-label', 'Copy code snippet to clipboard');
       copyBtn.innerHTML = 'Copy';
 

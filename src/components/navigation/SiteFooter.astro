@@ -2,38 +2,39 @@
 import { profile } from '../../data/profile';
 ---
 
-<footer class="mt-auto border-t border-border dark:border-border-dark bg-white dark:bg-[#111C2D] py-8 transition-colors">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-      <!-- Copyright & Identity -->
-      <div class="text-sm text-muted dark:text-muted-dark text-center md:text-left">
-        <p>&copy; {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Built with Astro, TypeScript & Tailwind CSS. Hosted on Cloudflare Pages.</p>
-      </div>
+<footer class="mt-auto border-t border-border dark:border-border-dark py-10 px-6 md:px-12 max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-6 transition-colors" role="contentinfo">
+  <p class="text-xs text-muted dark:text-muted-dark font-mono tracking-wide">
+    &copy; {new Date().getFullYear()} {profile.name}
+  </p>
 
-      <!-- Links: Social & RSS -->
-      <div class="flex items-center space-x-4 text-sm font-medium text-muted dark:text-muted-dark">
-        {
-          profile.socialLinks.map((social) => (
-            <a
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded px-1"
-            >
-              {social.name}
-            </a>
-          ))
-        }
+  <p class="text-xs text-muted dark:text-muted-dark text-center">
+    Built with precision. Deployed with confidence.
+  </p>
+
+  <div class="flex items-center gap-3">
+    {
+      profile.socialLinks.map((social) => (
         <a
-          href="/rss.xml"
-          class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded px-1"
-          title="RSS Feed"
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-9 h-9 border border-border dark:border-border-dark flex items-center justify-center text-xs font-mono text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark hover:border-accent dark:hover:border-accent-dark transition-all duration-200 focus-ring"
+          aria-label={`${social.name.slice(0, 2).toUpperCase()} - ${social.name}`}
+          title={social.name}
         >
-          RSS
+          {social.name.slice(0, 2).toUpperCase()}
         </a>
-      </div>
-    </div>
+      ))
+    }
+    <a
+      href="/rss.xml"
+      class="w-9 h-9 border border-border dark:border-border-dark flex items-center justify-center text-xs font-mono text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark hover:border-accent dark:hover:border-accent-dark transition-all duration-200 focus-ring"
+      aria-label="RSS - RSS Feed"
+      title="RSS Feed"
+    >
+      RSS
+    </a>
   </div>
 </footer>
+
 

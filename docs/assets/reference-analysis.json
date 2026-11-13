@@ -1,0 +1,307 @@
+{
+  "title": "Senior Software Engineer Portfolio",
+  "bodyStyle": {
+    "color": "rgb(240, 237, 232)",
+    "backgroundColor": "rgb(9, 9, 14)",
+    "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "lineHeight": "24px",
+    "letterSpacing": "normal",
+    "borderRadius": "0px",
+    "border": "0px solid rgba(240, 237, 232, 0.08)",
+    "boxShadow": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "gap": "normal"
+  },
+  "headerStyle": {
+    "color": "rgb(240, 237, 232)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "fontFamily": "\"DM Sans\", sans-serif",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "lineHeight": "24px",
+    "letterSpacing": "normal",
+    "borderRadius": "0px",
+    "border": "0px solid rgba(240, 237, 232, 0.08)",
+    "boxShadow": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "gap": "normal"
+  },
+  "h1Style": {
+    "color": "rgb(240, 237, 232)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "fontFamily": "\"Instrument Serif\", serif",
+    "fontSize": "136px",
+    "fontWeight": "400",
+    "lineHeight": "125.12px",
+    "letterSpacing": "-3.4px",
+    "borderRadius": "0px",
+    "border": "0px solid rgba(240, 237, 232, 0.08)",
+    "boxShadow": "none",
+    "padding": "0px",
+    "margin": "0px 0px 32px",
+    "gap": "normal"
+  },
+  "h2Style": {
+    "color": "rgb(240, 237, 232)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "fontFamily": "\"Instrument Serif\", serif",
+    "fontSize": "48px",
+    "fontWeight": "400",
+    "lineHeight": "48px",
+    "letterSpacing": "normal",
+    "borderRadius": "0px",
+    "border": "0px solid rgba(240, 237, 232, 0.08)",
+    "boxShadow": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "gap": "normal"
+  },
+  "pStyle": {
+    "color": "rgba(0, 0, 0, 0.9)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "fontFamily": "Inter, sans-serif",
+    "fontSize": "11px",
+    "fontWeight": "550",
+    "lineHeight": "16px",
+    "letterSpacing": "0.055px",
+    "borderRadius": "0px",
+    "border": "0px solid rgba(240, 237, 232, 0.08)",
+    "boxShadow": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "gap": "normal"
+  },
+  "aStyle": {
+    "color": "rgb(255, 255, 255)",
+    "backgroundColor": "rgb(77, 73, 252)",
+    "fontFamily": "Inter, sans-serif",
+    "fontSize": "11px",
+    "fontWeight": "450",
+    "lineHeight": "16px",
+    "letterSpacing": "0.055px",
+    "borderRadius": "5px",
+    "border": "1px solid rgba(0, 0, 0, 0.1)",
+    "boxShadow": "none",
+    "padding": "0px 8px",
+    "margin": "0px 8px 0px 0px",
+    "gap": "normal"
+  },
+  "buttonStyle": {
+    "color": "rgba(0, 0, 0, 0.5)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "fontFamily": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+    "fontSize": "16px",
+    "fontWeight": "500",
+    "lineHeight": "24px",
+    "letterSpacing": "normal",
+    "borderRadius": "4px",
+    "border": "0px none rgba(0, 0, 0, 0.5)",
+    "boxShadow": "none",
+    "padding": "8px",
+    "margin": "0px",
+    "gap": "normal"
+  },
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "Marcus\nAshford",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "136px",
+        "fontWeight": "400",
+        "lineHeight": "125.12px",
+        "letterSpacing": "-3.4px",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px 0px 32px",
+        "gap": "normal"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Selected Work",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "48px",
+        "fontWeight": "400",
+        "lineHeight": "48px",
+        "letterSpacing": "normal",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "gap": "normal"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Distributed Cache Layer",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "24px",
+        "fontWeight": "400",
+        "lineHeight": "32px",
+        "letterSpacing": "normal",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "gap": "normal"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Compiler Toolchain for DSL",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "24px",
+        "fontWeight": "400",
+        "lineHeight": "32px",
+        "letterSpacing": "normal",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "gap": "normal"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "Real-time Collaborative Editor",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "24px",
+        "fontWeight": "400",
+        "lineHeight": "32px",
+        "letterSpacing": "normal",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "gap": "normal"
+      }
+    },
+    {
+      "tag": "H3",
+      "text": "ML Inference Pipeline",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "24px",
+        "fontWeight": "400",
+        "lineHeight": "32px",
+        "letterSpacing": "normal",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "gap": "normal"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "About",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "48px",
+        "fontWeight": "400",
+        "lineHeight": "48px",
+        "letterSpacing": "normal",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px 0px 32px",
+        "gap": "normal"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Experience",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "48px",
+        "fontWeight": "400",
+        "lineHeight": "48px",
+        "letterSpacing": "normal",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "gap": "normal"
+      }
+    },
+    {
+      "tag": "H2",
+      "text": "Let's build something worth building.",
+      "style": {
+        "color": "rgb(240, 237, 232)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "fontFamily": "\"Instrument Serif\", serif",
+        "fontSize": "60px",
+        "fontWeight": "400",
+        "lineHeight": "75px",
+        "letterSpacing": "normal",
+        "borderRadius": "0px",
+        "border": "0px solid rgba(240, 237, 232, 0.08)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "margin": "0px 0px 24px",
+        "gap": "normal"
+      }
+    }
+  ],
+  "bgColors": [
+    "rgb(9, 9, 14)",
+    "rgb(255, 255, 255)",
+    "rgb(77, 73, 252)",
+    "rgb(200, 247, 62)",
+    "rgb(26, 26, 36)",
+    "rgb(17, 17, 24)"
+  ],
+  "textColors": [
+    "rgb(0, 0, 0)",
+    "rgb(240, 237, 232)",
+    "rgba(0, 0, 0, 0.9)",
+    "rgb(255, 255, 255)",
+    "rgba(0, 0, 0, 0.5)",
+    "rgb(138, 138, 154)",
+    "rgb(200, 247, 62)",
+    "rgb(9, 9, 14)"
+  ],
+  "fontFamilies": [
+    "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+    "Inter, sans-serif",
+    "\"DM Sans\", sans-serif",
+    "\"JetBrains Mono\", monospace",
+    "\"Instrument Serif\", serif"
+  ],
+  "fullText": "Created with Figma Make\n\nRemix\nMA\nWork\nAbout\nExperience\nContact\nHire me\n\n— AVAILABLE FOR SELECT ENGAGEMENTS\n\nMarcus\nAshford\n\nStaff engineer specializing in distributed systems, compiler toolchains, and infrastructure at scale. 10 years building things that don't fall down.\n\n500M+ events/day\n\n10 yrs experience\n\nSan Francisco, CA\n\n40+\n\nProjects shipped\n\n18\n\nEngineers mentored\n\n99.99%\n\nUptime SLA\n\nSee work\nSelected Work\n4 projects\n01\nDistributed Cache Layer\n2024\nGo\nRedis\ngRPC\nKubernetes\n02\nCompiler Toolchain for DSL\n2023\nRust\nLLVM\nWASM\nTypeScript\n03\nReal-time Collaborative Editor\n2023\nTypeScript\nCRDTs\nWebSockets\nReact\n04\nML Inference Pipeline\n2022\nPython\nPyTorch\nTriton\nAWS\nAbout\n\nI build systems designed to last. My work sits at the intersection of correctness, performance, and the humans who depend on both.\n\nOver the last decade I've worked on infrastructure that processes half a billion events daily, compilers that run in the browser, and collaborative tools used by thousands. I care deeply about the craft — about systems that fail gracefully, code that communicates intent, and teams that ship with confidence.\n\nBefore engineering, I studied computer science at Carnegie Mellon with a focus on programming language theory. That foundation shapes how I think about type systems, concurrency models, and correctness proofs in production.\n\nLANGUAGES\n\nGo\nRust\nTypeScript\nPython\nC++\n\nSYSTEMS\n\nDistributed Systems\nConsensus Protocols\nCRDT\nCompilers\nWASM\n\nINFRASTRUCTURE\n\nKubernetes\nTerraform\nAWS\ngRPC\nKafka\n\nDATA\n\nPostgreSQL\nRedis\nClickHouse\nDynamoDB\nParquet\nExperience\nFull résumé\n\n2022 — Present\n\nStaff Software Engineer\n\nMeridian Systems\n\nTechnical lead for the platform infrastructure team. Architected the distributed systems layer supporting 500M+ events/day. Mentored 8 engineers across two squads.\n\n2019 — 2022\n\nSenior Software Engineer\n\nAxiom Labs\n\nLed backend infrastructure for a real-time analytics product. Rebuilt the ingestion pipeline from scratch using Go and Kafka, cutting processing latency from 8s to 120ms.\n\n2016 — 2019\n\nSoftware Engineer II\n\nVorant Technologies\n\nFull-stack engineering on a fintech platform. Owned the payment orchestration service, compliance data pipelines, and the internal developer tooling suite.\n\n2014 — 2016\n\nSoftware Engineer\n\nHalcyon Software\n\nEarly engineer on a B2B SaaS product. Built core product features, REST APIs, and contributed to founding the frontend team.\n\nmarcus@local ~\n\n\"The measure of a system is not how it performs at launch — it's how it degrades at 3am when something unexpected happens.\"\n\nLet's build something worth building.\n\nI'm selectively available for staff-level contract engagements, technical advisory roles, and founding engineering positions. Response within 48 hours.\n\nEmail\nmarcus@ashford.dev\nGitHub\ngithub.com/marchford\nLinkedIn\nlinkedin.com/in/marchford\nNAME\nEMAIL\nMESSAGE\nSend message\n\n© 2024 Marcus Ashford\n\nBuilt with precision. Deployed with confidence."
+}

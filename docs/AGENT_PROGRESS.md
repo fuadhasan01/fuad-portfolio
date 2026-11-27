@@ -51,7 +51,20 @@
   - `/contact`: Direct email card with copy feedback, engineering profile cards, resume download.
   - `/404`: Compact 404 with recovery navigation buttons.
 
-### 3. Verification & Quality Gates
+### 3. Favicon & Brand Icon System
+- **Selected Archetype:** Terminal Prompt `>_` developer icon.
+- **Design Specifications:**
+  - Charcoal squircle background (`#26262E` &rarr; `#1B1B21`) with `#3A3A46` hairline border.
+  - Warm paper CLI prompt chevron `>` (`#F8F4E6`).
+  - Warm amber active terminal cursor `_` (`#FEDE91`).
+- **Rendered Targets:**
+  - `public/favicon.svg`: Scalable vector icon.
+  - `public/favicon-16x16.png` & `public/favicon-32x32.png`: High-clarity raster icons for browser tabs and bookmarks.
+  - `public/apple-touch-icon.png` (180&times;180): High-density iOS/macOS web clip.
+  - `public/icon-192.png` & `public/icon-512.png`: PWA and mobile home-screen icons.
+- **Verification:** Verified via `tests/e2e/verify-favicon.mjs` against dark/light tab chrome and bookmark bars.
+
+### 4. Verification & Quality Gates
 - **Strict Content Preservation:** 100% of names, roles, bio, experience, projects, skills, education, contact, articles, and routes preserved verbatim.
 - **Typecheck & Production Build:** `npx astro check && npm run build` -> 0 errors, 0 warnings, 13 static pages generated.
 - **Unit Tests:** `npm test` (`vitest run`) -> 5/5 passed.

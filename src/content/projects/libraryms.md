@@ -4,7 +4,7 @@ summary: "Multi-branch library management system handling book circulation, lend
 featured: true
 status: "completed"
 category: "Backend & Systems"
-technologies: ["ASP.NET Core", "Angular", "EF Core", "PostgreSQL", "Docker"]
+technologies: ["ASP.NET Core 9", "Angular 14", "EF Core", "PostgreSQL", "JWT", "FluentValidation", "Serilog", "Docker"]
 cover: "/images/projects/libraryms.svg"
 coverAlt: "LibraryMS multi-branch book circulation and lending management system interface"
 repositoryUrl: "https://github.com/fuadhasan01/LibraryManagementSystemAPI"

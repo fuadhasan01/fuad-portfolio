@@ -5,20 +5,32 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: 'Languages & Backend',
-    skills: ['C#', '.NET 8 / 9', 'ASP.NET Core', 'Entity Framework Core', 'ASP.NET MVC', 'REST APIs', 'CQRS', 'MassTransit']
+    title: 'Languages',
+    skills: ['C#', 'TypeScript', 'SQL', 'JavaScript']
+  },
+  {
+    title: 'Backend Engineering',
+    skills: ['ASP.NET Core', 'ASP.NET MVC', 'RESTful APIs', 'Entity Framework Core', 'MediatR', 'FluentValidation']
+  },
+  {
+    title: 'Architecture & Design',
+    skills: ['Clean Architecture', 'CQRS', 'DDD', 'MVC', 'OOP', 'Repository Pattern', 'Unit of Work']
   },
   {
     title: 'Frontend Engineering',
-    skills: ['Angular', 'TypeScript', 'RxJS', 'JavaScript', 'HTML5', 'CSS3 / Tailwind', 'Bootstrap']
+    skills: ['Angular', 'RxJS', 'Reactive Forms', 'Bootstrap', 'Tailwind CSS', 'HTML5', 'CSS3']
   },
   {
-    title: 'Database Systems',
-    skills: ['Microsoft SQL Server', 'PostgreSQL', 'T-SQL', 'Query Optimization', 'Database Indexing']
+    title: 'Databases & Storage',
+    skills: ['SQL Server', 'PostgreSQL']
   },
   {
-    title: 'Architecture & Tools',
-    skills: ['Clean Architecture', 'Domain-Driven Design (DDD)', 'Docker', 'Git / GitHub', 'CI/CD Pipelines']
+    title: 'Authentication & Messaging',
+    skills: ['JWT', 'Role-Based Authorization', 'ASP.NET Core Identity', 'MassTransit', 'Outbox Pattern']
+  },
+  {
+    title: 'Tools & Methodologies',
+    skills: ['Git', 'Visual Studio', 'VS Code', 'Jira', 'Agile (Scrum)']
   }
 ];
 

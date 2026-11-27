@@ -14,40 +14,63 @@
 
 ---
 
-## Design System Overhaul (Figma Reference Redesign)
+## Complete Redesign — Inspired by Tania Rascia (Authentic Developer Digital Garden)
 
-### 1. Visual Direction & Design Tokens
-- **Reference Site:** `https://patio-saved-34629488.figma.site/` (Marcus Ashford Portfolio).
-- **Core Aesthetic:** Dark luxury engineering portfolio featuring high-contrast editorial typography, deep obsidian black canvases, monospace metadata tags, and electric chartreuse/lime accents.
+### 1. Visual Direction & Design System Architecture (`DESIGN.md`)
+- **Core Archetype:** Tania Rascia inspired personal developer website, digital garden, and technical documentation layout.
+- **Visual Identity:** Warm, compact, content-focused, technically sophisticated, zero AI slop, no generic bento grids, no marketing hype, authentic software engineer layout.
+- **Desktop Layout:** Two-column composition with persistent sticky left sidebar (`w-[260px]`) housing Fuad's name, bio, active nav with dot indicator, Connect links, Résumé PDF, and clean Theme switch.
+- **Mobile Navigation (`< 1020px`):** Clean sticky top bar with avatar monogram, name, theme switch, and accessible mobile drawer with Escape / click-outside close handlers.
 - **Typography:**
-  - Display / Headings: `Instrument Serif` (400 weight, italic emphasis).
-  - Body & Paragraphs: `DM Sans` (warm, legible editorial text).
-  - Metadata, Badges & Labels: `JetBrains Mono` (precise monospaced engineering feel).
-- **Color Palette:**
-  - Canvas: `#09090E` (Obsidian Black) / Light: `#FBFBFA`
-  - Surface: `#111118` / Light: `#FFFFFF`
-  - Secondary: `#1A1A24` / Light: `#F4F2EE`
-  - Primary Text: `#F0EDE8` (Warm Ivory) / Light: `#111116`
-  - Muted Text: `#8A8A9A` / Light: `#5E5E6E`
-  - Accent: `#C8F73E` (Electric Lime / Chartreuse) in dark mode; `#2563EB` (Deep Royal Blue) in light mode.
-  - Borders: `rgba(240, 237, 232, 0.08)` (Subtle 8% ivory line work).
+  - Headings / Display: `Outfit` (Google Fonts, 600/700/800) — geometric, clean, modern, warm.
+  - Body & Paragraphs: `DM Sans` (Google Fonts, 400/500) — high legibility, comfortable reading density.
+  - Code & Metadata: `JetBrains Mono` (Google Fonts, 400/500/700) — strict monospace for code blocks, tech tags, and dates.
+- **Theme & Color System:**
+  - **Light Mode Palette:** Warm paper canvas (`#F8F4E6`), subtle alt background (`#F0EAD6`), soft borders (`#E5DCBE`), deep charcoal text (`#202025`), muted text (`#5A5D6B`).
+  - **Dark Mode Palette:** Soft charcoal canvas (`#202025`), card/surface (`#282830`), alt background (`#1C1C22`), subtle borders (`#3A3A46`), warm off-white text (`#E2E2E6`), muted text (`#9496A1`).
+  - **Single Canonical Accent:** Warm amber / gold inspired by Tania Rascia's signature palette:
+    - Light Mode: `#B26A34`
+    - Dark Mode: `#FEDE91`
+  - **Zero FOUC:** Inline theme initialization script in `<head>` runs before CSS parsing to eliminate flashing.
 
 ### 2. Components & Pages Redesigned
-- **Header & Footer:** Minimalist fixed navbar with `FH` monogram, tracking-wide navigation links, "Hire Me" border button, and square border box social icons with monospace abbreviations.
-- **Home (`src/pages/index.astro`):**
-  - Hero with clamp `Instrument Serif` headline (`Fuad Hasan`), quick metadata, social icon boxes, bento metrics row (`3+` projects, `2+` years, `3.6/4.0` CGPA), and "See work ↓".
-  - Selected Work: Numbered list rows (`01`, `02`, `03`) with verified action links and monospace technology pills.
-  - About: 12-column split with dedicated 4:5 portrait frame (`profile.avatarUrl`), editorial narrative, focus areas, and 4 technical skill domains.
-  - Experience: Clean minimalist timeline rows with date on left and role/company on right.
-  - Terminal Quote: Sleek `fuad@workstation ~` card with architectural quote.
-  - Contact Callout: "Let's build something worth building." headline with direct email CTA.
-- **Projects & Case Studies (`src/pages/projects/` & `src/layouts/CaseStudyLayout.astro`):**
-  - Monospace category filter pills, `Instrument Serif` titles, and two-column case study hero layouts with status indicators and verified source/demo CTAs.
-- **Blog & Articles (`src/pages/blog/` & `src/layouts/ArticleLayout.astro`):**
-  - Minimalist search input, topic filters, reading time, sticky table of contents, and responsive code blocks.
-- **About, Experience, Contact & 404:**
-  - About page updated with dedicated 4:5 portrait image space alongside background & philosophy narrative.
-  - Unified display typography, credential boxes, copy-to-clipboard email feedback, and public sanitized CV download.
+- **Shared Components:**
+  - `SiteSidebar.astro`: Sticky left desktop navigation with bio, routes, connect channels, resume link, and theme toggle.
+  - `MobileHeader.astro`: Sticky responsive mobile navigation bar with brand, theme toggle, and accessible drawer.
+  - `ButtonLink.astro`: Tania `.btn-primary` and `.btn-secondary` buttons with restrained borders and subtle active feedback.
+  - `ProjectCard.astro` & `ProjectFilter.astro`: Documentation ledger cards with live architectural diagrams, tags, verified repo/demo links.
+  - `BlogCard.astro`, `BlogFilter.astro`, `TableOfContents.astro`: Article cards with metadata, reading time, sticky table of contents, and related articles.
+- **Pages Overhauled:**
+  - `/` (Home): Compact personal intro, 2-column hero balance (H1 left, photo right), capability ledger, dossier work rows, philosophy narrative, experience ledger, blog list, contact hub.
+  - `/about`: Compact portrait frame, philosophy narrative, technical skills matrix with chip tags, education and honors.
+  - `/experience`: Career ledger with duration, company, role, responsibilities, and stack tags.
+  - `/projects`: Wide layout with filter bar and 3-column project grid.
+  - `/projects/[slug]`: Split hero with status indicator, clean meta grid, chip tags, prose container.
+  - `/blog`: Wide layout with search and topic filter bar and article cards grid.
+  - `/blog/[slug]`: 2-column documentation layout (article body + sticky right TOC & related articles).
+  - `/contact`: Direct email card with copy feedback, engineering profile cards, resume download.
+  - `/404`: Compact 404 with recovery navigation buttons.
+
+### 3. Favicon & Brand Icon System
+- **Selected Archetype:** Terminal Prompt `>_` developer icon.
+- **Design Specifications:**
+  - Charcoal squircle background (`#26262E` &rarr; `#1B1B21`) with `#3A3A46` hairline border.
+  - Warm paper CLI prompt chevron `>` (`#F8F4E6`).
+  - Warm amber active terminal cursor `_` (`#FEDE91`).
+- **Rendered Targets:**
+  - `public/favicon.svg`: Scalable vector icon.
+  - `public/favicon-16x16.png` & `public/favicon-32x32.png`: High-clarity raster icons for browser tabs and bookmarks.
+  - `public/apple-touch-icon.png` (180&times;180): High-density iOS/macOS web clip.
+  - `public/icon-192.png` & `public/icon-512.png`: PWA and mobile home-screen icons.
+- **Verification:** Verified via `tests/e2e/verify-favicon.mjs` against dark/light tab chrome and bookmark bars.
+
+### 4. Verification & Quality Gates
+- **Strict Content Preservation:** 100% of names, roles, bio, experience, projects, skills, education, contact, articles, and routes preserved verbatim.
+- **Typecheck & Production Build:** `npx astro check && npm run build` -> 0 errors, 0 warnings, 13 static pages generated.
+- **Unit Tests:** `npm test` (`vitest run`) -> 5/5 passed.
+- **E2E Hero & Theme Verification:** `node tests/e2e/verify-hero-and-theme.mjs` -> 43/43 assertions passed (Dark mode default, theme toggle persistence, real SVG icons, no placeholders, 1440px desktop geometry, 1024/768/390/360 responsive viewports with 0 horizontal overflow).
+- **E2E P6 Quality & Axe Verification:** `node tests/e2e/p6-verification.mjs` -> 49/49 assertions passed (0 WCAG 2.2 AA violations across all 9 routes, Lighthouse Performance: 96-98, A11y: 98-100, Best Practices: 100, SEO: 100).
+- **Screenshots:** 53 responsive screenshots captured across viewports (1440, 1024, 768, 390px), light/dark themes, and all 5 accent colors in `tests/screenshots/redesign/`.
 
 ---
 

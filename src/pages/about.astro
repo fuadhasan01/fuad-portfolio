@@ -2,70 +2,63 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { profile } from '../data/profile';
 import { skillCategories } from '../data/skills';
-import SkillGroup from '../components/common/SkillGroup.astro';
 import ButtonLink from '../components/common/ButtonLink.astro';
-import SectionHeading from '../components/common/SectionHeading.astro';
 ---
 
 <BaseLayout
   title="About | Fuad Hasan"
   description="Background, engineering principles, education, and technical expertise of Fuad Hasan, Full Stack Software Engineer."
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <div>
     <!-- Header with Portrait Frame -->
-    <header class="mb-16">
-      <span class="font-mono text-xs font-medium tracking-widest text-accent dark:text-accent-dark uppercase block mb-4">
-        BACKGROUND & PHILOSOPHY
-      </span>
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+    <header class="mb-12">
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 sm:gap-8 items-center">
         <!-- Portrait Image Space -->
-        <div class="md:col-span-5 max-w-sm w-full mx-auto md:mx-0">
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark relative shadow-sm group">
+        <div class="sm:col-span-4 max-w-[180px] w-full">
+          <div class="aspect-[4/5] rounded-lg overflow-hidden border border-border-card bg-surface shadow-sm">
             <img
               src={profile.avatarUrl}
               alt="Portrait of Fuad Hasan"
-              width="480"
-              height="600"
-              class="w-full h-full object-cover object-center grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
+              width="440"
+              height="550"
+              class="w-full h-full object-cover object-center"
               loading="eager"
             />
-            <div class="absolute bottom-3 left-3 right-3 px-3 py-2 rounded-lg bg-surface-light/85 dark:bg-surface-dark/85 backdrop-blur-md border border-border dark:border-border-dark flex items-center justify-between text-xs font-mono">
-              <span class="text-primary dark:text-primary-dark font-medium">Fuad Hasan</span>
-              <span class="text-accent dark:text-accent-dark font-medium">Dhaka, BD</span>
-            </div>
+          </div>
+          <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-muted px-0.5">
+            <span>FUAD HASAN</span>
+            <span>DHAKA, BANGLADESH</span>
           </div>
         </div>
 
         <!-- Narrative Column -->
-        <div class="md:col-span-7">
-          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-primary dark:text-primary-dark mb-5 leading-tight">
+        <div class="sm:col-span-8">
+          <h1 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-heading mb-3">
             About Me
           </h1>
-          <p class="text-lg sm:text-xl text-muted dark:text-muted-dark leading-relaxed font-sans mb-6">
-            Full Stack Software Engineer based in Dhaka, Bangladesh, with a focus on building dependable backends, data-driven systems, and clean web applications.
+          <p class="text-base text-body leading-relaxed font-sans mb-4">
+            Full Stack Software Engineer based in Dhaka, Bangladesh, with a strong focus on high-reliability backend systems, database performance, and clean domain architecture.
           </p>
-          <div class="space-y-2 text-xs font-mono text-muted dark:text-muted-dark border-t border-border dark:border-border-dark pt-4">
-            <p><span class="text-primary dark:text-primary-dark font-medium">Current:</span> Efficient Software Solutions LTD</p>
-            <p><span class="text-primary dark:text-primary-dark font-medium">Education:</span> BSc in CSE • UIU (Summa / Honors)</p>
-            <p><span class="text-accent dark:text-accent-dark font-medium">Availability:</span> Open for select engagements</p>
+          <div class="space-y-1 text-xs font-mono text-muted border-t border-border pt-3">
+            <p><span class="text-heading font-medium">Current Role:</span> Software Engineer (Full Stack) at Efficient Software Solutions LTD</p>
+            <p><span class="text-heading font-medium">Education:</span> BSc in CSE • UIU (CGPA 3.6/4.0, Major: Software Engineering)</p>
+            <p><span class="text-accent font-medium">Availability:</span> Open for select engineering roles</p>
           </div>
         </div>
       </div>
     </header>
 
     <!-- Engineering Philosophy -->
-    <section class="mb-16 border-t border-border dark:border-border-dark pt-12" aria-labelledby="philosophy-heading">
-      <SectionHeading
-        eyebrow="HOW I WORK"
-        title="Engineering Philosophy"
-        id="philosophy-heading"
-      />
-      <div class="space-y-4 text-base text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+    <section class="mb-12 border-t border-border pt-10" aria-labelledby="philosophy-heading">
+      <h2 id="philosophy-heading" class="font-heading text-2xl font-bold text-heading mb-4">
+        Engineering Philosophy
+      </h2>
+      <div class="space-y-4 text-sm sm:text-base text-body leading-relaxed font-sans">
         <p>
           I approach software engineering with a strong focus on system dependability and domain clarity. My core experience centers on modern C# and ASP.NET Core, where I prioritize clean architecture boundaries, robust transactional consistency, and predictable API contracts.
         </p>
         <p>
-          In distributed and enterprise environments, I use patterns like the Transactional Outbox and asynchronous messaging with MassTransit and RabbitMQ to avoid dual-write pitfalls and maintain reliability. When working with databases—whether PostgreSQL or SQL Server—I focus on query optimization, thoughtful indexing, and avoiding performance bottlenecks.
+          In distributed and enterprise environments, I use patterns like the Transactional Outbox and asynchronous messaging with MassTransit and RabbitMQ to eliminate dual-write vulnerabilities and maintain reliability under network failure. When working with databases—whether PostgreSQL or Microsoft SQL Server—I focus on thoughtful indexing, query execution plan profiling, and eliminating N+1 bottlenecks.
         </p>
         <p>
           On the frontend, I develop structured, reactive user interfaces with Angular and TypeScript, keeping code modular, strictly typed, and aligned with backend contracts.
@@ -74,74 +67,133 @@ import SectionHeading from '../components/common/SectionHeading.astro';
     </section>
 
     <!-- Technical Skills -->
-    <section class="mb-16 border-t border-border dark:border-border-dark pt-12" aria-labelledby="skills-heading">
-      <SectionHeading
-        eyebrow="TECHNICAL EXPERTISE"
-        title="Skills & Technologies"
-        description="Core technologies and architectural paradigms applied across enterprise systems and production projects."
-        id="skills-heading"
-      />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <section class="mb-12 border-t border-border pt-10" aria-labelledby="skills-heading">
+      <h2 id="skills-heading" class="font-heading text-2xl font-bold text-heading mb-2">
+        Technical Expertise
+      </h2>
+      <p class="text-sm font-sans text-muted mb-6">
+        Core technologies and architectural paradigms applied across enterprise systems and production projects.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {skillCategories.map((cat) => (
-          <SkillGroup title={cat.title} skills={cat.skills} />
+          <div class="p-5 rounded-lg bg-surface border border-border-card">
+            <h3 class="font-heading text-sm font-bold text-heading mb-2.5">
+              {cat.title}
+            </h3>
+            <div class="flex flex-wrap gap-1.5">
+              {cat.skills.map((skill) => (
+                <span class="chip-tag text-[11px] py-0.5 px-2">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>
 
     <!-- Education & Achievements -->
-    <section class="mb-16 border-t border-border dark:border-border-dark pt-12" aria-labelledby="education-heading">
-      <SectionHeading
-        eyebrow="CREDENTIALS"
-        title="Education & Academic Honors"
-        id="education-heading"
-      />
-      <div class="space-y-6">
+    <section class="mb-12 border-t border-border pt-10" aria-labelledby="education-heading">
+      <h2 id="education-heading" class="font-heading text-2xl font-bold text-heading mb-6">
+        Education &amp; Academic Honors
+      </h2>
+
+      <div class="space-y-4">
         <!-- Degree -->
-        <div class="p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-            <h3 class="font-serif text-xl sm:text-2xl font-normal text-primary dark:text-primary-dark">
+        <div class="p-5 sm:p-6 rounded-lg bg-surface border border-border-card">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1.5">
+            <h3 class="font-heading text-lg font-bold text-heading">
               United International University (UIU)
             </h3>
-            <span class="text-xs font-mono text-muted dark:text-muted-dark">2020 – 2024</span>
+            <span class="text-xs font-mono text-muted">2020 – 2024</span>
           </div>
-          <p class="text-sm font-semibold text-accent dark:text-accent-dark mb-3">
+          <p class="text-sm font-semibold text-accent mb-2">
             Bachelor of Science in Computer Science and Engineering (BSc in CSE)
           </p>
-          <p class="text-sm text-slate-700 dark:text-slate-300 font-sans">
-            Graduated with a CGPA of <strong class="text-primary dark:text-primary-dark">3.6 / 4.0</strong>, with a major concentration in Software Engineering.
+          <p class="text-sm text-body font-sans">
+            Graduated with a CGPA of <strong class="text-heading">3.6 / 4.0</strong>, with a major concentration in Software Engineering.
           </p>
         </div>
 
         <!-- Recognition -->
-        <div class="p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
-          <h3 class="font-serif text-xl sm:text-2xl font-normal text-primary dark:text-primary-dark mb-4">
-            Honors & Achievements
+        <div class="p-5 sm:p-6 rounded-lg bg-surface border border-border-card">
+          <h3 class="font-heading text-lg font-bold text-heading mb-3">
+            Honors &amp; Achievements
           </h3>
-          <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-sans">
+          <ul class="space-y-2.5 text-sm text-body font-sans">
             <li class="flex items-start gap-2.5">
-              <span class="text-accent dark:text-accent-dark font-mono text-base">•</span>
-              <span><strong class="text-primary dark:text-primary-dark">UIU Project Show Champion:</strong> Awarded champion for the ArtPatio project (digital art gallery web platform).</span>
+              <span class="text-accent font-mono text-base">•</span>
+              <span><strong class="text-heading">UIU Project Show Champion:</strong> Champion in UIU Project Show &ndash; Project: ArtPatio (Recognized for innovation in developing a digital art gallery platform).</span>
             </li>
             <li class="flex items-start gap-2.5">
-              <span class="text-accent dark:text-accent-dark font-mono text-base">•</span>
-              <span><strong class="text-primary dark:text-primary-dark">UIU Merit Scholarship:</strong> Awarded across 7 academic trimesters based on academic standing.</span>
+              <span class="text-accent font-mono text-base">•</span>
+              <span><strong class="text-heading">Merit Scholarship Award – UIU:</strong> Awarded 7 times for academic excellence across academic trimesters.</span>
             </li>
             <li class="flex items-start gap-2.5">
-              <span class="text-accent dark:text-accent-dark font-mono text-base">•</span>
-              <span><strong class="text-primary dark:text-primary-dark">Competitive Problem Solving:</strong> Solved 500+ algorithmic challenges across competitive programming platforms.</span>
+              <span class="text-accent font-mono text-base">•</span>
+              <span><strong class="text-heading">Problem Solving &amp; Algorithms:</strong> 500+ algorithmic challenges solved across competitive programming platforms.</span>
             </li>
           </ul>
         </div>
       </div>
     </section>
 
+    <!-- Certifications & Training (From Authoritative Resume) -->
+    <section class="mb-12 border-t border-border pt-10" aria-labelledby="certs-heading">
+      <h2 id="certs-heading" class="font-heading text-2xl font-bold text-heading mb-6">
+        Certifications &amp; Training
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="p-5 rounded-lg bg-surface border border-border-card flex flex-col justify-between">
+          <div>
+            <span class="chip-tag text-[10px] py-0.5 px-2 mb-2 inline-block">Microsoft</span>
+            <h3 class="font-heading text-sm font-bold text-heading mb-1">
+              Microsoft Certified: C# Fundamentals
+            </h3>
+            <p class="text-xs text-muted font-sans">
+              Foundational certification covering C# language mechanics, OOP, and data structures.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-muted mt-3 block">2025</span>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface border border-border-card flex flex-col justify-between">
+          <div>
+            <span class="chip-tag text-[10px] py-0.5 px-2 mb-2 inline-block">Simplilearn</span>
+            <h3 class="font-heading text-sm font-bold text-heading mb-1">
+              Introduction to ASP.NET
+            </h3>
+            <p class="text-xs text-muted font-sans">
+              Core ASP.NET web development fundamentals, MVC architectural patterns, and HTTP request lifecycles.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-muted mt-3 block">2025</span>
+        </div>
+
+        <div class="p-5 rounded-lg bg-surface border border-border-card flex flex-col justify-between">
+          <div>
+            <span class="chip-tag text-[10px] py-0.5 px-2 mb-2 inline-block">Udemy</span>
+            <h3 class="font-heading text-sm font-bold text-heading mb-1">
+              Angular &ndash; The Complete Guide (2025 Edition)
+            </h3>
+            <p class="text-xs text-muted font-sans">
+              Comprehensive training by Maximilian Schwarzmüller covering Standalone Components, Signals, RxJS, and Reactive Forms.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-muted mt-3 block">2025</span>
+        </div>
+      </div>
+    </section>
+
     <!-- Navigation Next -->
-    <div class="border-t border-border dark:border-border-dark pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+    <div class="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs">
       <ButtonLink href="/experience" variant="primary">
         View Career Experience &rarr;
       </ButtonLink>
-      <ButtonLink href="/projects" variant="outline">
-        Explore Case Studies
+      <ButtonLink href="/projects" variant="secondary">
+        Explore Case Studies &rarr;
       </ButtonLink>
     </div>
   </div>

@@ -1,18 +1,21 @@
 ---
-// Accessible Theme Toggle Island
+interface Props {
+  id?: string;
+}
+
+const { id = 'theme-toggle' } = Astro.props;
 ---
 
 <button
-  id="theme-toggle"
+  id={id}
   type="button"
-  class="inline-flex items-center justify-center p-2 rounded-lg text-muted hover:text-primary dark:text-muted-dark dark:hover:text-primary-dark transition-colors focus-ring"
+  class="theme-toggle-btn inline-flex items-center justify-center p-1.5 rounded-md text-muted hover:text-heading hover:bg-alt transition-colors focus-ring"
   aria-label="Toggle visual theme"
   title="Toggle light/dark theme"
 >
   <!-- Sun Icon (shown in dark mode) -->
   <svg
-    id="theme-toggle-light-icon"
-    class="hidden w-5 h-5"
+    class="theme-light-icon hidden w-4 h-4"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +29,7 @@
 
   <!-- Moon Icon (shown in light mode) -->
   <svg
-    id="theme-toggle-dark-icon"
-    class="hidden w-5 h-5"
+    class="theme-dark-icon hidden w-4 h-4"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -40,36 +42,40 @@
 
 <script>
   function setupThemeToggle() {
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const lightIcon = document.getElementById('theme-toggle-light-icon');
-    const darkIcon = document.getElementById('theme-toggle-dark-icon');
-
-    if (!themeToggleBtn || !lightIcon || !darkIcon) return;
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-toggle-btn');
+    if (!buttons.length) return;
 
     function syncIcons() {
-      if (!lightIcon || !darkIcon) return;
       const isDark = document.documentElement.classList.contains('dark');
-      if (isDark) {
-        lightIcon.classList.remove('hidden');
-        darkIcon.classList.add('hidden');
-      } else {
-        lightIcon.classList.add('hidden');
-        darkIcon.classList.remove('hidden');
-      }
+      buttons.forEach((btn) => {
+        const lightIcon = btn.querySelector('.theme-light-icon');
+        const darkIcon = btn.querySelector('.theme-dark-icon');
+        if (isDark) {
+          lightIcon?.classList.remove('hidden');
+          darkIcon?.classList.add('hidden');
+        } else {
+          lightIcon?.classList.add('hidden');
+          darkIcon?.classList.remove('hidden');
+        }
+      });
     }
 
     syncIcons();
 
-    themeToggleBtn.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      if (isDark) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-      syncIcons();
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark) {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+          localStorage.setItem('theme', 'dark');
+        }
+        syncIcons();
+      });
     });
   }
 

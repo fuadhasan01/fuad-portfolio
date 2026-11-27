@@ -6,47 +6,86 @@ export default {
     extend: {
       colors: {
         canvas: {
-          light: '#FBFBFA',
-          dark: '#09090E'
+          light: '#F8F4E6',
+          dark: '#202025',
+          DEFAULT: 'var(--color-bg)'
         },
         surface: {
-          light: '#FFFFFF',
-          dark: '#111118'
+          light: '#F1EAD5',
+          dark: '#28282E',
+          DEFAULT: 'var(--color-bg-card)'
         },
-        secondary: {
-          light: '#F4F2EE',
-          dark: '#1A1A24'
+        alt: {
+          light: '#F1EAD5',
+          dark: '#16161A',
+          DEFAULT: 'var(--color-bg-alt)'
+        },
+        subtle: {
+          light: '#ECE4CA',
+          dark: '#1D1D22',
+          DEFAULT: 'var(--color-bg-subtle)'
         },
         primary: {
-          DEFAULT: '#111116',
-          dark: '#F0EDE8'
+          light: '#1D1D22',
+          dark: '#FBFBFB',
+          DEFAULT: 'var(--color-text-emphasized)'
+        },
+        body: {
+          light: '#28282E',
+          dark: '#D4D4D8',
+          DEFAULT: 'var(--color-text)'
         },
         muted: {
-          DEFAULT: '#5E5E6E',
-          dark: '#8A8A9A'
+          light: '#5A5A61',
+          dark: '#A1A1A8',
+          DEFAULT: 'var(--color-text-muted)'
         },
         accent: {
-          DEFAULT: '#2563EB',
-          hover: '#1D4ED8',
-          dark: '#C8F73E', // Reference signature electric chartreuse
-          'dark-hover': '#D6FA5E'
+          DEFAULT: 'var(--color-primary)',
+          hover: 'var(--color-primary-hover)'
         },
         border: {
-          DEFAULT: 'rgba(17, 17, 22, 0.08)',
-          dark: 'rgba(240, 237, 232, 0.08)'
+          light: '#E5DCBD',
+          dark: '#323239',
+          DEFAULT: 'var(--color-border)'
+        },
+        'border-card': {
+          light: '#DED4B2',
+          dark: '#323239',
+          DEFAULT: 'var(--color-border-card)'
+        },
+        'border-strong': {
+          light: '#C6BA93',
+          dark: '#4E4E55',
+          DEFAULT: 'var(--color-border-strong)'
         }
       },
       fontFamily: {
-        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-        sans: ['"DM Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+        heading: ['"Outfit"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        display: ['"Outfit"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        sans: ['"DM Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+      },
+      borderRadius: {
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '6px',
+        lg: '8px',
+        xl: '12px'
       },
       maxWidth: {
+        'content': '760px',
+        'content-wide': '1020px',
+        'sidebar': '250px',
         'prose-article': '760px'
+      },
+      screens: {
+        sm: '600px',
+        md: '800px',
+        lg: '1020px',
+        xl: '1360px'
       }
     }
   },
   plugins: []
 };
-
-

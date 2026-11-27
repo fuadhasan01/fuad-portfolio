@@ -6,66 +6,252 @@
 
 @layer base {
   :root {
-    --color-canvas: 251 251 250;
-    --color-surface: 255 255 255;
-    --color-secondary: 244 242 238;
-    --color-primary: 17 17 22;
-    --color-muted: 94 94 110;
-    --color-accent: 37 99 235;
-    --color-border: 17 17 22 / 0.08;
+    /* Tania Rascia Warm Paper Neutral Scale */
+    --beige-0: #F8F4E6;
+    --beige-1: #F1EAD5;
+    --beige-2: #ECE4CA;
+    --beige-25: #E5DCBD;
+    --beige-3: #DED4B2;
+    --beige-4: #C6BA93;
+
+    --gray-0: #FBFBFB;
+    --gray-1: #EEEEEE;
+    --gray-2: #E4E4E7;
+    --gray-3: #D4D4D8;
+    --gray-5: #A1A1A8;
+    --gray-55: #5A5A61;
+    --gray-6: #4E4E55;
+    --gray-7: #323239;
+    --gray-8: #28282E;
+    --gray-9: #202025;
+    --gray-10: #1D1D22;
+    --gray-11: #16161A;
+
+    /* Canonical Accent (Warm Amber / Gold — Tania Rascia Signature) */
+    --accent-light: #B26A34;
+    --accent-dark: #FEDE91;
+    --color-primary: var(--accent-light);
+    --color-primary-hover: var(--accent-light);
+
+    /* Light Mode Semantic Canvas & Surfaces */
+    --color-bg: var(--beige-0);
+    --color-bg-alt: var(--beige-1);
+    --color-bg-subtle: var(--beige-2);
+    --color-bg-card: var(--beige-1);
+    --color-bg-hover: var(--beige-2);
+
+    --color-text: var(--gray-8);
+    --color-text-emphasized: var(--gray-10);
+    --color-text-muted: var(--gray-55);
+
+    --color-border: var(--beige-25);
+    --color-border-card: var(--beige-3);
+    --color-border-strong: var(--beige-4);
+
+    --border-radius: 8px;
+    --transition: 150ms ease;
+
+    /* Tailwind Variable Mappings */
+    --color-canvas: 248 244 230;
+    --color-surface: 241 234 213;
+    --color-secondary: 236 228 202;
   }
 
+  /* Dark Mode Semantic Canvas & Surfaces */
   .dark {
-    --color-canvas: 9 9 14;
-    --color-surface: 17 17 24;
-    --color-secondary: 26 26 36;
-    --color-primary: 240 237 232;
-    --color-muted: 138 138 154;
-    --color-accent: 200 247 62;
-    --color-border: 240 237 232 / 0.08;
+    --color-primary: var(--accent-dark);
+    --color-primary-hover: var(--accent-dark);
+
+    --color-bg: var(--gray-9);
+    --color-bg-alt: var(--gray-11);
+    --color-bg-subtle: var(--gray-10);
+    --color-bg-card: var(--gray-8);
+    --color-bg-hover: var(--gray-7);
+
+    --color-text: var(--gray-3);
+    --color-text-emphasized: var(--gray-0);
+    --color-text-muted: var(--gray-5);
+
+    --color-border: var(--gray-7);
+    --color-border-card: var(--gray-7);
+    --color-border-strong: var(--gray-6);
+
+    --color-canvas: 32 32 37;
+    --color-surface: 40 40 46;
+    --color-secondary: 22 22 26;
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: 'DM Sans', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color-scheme: light dark;
   }
 
   body {
-    background-color: #FBFBFA;
-    color: #111116;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 16px;
+    transition: background-color var(--transition), color var(--transition);
   }
 
-  .dark body {
-    background-color: #09090E;
-    color: #F0EDE8;
+  /* Clean sidebar scrollbar suppression */
+  aside[aria-label="Site Sidebar"] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  aside[aria-label="Site Sidebar"]::-webkit-scrollbar {
+    display: none;
   }
 
-  h1, h2, h3, .font-serif {
-    font-family: 'Instrument Serif', Georgia, serif;
-    letter-spacing: -0.01em;
+  h1, h2, h3, h4, h5, h6, .font-heading, .font-display {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--color-text-emphasized);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
   }
 
   code, pre, .font-mono {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
   }
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition), background var(--transition);
+}
+
+.content-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: text-decoration-color var(--transition), background var(--transition);
+}
+
+.content-link:hover {
+  text-decoration-color: var(--color-primary);
+  background: var(--color-bg-hover);
+  border-radius: 4px;
+}
+
+/* Tania Rascia Button System */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.925rem;
+  padding: 7px 14px;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  gap: 0.4rem;
+  transition: all var(--transition);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary);
+  color: #16161A;
+  border-color: var(--color-primary);
+}
+
+.dark .btn-primary:hover {
+  color: #16161A;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.925rem;
+  padding: 7px 14px;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  gap: 0.4rem;
+  transition: all var(--transition);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-emphasized);
+  background: var(--color-bg-hover);
+}
+
+/* Tags */
+.chip-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+  color: var(--color-text);
+  transition: all var(--transition);
+}
+
+.chip-tag::before {
+  content: '#';
+  color: var(--color-primary);
+  margin-right: 2px;
+}
+
+.chip-tag:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Card Container */
+.tania-card {
+  position: relative;
+  background: var(--color-bg-card);
+  border: 1.5px solid var(--color-border-card);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  transition: border-color var(--transition);
+}
+
+.tania-card:hover {
+  border-color: var(--color-primary);
+}
+
+/* Themed text selection */
+::selection {
+  background-color: var(--color-primary);
+  color: #16161A;
 }
 
 /* Accessibility focus ring utility */
 .focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:focus-visible:ring-lime-400 dark:focus-visible:ring-offset-[#09090E];
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  --tw-ring-color: var(--color-primary);
+  --tw-ring-offset-color: var(--color-bg);
 }
 
-/* Ensure syntax highlighted code comments meet WCAG 2.2 AA contrast (> 4.5:1) */
+/* Code comments contrast WCAG AA (>4.5:1) */
 .astro-code span[style*="color:#6A737D"],
 .astro-code span[style*="color: #6A737D"],
 .prose pre code span[style*="color:#6A737D"],
 pre code span[style*="color:#6A737D"] {
   color: #94a3b8 !important;
 }
-
-
-

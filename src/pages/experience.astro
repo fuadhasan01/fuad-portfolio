@@ -3,42 +3,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { experiences } from '../data/experience';
 import ExperienceTimeline from '../components/projects/ExperienceTimeline.astro';
 import ButtonLink from '../components/common/ButtonLink.astro';
-import SectionHeading from '../components/common/SectionHeading.astro';
 ---
 
 <BaseLayout
   title="Experience | Fuad Hasan"
   description="Professional career timeline, engineering responsibilities, and verified contributions of Fuad Hasan."
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <div>
     <!-- Header -->
-    <header class="mb-14">
-      <SectionHeading
-        eyebrow="CAREER TIMELINE"
-        title="Professional Experience"
-        description="A chronological record of full-stack engineering roles, core backend architectures, database optimization, and enterprise systems."
-      />
+    <header class="mb-10">
+      <h1 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-heading mb-2.5">
+        Career Experience
+      </h1>
+      <p class="text-sm sm:text-base text-muted font-sans leading-relaxed max-w-2xl">
+        A chronological record of full-stack engineering roles, core backend architectures, database optimization, and enterprise systems.
+      </p>
     </header>
 
-    <!-- Timeline Component -->
-    <section class="mb-16">
+    <!-- Career Ledger Component -->
+    <section class="mb-12">
       <ExperienceTimeline items={experiences} />
     </section>
 
     <!-- Project Evidence Callout -->
-    <section class="p-8 sm:p-10 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col sm:flex-row items-center justify-between gap-6">
+    <section class="p-6 rounded-lg bg-surface border border-border-card flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm">
       <div>
-        <span class="font-mono text-xs uppercase tracking-widest text-accent dark:text-accent-dark block mb-2 font-medium">
-          VERIFIED WORK
-        </span>
-        <h2 class="font-serif text-2xl sm:text-3xl font-normal text-primary dark:text-primary-dark mb-2">
-          Explore Project Case Studies
+        <h2 class="font-heading text-xl font-bold text-heading mb-1.5">
+          Explore Technical Case Studies
         </h2>
-        <p class="text-sm font-sans text-muted dark:text-muted-dark leading-relaxed max-w-lg">
-          Detailed technical write-ups covering problem domain, architecture decisions, and code repositories.
+        <p class="text-sm font-sans text-muted leading-relaxed max-w-lg">
+          Detailed technical dossiers covering problem domain, architecture decisions, and code repositories.
         </p>
       </div>
-      <div class="flex gap-3 w-full sm:w-auto flex-shrink-0 font-mono text-xs">
+      <div class="flex gap-3 w-full sm:w-auto flex-shrink-0">
         <ButtonLink href="/projects" variant="primary">
           View Projects &rarr;
         </ButtonLink>

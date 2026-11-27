@@ -17,29 +17,28 @@ const {
 ---
 
 <div
-  class={`text-center py-16 px-4 rounded-2xl border border-dashed border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark ${className}`}
+  class={`text-center py-12 px-4 rounded-lg border border-dashed border-border bg-surface ${className}`}
   role="status"
   aria-live="polite"
 >
-  <div class="mx-auto w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-muted dark:text-muted-dark mb-4">
-    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+  <div class="mx-auto w-10 h-10 rounded-md border border-border bg-alt flex items-center justify-center text-muted mb-3">
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
     </svg>
   </div>
-  <h3 class="text-lg font-semibold text-primary dark:text-primary-dark mb-1">
+  <h3 class="text-base font-heading font-semibold text-heading mb-1">
     {title}
   </h3>
-  <p class="text-sm text-muted dark:text-muted-dark max-w-sm mx-auto mb-6">
+  <p class="text-sm text-muted max-w-sm mx-auto mb-5 font-sans">
     {message}
   </p>
   {resetText && (
     <button
       type="button"
       id={resetId}
-      class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors focus-ring"
+      class="btn-primary text-xs py-1.5 px-3.5"
     >
       {resetText}
     </button>
   )}
 </div>
-

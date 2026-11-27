@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%">
   <defs>
     <linearGradient id="fhBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#14141C" />
-      <stop offset="100%" stop-color="#09090E" />
+      <stop offset="0%" stop-color="#26262E" />
+      <stop offset="100%" stop-color="#1B1B21" />
     </linearGradient>
   </defs>
 
-  <!-- Background squircle -->
-  <rect width="64" height="64" rx="14" fill="url(#fhBg)" stroke="rgba(240, 237, 232, 0.12)" stroke-width="1.5" />
+  <!-- Background squircle in soft charcoal -->
+  <rect width="64" height="64" rx="16" fill="url(#fhBg)" stroke="#3A3A46" stroke-width="1.5" />
 
-  <!-- Letter F (Warm Ivory) -->
-  <path d="M14 16 H30 V22 H20 V29 H27 V34.5 H20 V48 H14 Z" fill="#F0EDE8" />
+  <!-- Terminal Prompt Chevron > (Warm Paper) -->
+  <path d="M17 19 L33 32 L17 45" fill="none" stroke="#F8F4E6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
 
-  <!-- Letter H (Electric Neon Lime) -->
-  <path d="M34 16 H40 V29 H44 V16 H50 V48 H44 V34.5 H40 V48 H34 Z" fill="#C8F73E" />
+  <!-- Terminal Active Cursor _ (Warm Amber) -->
+  <line x1="36" y1="45" x2="49" y2="45" stroke="#FEDE91" stroke-width="6" stroke-linecap="round" />
 </svg>

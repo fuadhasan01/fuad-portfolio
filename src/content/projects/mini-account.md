@@ -4,7 +4,7 @@ summary: "Financial accounting records application supporting hierarchical chart
 featured: true
 status: "completed"
 category: "Architecture & ERP"
-technologies: ["ASP.NET Core", "Razor Pages", "SQL Server", "C#"]
+technologies: ["ASP.NET Core 8", "Razor Pages", "SQL Server", "Bootstrap 5", "jQuery", "C#"]
 cover: "/images/projects/mini-account.svg"
 coverAlt: "Mini Account financial accounting records and voucher management system interface"
 repositoryUrl: "https://github.com/fuadhasan01/MiniAccountApp"

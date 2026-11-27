@@ -9,48 +9,45 @@ interface Props {
 const { items, compact = false } = Astro.props;
 ---
 
-<ol class="relative border-l border-border dark:border-border-dark ml-3 space-y-10" role="list">
+<div class="divide-y divide-border dark:divide-border-dark border-y border-border dark:border-border-dark" role="list">
   {
     items.map((item) => (
-      <li class="mb-10 ml-6">
-        <span class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 bg-canvas-light dark:bg-canvas-dark border border-border dark:border-border-dark">
-          <span class="w-2 h-2 rounded-full bg-accent dark:bg-accent-dark"></span>
-        </span>
-        <div class="p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-            <h3 class="font-serif text-xl sm:text-2xl font-normal text-primary dark:text-primary-dark">
-              {item.role}
-            </h3>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded font-mono text-xs font-medium border border-accent/40 dark:border-accent-dark/40 text-accent dark:text-accent-dark w-fit">
-              <time>{item.startDate}</time> &ndash; <time>{item.endDate}</time>
-            </span>
-          </div>
-          <p class="text-sm font-sans text-muted dark:text-muted-dark mb-5">
-            <span class="font-semibold text-primary dark:text-primary-dark">{item.company}</span> &bull; <span>{item.location}</span>
+      <article class="py-8 sm:py-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10" role="listitem">
+        <!-- Date Band & Location -->
+        <div class="md:col-span-3 text-xs font-mono text-muted dark:text-muted-dark">
+          <p class="font-medium text-primary dark:text-primary-dark">
+            <time>{item.startDate}</time> &ndash; <time>{item.endDate}</time>
+          </p>
+          <p class="mt-1">{item.location}</p>
+        </div>
+
+        <!-- Role, Company & Contributions -->
+        <div class="md:col-span-9">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-primary dark:text-primary-dark mb-1">
+            {item.role}
+          </h3>
+          <p class="text-sm font-mono font-medium text-accent dark:text-accent-dark mb-4">
+            {item.company}
           </p>
 
           {!compact && (
-            <div class="mb-6">
+            <div class="mb-5">
               <h4 class="font-mono text-xs uppercase tracking-wider text-muted dark:text-muted-dark mb-3">
-                Verified Responsibilities
+                Key Engineering Responsibilities
               </h4>
-              <ul class="space-y-2 text-sm text-slate-700 dark:text-slate-300 list-disc list-inside">
+              <ul class="space-y-2 text-sm text-muted dark:text-muted-dark font-sans leading-relaxed list-disc list-inside">
                 {item.contributions.map((c) => (
-                  <li class="leading-relaxed">{c}</li>
+                  <li>{c}</li>
                 ))}
               </ul>
             </div>
           )}
 
-          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-border dark:border-border-dark" aria-label="Technologies used">
-            {item.technologies.map((tech) => (
-              <span class="px-2 py-0.5 font-mono text-xs rounded border border-border dark:border-border-dark text-muted dark:text-muted-dark bg-secondary-light/30 dark:bg-secondary-dark/30">
-                {tech}
-              </span>
-            ))}
-          </div>
+          <p class="text-xs font-mono text-muted dark:text-muted-dark pt-3 border-t border-border dark:border-border-dark">
+            <span class="text-primary dark:text-primary-dark font-medium">Applied Stack:</span> {item.technologies.join(' • ')}
+          </p>
         </div>
-      </li>
+      </article>
     ))
   }
-</ol>
+</div>

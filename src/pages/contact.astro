@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { profile } from '../data/profile';
-import SectionHeading from '../components/common/SectionHeading.astro';
 import SocialIcon from '../components/common/SocialIcon.astro';
 ---
 
@@ -9,30 +8,31 @@ import SocialIcon from '../components/common/SocialIcon.astro';
   title="Contact | Fuad Hasan"
   description="Get in touch with Fuad Hasan for full-stack engineering opportunities, architecture consulting, and professional collaboration."
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <div>
     <!-- Header -->
-    <header class="mb-14">
-      <SectionHeading
-        eyebrow="COMMUNICATION"
-        title="Get in Touch"
-        description="I am open to full-time software engineering roles, technical architecture collaborations, and technical discussions. You can connect with me through the channels below."
-      />
+    <header class="mb-10">
+      <h1 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-heading mb-2.5">
+        Get in Touch
+      </h1>
+      <p class="text-sm sm:text-base font-sans text-muted leading-relaxed max-w-2xl">
+        I am open to full-time software engineering roles, technical architecture collaborations, and distributed systems discussions.
+      </p>
     </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
       <!-- Direct Email Card -->
-      <div class="p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col justify-between">
+      <div class="p-6 rounded-lg bg-surface border border-border-card flex flex-col justify-between shadow-sm">
         <div>
-          <div class="w-10 h-10 rounded-lg border border-border dark:border-border-dark bg-secondary-light/40 dark:bg-secondary-dark/40 text-accent dark:text-accent-dark flex items-center justify-center mb-6">
+          <div class="w-9 h-9 rounded-md border border-border bg-alt text-accent flex items-center justify-center mb-5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
           </div>
-          <h2 class="font-serif text-2xl font-normal text-primary dark:text-primary-dark mb-2">
+          <h2 class="font-heading text-xl font-bold text-heading mb-1.5">
             Direct Email
           </h2>
-          <p class="text-sm font-sans text-muted dark:text-muted-dark leading-relaxed mb-8">
-            The fastest way to reach me for job opportunities, inquiries regarding my project work, or technical discussions.
+          <p class="text-sm font-sans text-muted leading-relaxed mb-6">
+            The fastest way to reach me for job opportunities, architectural discussions, or technical project reviews.
           </p>
         </div>
 
@@ -40,40 +40,40 @@ import SocialIcon from '../components/common/SocialIcon.astro';
           <a
             id="email-cta-link"
             href="mailto:contact@fuadhasan.dev"
-            class="inline-flex items-center justify-center w-full px-5 py-3 text-xs font-mono uppercase tracking-wider font-semibold rounded-lg bg-accent dark:bg-accent-dark text-white dark:text-[#09090E] hover:opacity-90 transition-opacity focus-ring"
+            class="btn-primary w-full text-center"
           >
             Send Email (mailto) &rarr;
           </a>
           <button
             id="copy-email-button"
             type="button"
-            class="mt-3 w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-mono uppercase tracking-wider rounded-lg border border-border dark:border-border-dark text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark hover:border-primary dark:hover:border-primary-dark transition-colors focus-ring"
+            class="mt-2.5 btn-secondary w-full text-center"
           >
             Copy Email Address
           </button>
-          <p id="copy-email-status" class="text-xs font-mono text-center text-accent dark:text-accent-dark mt-2.5 hidden" role="status" aria-live="polite">
+          <p id="copy-email-status" class="text-xs font-mono text-center text-accent mt-2 hidden" role="status" aria-live="polite">
             Email address copied to clipboard!
           </p>
         </div>
       </div>
 
       <!-- Professional Profiles Card -->
-      <div class="p-8 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark flex flex-col justify-between">
+      <div class="p-6 rounded-lg bg-surface border border-border-card flex flex-col justify-between shadow-sm">
         <div>
-          <div class="w-10 h-10 rounded-lg border border-border dark:border-border-dark bg-secondary-light/40 dark:bg-secondary-dark/40 text-accent dark:text-accent-dark flex items-center justify-center mb-6">
+          <div class="w-9 h-9 rounded-md border border-border bg-alt text-accent flex items-center justify-center mb-5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
             </svg>
           </div>
-          <h2 class="font-serif text-2xl font-normal text-primary dark:text-primary-dark mb-2">
+          <h2 class="font-heading text-xl font-bold text-heading mb-1.5">
             Engineering Profiles
           </h2>
-          <p class="text-sm font-sans text-muted dark:text-muted-dark leading-relaxed mb-8">
+          <p class="text-sm font-sans text-muted leading-relaxed mb-6">
             Inspect my open-source code repositories, competitive programming track record, and verified professional network.
           </p>
         </div>
 
-        <ul class="space-y-2.5" role="list">
+        <ul class="space-y-2" role="list">
           {
             profile.socialLinks.map((social) => (
               <li>
@@ -81,13 +81,13 @@ import SocialIcon from '../components/common/SocialIcon.astro';
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center justify-between p-3 rounded-lg border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark hover:bg-secondary-light/40 dark:hover:bg-secondary-dark/40 transition-colors focus-ring"
+                  class="flex items-center justify-between p-2.5 rounded-md border border-border bg-subtle/40 hover:border-accent hover:bg-alt transition-colors focus-ring"
                 >
-                  <div class="flex items-center gap-3">
-                    <SocialIcon name={social.icon || social.name} class="w-4 h-4 text-muted dark:text-muted-dark" />
-                    <span class="text-xs font-mono text-primary dark:text-primary-dark font-medium">{social.name}</span>
+                  <div class="flex items-center gap-2.5">
+                    <SocialIcon name={social.icon || social.name} class="w-4 h-4 text-accent" />
+                    <span class="text-xs font-mono text-heading font-medium">{social.name}</span>
                   </div>
-                  <span class="text-xs text-muted dark:text-muted-dark font-mono">&nearr;</span>
+                  <span class="text-xs text-muted font-mono">&nearr;</span>
                 </a>
               </li>
             ))
@@ -96,17 +96,12 @@ import SocialIcon from '../components/common/SocialIcon.astro';
       </div>
     </div>
 
-    <!-- Resume Access & Privacy Safe Handling (FR-009, SEC-06) -->
-    <section class="p-8 sm:p-10 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+    <!-- Resume Access & Privacy Safe Handling -->
+    <section class="p-6 rounded-lg bg-surface border border-border-card shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div>
-          <div class="flex items-center gap-3 mb-2">
-            <h2 class="font-serif text-2xl font-normal text-primary dark:text-primary-dark">Download Resume</h2>
-            <span class="px-2 py-0.5 rounded text-[11px] font-mono font-medium border border-accent/40 dark:border-accent-dark/40 text-accent dark:text-accent-dark uppercase">
-              PDF
-            </span>
-          </div>
-          <p class="text-sm font-sans text-muted dark:text-muted-dark leading-relaxed max-w-xl">
+          <h2 class="font-heading text-xl font-bold text-heading mb-1">Download Résumé</h2>
+          <p class="text-sm font-sans text-muted leading-relaxed max-w-xl">
             A comprehensive overview of my software engineering experience, education, and technical stack. Sanitized for public download to protect personal phone and residential address privacy.
           </p>
         </div>
@@ -115,7 +110,7 @@ import SocialIcon from '../components/common/SocialIcon.astro';
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-mono uppercase tracking-wider rounded-lg border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-accent dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring font-medium"
+            class="btn-secondary"
           >
             Download CV &nearr;
           </a>
@@ -123,8 +118,8 @@ import SocialIcon from '../components/common/SocialIcon.astro';
       </div>
     </section>
 
-    <!-- Privacy Note (SEC-06) -->
-    <div class="mt-8 text-center text-xs font-mono text-muted dark:text-muted-dark">
+    <!-- Privacy Note -->
+    <div class="mt-6 text-center text-xs font-mono text-muted">
       <p>
         Privacy notice: Personal phone number and residential address are intentionally withheld from public display in compliance with personal privacy standards.
       </p>

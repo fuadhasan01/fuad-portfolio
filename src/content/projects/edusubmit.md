@@ -4,7 +4,7 @@ summary: "Full-stack assignment and submission management platform with role-bas
 featured: true
 status: "completed"
 category: "Full Stack"
-technologies: ["ASP.NET Core", "Angular", "EF Core", "PostgreSQL", "CQRS", "JWT"]
+technologies: ["ASP.NET Core 9", "Angular 20", "EF Core", "PostgreSQL", "MediatR", "CQRS", "DDD", "JWT", "FluentValidation"]
 cover: "/images/projects/edusubmit.svg"
 coverAlt: "EduSubmit academic assignment and submission management portal interface"
 repositoryUrl: "https://github.com/fuadhasan01/EduSubmitAPI"

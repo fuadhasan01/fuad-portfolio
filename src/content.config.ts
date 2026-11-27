@@ -47,7 +47,7 @@ export const projects = defineCollection({
     repositoryUrl: z.string().url().optional(),
     frontendRepositoryUrl: z.string().url().optional(),
     demoUrl: z.string().url().optional(),
-    role: z.string().default('Lead Engineer / Full Stack Developer'),
+    role: z.string().default('Full Stack Software Engineer'),
     timeline: z.string().optional()
   })
 });

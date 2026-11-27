@@ -2,7 +2,6 @@
 import { profile } from '../../data/profile';
 import { mainNavigation } from '../../data/navigation';
 import ThemeToggle from '../common/ThemeToggle.astro';
-import AccentPicker from '../common/AccentPicker.astro';
 import SocialIcon from '../common/SocialIcon.astro';
 
 interface Props {
@@ -31,7 +30,6 @@ const { currentPath = Astro.url.pathname } = Astro.props;
 
     <!-- Right Header Controls -->
     <div class="flex items-center gap-2">
-      <AccentPicker />
       <ThemeToggle id="theme-toggle-mobile" />
 
       <!-- Mobile Menu Trigger -->

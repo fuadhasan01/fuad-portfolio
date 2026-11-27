@@ -106,21 +106,6 @@ async function capture() {
       }
     }
 
-    // Capture accent variations on desktop
-    if (vp.name === 'desktop') {
-      const accents = ['amber', 'green', 'blue', 'lavender', 'rose'];
-      for (const acc of accents) {
-        await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle' });
-        await page.evaluate((accent) => {
-          document.documentElement.setAttribute('data-accent', accent);
-        }, acc);
-        await page.waitForTimeout(100);
-        const accentFilename = `accent-${acc}-desktop-dark.png`;
-        await page.screenshot({ path: path.join(OUTPUT_DIR, accentFilename), fullPage: false });
-        console.log(`Saved: ${accentFilename}`);
-      }
-    }
-
     await context.close();
   }
 

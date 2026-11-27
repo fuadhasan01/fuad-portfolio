@@ -19,8 +19,8 @@
 ### 1. Visual Direction & Design System Architecture (`DESIGN.md`)
 - **Core Archetype:** Tania Rascia inspired personal developer website, digital garden, and technical documentation layout.
 - **Visual Identity:** Warm, compact, content-focused, technically sophisticated, zero AI slop, no generic bento grids, no marketing hype, authentic software engineer layout.
-- **Desktop Layout:** Two-column composition with persistent sticky left sidebar (`w-[260px]`) housing Fuad's avatar, bio, active nav with dot indicator, Connect links, Résumé PDF, Theme switch, and 5-accent color selector.
-- **Mobile Navigation (`< 1020px`):** Clean sticky top bar with avatar monogram, name, accent picker, theme switch, and accessible mobile drawer with Escape / click-outside close handlers.
+- **Desktop Layout:** Two-column composition with persistent sticky left sidebar (`w-[260px]`) housing Fuad's name, bio, active nav with dot indicator, Connect links, Résumé PDF, and clean Theme switch.
+- **Mobile Navigation (`< 1020px`):** Clean sticky top bar with avatar monogram, name, theme switch, and accessible mobile drawer with Escape / click-outside close handlers.
 - **Typography:**
   - Headings / Display: `Outfit` (Google Fonts, 600/700/800) — geometric, clean, modern, warm.
   - Body & Paragraphs: `DM Sans` (Google Fonts, 400/500) — high legibility, comfortable reading density.
@@ -28,19 +28,15 @@
 - **Theme & Color System:**
   - **Light Mode Palette:** Warm paper canvas (`#F8F4E6`), subtle alt background (`#F0EAD6`), soft borders (`#E5DCBE`), deep charcoal text (`#202025`), muted text (`#5A5D6B`).
   - **Dark Mode Palette:** Soft charcoal canvas (`#202025`), card/surface (`#282830`), alt background (`#1C1C22`), subtle borders (`#3A3A46`), warm off-white text (`#E2E2E6`), muted text (`#9496A1`).
-  - **5-Accent System:** Interactive accent selector supporting 5 accessible color schemes with `data-accent="..."` and `localStorage` persistence:
-    - Amber (Default): `#B26A34` (light) / `#FEDE91` (dark)
-    - Green: `#2B9476` (light) / `#94D294` (dark)
-    - Blue: `#2A67A5` (light) / `#6DB3F5` (dark)
-    - Lavender: `#6A3EBA` (light) / `#E5AAF5` (dark)
-    - Rose: `#B12D6C` (light) / `#F2777A` (dark)
-  - **Zero FOUC:** Inline theme and accent initialization script in `<head>` runs before CSS parsing to eliminate flashing.
+  - **Single Canonical Accent:** Warm amber / gold inspired by Tania Rascia's signature palette:
+    - Light Mode: `#B26A34`
+    - Dark Mode: `#FEDE91`
+  - **Zero FOUC:** Inline theme initialization script in `<head>` runs before CSS parsing to eliminate flashing.
 
 ### 2. Components & Pages Redesigned
 - **Shared Components:**
-  - `SiteSidebar.astro`: Sticky left desktop navigation with avatar, bio, routes, connect channels, resume link, theme toggle, and accent selector.
-  - `MobileHeader.astro`: Sticky responsive mobile navigation bar with brand, controls, and accessible drawer.
-  - `AccentPicker.astro`: Accessible 5-color accent picker with live theme switching and keyboard support.
+  - `SiteSidebar.astro`: Sticky left desktop navigation with bio, routes, connect channels, resume link, and theme toggle.
+  - `MobileHeader.astro`: Sticky responsive mobile navigation bar with brand, theme toggle, and accessible drawer.
   - `ButtonLink.astro`: Tania `.btn-primary` and `.btn-secondary` buttons with restrained borders and subtle active feedback.
   - `ProjectCard.astro` & `ProjectFilter.astro`: Documentation ledger cards with live architectural diagrams, tags, verified repo/demo links.
   - `BlogCard.astro`, `BlogFilter.astro`, `TableOfContents.astro`: Article cards with metadata, reading time, sticky table of contents, and related articles.

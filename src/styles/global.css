@@ -27,25 +27,9 @@
     --gray-10: #1D1D22;
     --gray-11: #16161A;
 
-    /* Theme Accents (Light / Dark pairs) */
-    --theme-amber-light: #B26A34;
-    --theme-amber-dark: #FEDE91;
-
-    --theme-green-light: #2B9476;
-    --theme-green-dark: #94D294;
-
-    --theme-blue-light: #2A67A5;
-    --theme-blue-dark: #6DB3F5;
-
-    --theme-lavender-light: #6A3EBA;
-    --theme-lavender-dark: #E5AAF5;
-
-    --theme-rose-light: #B12D6C;
-    --theme-rose-dark: #F2777A;
-
-    /* Active Accent Defaults (Amber) */
-    --accent-light: var(--theme-amber-light);
-    --accent-dark: var(--theme-amber-dark);
+    /* Canonical Accent (Warm Amber / Gold — Tania Rascia Signature) */
+    --accent-light: #B26A34;
+    --accent-dark: #FEDE91;
     --color-primary: var(--accent-light);
     --color-primary-hover: var(--accent-light);
 
@@ -71,28 +55,6 @@
     --color-canvas: 248 244 230;
     --color-surface: 241 234 213;
     --color-secondary: 236 228 202;
-  }
-
-  /* Accent Color Variants */
-  html[data-accent="amber"] {
-    --accent-light: var(--theme-amber-light);
-    --accent-dark: var(--theme-amber-dark);
-  }
-  html[data-accent="green"] {
-    --accent-light: var(--theme-green-light);
-    --accent-dark: var(--theme-green-dark);
-  }
-  html[data-accent="blue"] {
-    --accent-light: var(--theme-blue-light);
-    --accent-dark: var(--theme-blue-dark);
-  }
-  html[data-accent="lavender"] {
-    --accent-light: var(--theme-lavender-light);
-    --accent-dark: var(--theme-lavender-dark);
-  }
-  html[data-accent="rose"] {
-    --accent-light: var(--theme-rose-light);
-    --accent-dark: var(--theme-rose-dark);
   }
 
   /* Dark Mode Semantic Canvas & Surfaces */

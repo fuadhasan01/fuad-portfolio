@@ -140,7 +140,7 @@ const articleSchema = article
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 )}
 
-<!-- Zero-flash theme & accent initialization script (Default: Dark Mode + Amber Accent) -->
+<!-- Zero-flash theme initialization script (Default: Dark Mode) -->
 <script is:inline>
   (function() {
     try {
@@ -152,11 +152,8 @@ const articleSchema = article
         document.documentElement.classList.add('dark');
         document.documentElement.classList.remove('light');
       }
-      const savedAccent = localStorage.getItem('accent') || 'amber';
-      document.documentElement.setAttribute('data-accent', savedAccent);
     } catch (_) {
       document.documentElement.classList.add('dark');
-      document.documentElement.setAttribute('data-accent', 'amber');
     }
   })();
 </script>

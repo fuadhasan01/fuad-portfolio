@@ -74,19 +74,15 @@ Emphasized Heading Text:  #FBFBFB  (--color-text-emphasized)
 Muted Metadata Text:      #A1A1A8  (--color-text-muted)
 ```
 
-### Accent Color Customization System
+### Canonical Accent Palette
 
-Visitors can select from five coherent accent colors, persisted via `localStorage` and applied through the CSS custom property `--color-primary`:
+The portfolio features a single, unified accent color inspired by Tania Rascia's signature warm amber and gold, applied through the CSS custom property `--color-primary`:
 
 | Accent Name | Light Mode Value | Dark Mode Value | Semantic Role |
 |---|---|---|---|
-| **Amber (Default)** | `#B26A34` | `#FEDE91` | Warm technical tone, links, primary CTA outline, active state |
-| **Green** | `#2B9476` | `#94D294` | Botanical calm, system health, active highlights |
-| **Blue** | `#2A67A5` | `#6DB3F5` | Classical engineering, analytical precision |
-| **Lavender** | `#6A3EBA` | `#E5AAF5` | Creative, reflective, editorial highlights |
-| **Rose** | `#B12D6C` | `#F2777A` | Vivid accent, warm contrast |
+| **Amber (Canonical)** | `#B26A34` | `#FEDE91` | Warm technical tone, links, primary CTA outline, active navigation dot, chip highlights |
 
-All accent combinations meet WCAG AA contrast standards (minimum 4.5:1 for body links and 3:1 for large text/interactive borders) against their respective canvas surfaces.
+The accent meets WCAG AA contrast standards (minimum 4.5:1 for body links and 3:1 for large text/interactive borders) against both the warm paper and soft charcoal canvas surfaces.
 
 ---
 

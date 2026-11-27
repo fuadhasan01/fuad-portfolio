@@ -2,7 +2,6 @@
 import { profile } from '../../data/profile';
 import { mainNavigation } from '../../data/navigation';
 import ThemeToggle from '../common/ThemeToggle.astro';
-import AccentPicker from '../common/AccentPicker.astro';
 import SocialIcon from '../common/SocialIcon.astro';
 
 interface Props {
@@ -16,21 +15,14 @@ const { currentPath = Astro.url.pathname } = Astro.props;
   class="hidden lg:flex flex-col w-[260px] min-w-[260px] h-screen sticky top-0 overflow-y-auto border-r border-border bg-canvas px-6 py-7 text-sm shrink-0 z-30 transition-colors"
   aria-label="Site Sidebar"
 >
-  <!-- Identity & Avatar -->
+  <!-- Identity & Brand -->
   <div class="mb-6">
     <a href="/" class="group block focus-ring rounded-lg">
-      <img
-        src={profile.avatarUrl}
-        alt="Fuad Hasan"
-        width="56"
-        height="56"
-        class="w-14 h-14 rounded-lg object-cover border border-border group-hover:border-accent transition-colors mb-3"
-      />
-      <span class="block font-heading font-bold text-lg text-heading group-hover:text-accent transition-colors leading-snug">
+      <span class="block font-heading font-bold text-xl text-heading group-hover:text-accent transition-colors leading-snug">
         {profile.name}
       </span>
     </a>
-    <p class="text-xs font-medium text-muted mt-0.5">
+    <p class="text-xs font-medium text-muted mt-1">
       {profile.title}
     </p>
     <p class="text-xs text-muted mt-2.5 leading-relaxed">
@@ -102,15 +94,9 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     </div>
   </div>
 
-  <!-- Sidebar Footer: Theme & Accent Controls -->
-  <div class="mt-auto pt-4 border-t border-border flex flex-col gap-3">
-    <div class="flex items-center justify-between">
-      <span class="text-xs font-mono text-muted">Theme</span>
-      <ThemeToggle />
-    </div>
-    <div class="flex items-center justify-between">
-      <span class="text-xs font-mono text-muted">Accent</span>
-      <AccentPicker />
-    </div>
+  <!-- Sidebar Footer: Theme Controls -->
+  <div class="mt-auto pt-4 border-t border-border flex items-center justify-between">
+    <span class="text-xs font-mono text-muted">Theme</span>
+    <ThemeToggle />
   </div>
 </aside>

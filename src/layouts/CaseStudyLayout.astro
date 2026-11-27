@@ -44,16 +44,16 @@ const {
         <!-- Overview & Action Column (Left) -->
         <div class="lg:col-span-7">
           <div class="flex items-center gap-3 mb-4 font-mono text-xs">
-            <span class="font-medium tracking-widest text-accent dark:text-accent-dark uppercase">
-              Project Case Study
+            <span class="text-accent dark:text-accent-dark font-medium uppercase tracking-wider">
+              {category}
             </span>
             <span class="text-muted dark:text-muted-dark" aria-hidden="true">•</span>
-            <span class="px-2.5 py-0.5 border border-border dark:border-border-dark text-muted dark:text-muted-dark">
-              {category}
+            <span class="text-muted dark:text-muted-dark">
+              Architecture Case Study
             </span>
           </div>
 
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-primary dark:text-primary-dark mb-4">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight text-primary dark:text-primary-dark mb-4">
             {title}
           </h1>
 
@@ -107,7 +107,8 @@ const {
                   class="inline-flex items-center gap-2 px-5 py-3 font-semibold uppercase tracking-wider border border-accent dark:border-accent-dark text-accent dark:text-accent-dark hover:bg-accent dark:hover:bg-accent-dark hover:text-white dark:hover:text-[#09090E] transition-all duration-200 shadow-sm focus-ring"
                   aria-label={`${frontendRepositoryUrl ? 'Backend Repo' : 'View Repository'}: ${title} on GitHub (opens in new tab)`}
                 >
-                  <span>{frontendRepositoryUrl ? 'Backend Repo' : 'View Repository'} &rarr;</span>
+                  <span>{frontendRepositoryUrl ? 'Backend Repo' : 'View Repository'}</span>
+                  <span aria-hidden="true">&rarr;</span>
                 </a>
               )
             }
@@ -120,7 +121,8 @@ const {
                   class="inline-flex items-center gap-2 px-5 py-3 font-semibold uppercase tracking-wider border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-primary dark:hover:border-primary-dark transition-colors focus-ring"
                   aria-label={`Frontend Repo: ${title} on GitHub (opens in new tab)`}
                 >
-                  <span>Frontend Repo &rarr;</span>
+                  <span>Frontend Repo</span>
+                  <span aria-hidden="true">&rarr;</span>
                 </a>
               )
             }
@@ -143,16 +145,16 @@ const {
 
         <!-- Cover Preview Container (Right) -->
         <div class="lg:col-span-5">
-          <figure class="relative overflow-hidden border border-border dark:border-border-dark shadow-sm bg-slate-900 group">
+          <figure class="relative overflow-hidden rounded-lg border border-border dark:border-border-dark shadow-sm bg-secondary-light dark:bg-secondary-dark group">
             <img
               src={cover}
               alt={coverAlt}
               width="800"
               height="480"
-              class="w-full h-auto object-cover transform transition-transform duration-300 group-hover:scale-[1.02]"
+              class="w-full h-auto object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-300"
               loading="eager"
             />
-            <figcaption class="p-3 text-center text-xs text-slate-400 bg-slate-900/90 border-t border-slate-800">
+            <figcaption class="p-3 text-center text-xs font-mono text-muted dark:text-muted-dark border-t border-border dark:border-border-dark">
               {coverAlt}
             </figcaption>
           </figure>

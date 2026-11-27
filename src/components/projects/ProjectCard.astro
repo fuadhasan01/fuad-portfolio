@@ -14,21 +14,22 @@ const {
   cover,
   coverAlt,
   repositoryUrl,
-  demoUrl
+  demoUrl,
+  timeline
 } = project.data;
 ---
 
 <article
-  class="flex flex-col justify-between border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:border-accent dark:hover:border-accent-dark transition-all duration-300 group h-full shadow-sm"
+  class="flex flex-col justify-between border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:border-accent dark:hover:border-accent-dark transition-colors rounded-lg overflow-hidden group shadow-sm"
   data-category={category}
   data-technologies={technologies.join(',')}
   data-project-card
 >
   <div>
-    <!-- Project Thumbnail / Visual Container -->
+    <!-- Project Thumbnail / Diagram -->
     <a
       href={`/projects/${project.id}`}
-      class="block aspect-[16/10] overflow-hidden bg-slate-900 border-b border-border dark:border-border-dark focus-ring"
+      class="block aspect-[16/10] overflow-hidden bg-secondary-light dark:bg-secondary-dark border-b border-border dark:border-border-dark focus-ring"
       tabindex="-1"
       aria-hidden="true"
     >
@@ -37,21 +38,20 @@ const {
         alt={coverAlt}
         width="600"
         height="375"
-        class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+        class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-300"
         loading="lazy"
       />
     </a>
 
     <div class="p-6">
-      <!-- Category Badge -->
-      <div class="flex items-center justify-between gap-2 mb-3">
-        <span class="text-xs font-mono font-medium px-2.5 py-0.5 border border-border dark:border-border-dark text-accent dark:text-accent-dark">
-          {category}
-        </span>
+      <!-- Category & Timeline Meta -->
+      <div class="flex items-center justify-between text-xs font-mono text-muted dark:text-muted-dark mb-3">
+        <span class="text-accent dark:text-accent-dark font-medium uppercase tracking-wider">{category}</span>
+        <span>{timeline || '2024'}</span>
       </div>
 
       <!-- Title -->
-      <h3 class="text-2xl font-serif font-normal text-primary dark:text-primary-dark mb-2 tracking-tight">
+      <h3 class="text-xl font-display font-bold text-primary dark:text-primary-dark mb-2.5">
         <a
           href={`/projects/${project.id}`}
           class="hover:text-accent dark:hover:text-accent-dark focus-ring rounded inline-block"
@@ -65,30 +65,22 @@ const {
         {summary}
       </p>
 
-      <!-- Technology Pills -->
-      <div class="flex flex-wrap gap-1.5" aria-label="Technologies used">
-        {technologies.slice(0, 4).map((tech) => (
-          <span class="px-2 py-0.5 text-xs font-mono border border-border dark:border-border-dark text-muted dark:text-muted-dark">
-            {tech}
-          </span>
-        ))}
-        {technologies.length > 4 && (
-          <span class="px-2 py-0.5 text-xs font-mono text-muted dark:text-muted-dark">
-            +{technologies.length - 4}
-          </span>
-        )}
-      </div>
+      <!-- Technical Stack without Pill Fatigue -->
+      <p class="text-xs font-mono text-muted dark:text-muted-dark border-t border-border dark:border-border-dark pt-3">
+        <span class="text-primary dark:text-primary-dark font-medium">Stack:</span> {technologies.slice(0, 4).join(' • ')}
+        {technologies.length > 4 && <span> • +{technologies.length - 4}</span>}
+      </p>
     </div>
   </div>
 
   <!-- Action Links Footer -->
-  <div class="px-6 py-4 border-t border-border dark:border-border-dark flex items-center justify-between font-mono text-xs">
+  <div class="px-6 py-3.5 border-t border-border dark:border-border-dark flex items-center justify-between font-mono text-xs">
     <a
       href={`/projects/${project.id}`}
-      class="text-accent dark:text-accent-dark font-medium hover:underline focus-ring rounded"
+      class="text-accent dark:text-accent-dark font-medium hover:underline focus-ring"
       aria-label={`Case Study: ${title}`}
     >
-      Case Study &rarr;
+      <span>Case Study</span> <span aria-hidden="true">&rarr;</span>
     </a>
 
     <div class="flex items-center space-x-3 text-xs">
@@ -97,10 +89,10 @@ const {
           href={repositoryUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark focus-ring rounded p-1 transition-colors"
+          class="text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring"
           aria-label={`Source: ${title} on GitHub (opens in new tab)`}
         >
-          Source &nearr;
+          <span>Source</span> <span aria-hidden="true">&nearr;</span>
         </a>
       )}
       {demoUrl && (
@@ -108,10 +100,10 @@ const {
           href={demoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent dark:text-accent-dark font-medium hover:underline focus-ring rounded p-1"
+          class="text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring"
           aria-label={`Demo: ${title} live demonstration (opens in new tab)`}
         >
-          Demo &nearr;
+          <span>Demo</span> <span aria-hidden="true">&nearr;</span>
         </a>
       )}
     </div>

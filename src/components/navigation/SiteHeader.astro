@@ -9,19 +9,22 @@ interface Props {
 const { currentPath = Astro.url.pathname } = Astro.props;
 ---
 
-<header class="sticky top-0 z-40 w-full backdrop-blur-md bg-canvas-light/85 dark:bg-canvas-dark/85 border-b border-border dark:border-border-dark transition-colors duration-200" role="banner">
+<header class="sticky top-0 z-40 w-full backdrop-blur-md bg-canvas-light/90 dark:bg-canvas-dark/90 border-b border-border dark:border-border-dark transition-colors duration-200" role="banner">
   <div class="max-w-6xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-    <!-- Brand / Logo -->
+    <!-- Brand / Identity -->
     <a
       href="/"
-      class="font-mono text-sm tracking-widest uppercase font-bold text-primary dark:text-primary-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring px-1"
-      aria-label="FH - Fuad Hasan - Home"
+      class="flex items-center gap-2.5 font-display text-base font-bold tracking-tight text-primary dark:text-primary-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring px-1"
     >
-      FH
+      <span class="w-2 h-2 rounded-sm bg-accent dark:bg-accent-dark shrink-0" aria-hidden="true"></span>
+      <span>Fuad Hasan</span>
+      <span class="hidden lg:inline text-xs font-mono font-normal text-muted dark:text-muted-dark border-l border-border dark:border-border-dark pl-2.5">
+        Systems &amp; Full Stack
+      </span>
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+    <nav class="hidden md:flex items-center gap-7" aria-label="Main Navigation">
       {
         mainNavigation.map((item) => {
           const isActive =
@@ -32,9 +35,9 @@ const { currentPath = Astro.url.pathname } = Astro.props;
             <a
               href={item.href}
               class:list={[
-                'text-sm font-sans tracking-wide transition-colors focus-ring py-1',
+                'text-sm font-sans tracking-normal transition-colors focus-ring py-1 relative',
                 isActive
-                  ? 'text-primary dark:text-primary-dark font-medium border-b border-primary dark:border-accent-dark'
+                  ? 'text-primary dark:text-primary-dark font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent dark:after:bg-accent-dark'
                   : 'text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark'
               ]}
               aria-current={isActive ? 'page' : undefined}
@@ -46,13 +49,13 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       }
     </nav>
 
-    <!-- Header Right Actions: Theme Toggle & Resume CTA & Mobile Trigger -->
+    <!-- Header Right Actions: Theme Toggle & Get in Touch CTA & Mobile Trigger -->
     <div class="flex items-center gap-3">
       <a
         href="/contact"
-        class="hidden sm:inline-flex items-center justify-center text-xs font-mono uppercase tracking-wider px-4 py-2 border border-accent dark:border-accent-dark text-accent dark:text-accent-dark hover:bg-accent dark:hover:bg-accent-dark hover:text-white dark:hover:text-[#09090E] transition-all duration-200 font-semibold focus-ring"
+        class="hidden sm:inline-flex items-center justify-center text-xs font-mono uppercase tracking-wider px-3.5 py-1.5 rounded border border-accent dark:border-accent-dark text-accent dark:text-accent-dark hover:bg-accent hover:text-white dark:hover:bg-accent-dark dark:hover:text-canvas-dark transition-all duration-150 font-semibold focus-ring"
       >
-        Hire Me
+        Get in Touch
       </a>
 
       <ThemeToggle />
@@ -61,7 +64,7 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       <button
         id="mobile-menu-trigger"
         type="button"
-        class="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-muted hover:text-primary dark:text-muted-dark dark:hover:text-primary-dark focus-ring"
+        class="md:hidden inline-flex items-center justify-center p-2 rounded text-muted hover:text-primary dark:text-muted-dark dark:hover:text-primary-dark focus-ring"
         aria-label="Open main menu"
         aria-expanded="false"
         aria-controls="mobile-nav-dialog"
@@ -104,9 +107,9 @@ const { currentPath = Astro.url.pathname } = Astro.props;
           <a
             href={item.href}
             class:list={[
-              'block py-2.5 text-lg font-serif transition-colors focus-ring',
+              'block py-2.5 text-base font-display transition-colors focus-ring',
               isActive
-                ? 'text-accent dark:text-accent-dark font-medium'
+                ? 'text-accent dark:text-accent-dark font-semibold'
                 : 'text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark'
             ]}
             aria-current={isActive ? 'page' : undefined}
@@ -119,9 +122,9 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     <div class="pt-4 border-t border-border dark:border-border-dark mt-3 flex flex-col gap-2">
       <a
         href="/contact"
-        class="inline-flex items-center justify-center text-xs font-mono uppercase tracking-wider py-2.5 border border-accent dark:border-accent-dark text-accent dark:text-accent-dark hover:bg-accent dark:hover:bg-accent-dark hover:text-white dark:hover:text-[#09090E] transition-colors font-semibold"
+        class="inline-flex items-center justify-center text-xs font-mono uppercase tracking-wider py-2.5 rounded border border-accent dark:border-accent-dark text-accent dark:text-accent-dark hover:bg-accent hover:text-white dark:hover:bg-accent-dark dark:hover:text-canvas-dark transition-colors font-semibold"
       >
-        Hire Me / Get in Touch
+        Get in Touch
       </a>
       <a
         href="/resume/Fuad_Hasan_Resume.pdf"
@@ -169,7 +172,6 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       }
     });
 
-    // Close on Escape key press
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
         closeMenu();
@@ -177,7 +179,6 @@ const { currentPath = Astro.url.pathname } = Astro.props;
       }
     });
 
-    // Close when clicking outside
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       if (

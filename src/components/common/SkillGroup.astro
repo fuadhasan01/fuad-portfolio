@@ -7,16 +7,12 @@ interface Props {
 const { title, skills } = Astro.props;
 ---
 
-<div class="p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark transition-colors">
-  <h3 class="font-serif text-xl font-normal text-primary dark:text-primary-dark mb-4 flex items-center justify-between">
+<div class="p-6 rounded-lg bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark transition-colors">
+  <h3 class="font-display text-base font-bold text-primary dark:text-primary-dark mb-3 flex items-center justify-between">
     <span>{title}</span>
-    <span class="text-xs font-normal text-muted dark:text-muted-dark font-mono">{skills.length} skills</span>
+    <span class="text-xs font-normal text-muted dark:text-muted-dark font-mono">{skills.length} competencies</span>
   </h3>
-  <ul class="flex flex-wrap gap-2" role="list">
-    {skills.map((skill) => (
-      <li class="px-2.5 py-1 text-xs font-mono rounded bg-secondary-light/40 dark:bg-secondary-dark/40 text-slate-700 dark:text-slate-300 border border-border dark:border-border-dark">
-        {skill}
-      </li>
-    ))}
-  </ul>
+  <p class="text-xs font-mono text-muted dark:text-muted-dark leading-relaxed">
+    {skills.join(' • ')}
+  </p>
 </div>

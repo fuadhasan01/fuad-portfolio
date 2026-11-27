@@ -3,21 +3,21 @@
   "lighthouseScores": [
     {
       "name": "Home",
-      "perf": 95,
+      "perf": 97,
       "a11y": 100,
       "bp": 100,
       "seo": 100
     },
     {
       "name": "Article",
-      "perf": 98,
+      "perf": 94,
       "a11y": 100,
       "bp": 100,
       "seo": 100
     },
     {
       "name": "Projects",
-      "perf": 94,
+      "perf": 97,
       "a11y": 98,
       "bp": 100,
       "seo": 100

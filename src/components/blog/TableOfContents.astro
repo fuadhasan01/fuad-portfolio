@@ -30,7 +30,7 @@ const navAriaLabel = variant === 'mobile' ? 'Table of contents (mobile)' : 'Tabl
     >
       {/* Mobile Collapsible Accordion (only on mobile/tablet < 1024px) */}
       {showMobile && (
-        <details class="p-4 rounded-xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark group mb-8 lg:hidden">
+        <details class="p-4 rounded-lg border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark group mb-8 lg:hidden">
           <summary class="font-mono text-xs uppercase tracking-wider text-primary dark:text-primary-dark cursor-pointer list-none flex items-center justify-between focus-ring rounded p-1">
             <span class="flex items-center gap-2">
               <svg class="w-4 h-4 text-accent dark:text-accent-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -59,9 +59,9 @@ const navAriaLabel = variant === 'mobile' ? 'Table of contents (mobile)' : 'Tabl
 
       {/* Desktop Sticky Sidebar Box (only on desktop >= 1024px) */}
       {showDesktop && (
-        <div class="hidden lg:block p-6 rounded-2xl border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
-          <h3 class="text-xs font-mono tracking-widest text-accent dark:text-accent-dark uppercase mb-4 flex items-center gap-2 font-semibold">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent dark:bg-accent-dark" aria-hidden="true"></span>
+        <div class="hidden lg:block p-6 rounded-lg border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
+          <h3 class="text-xs font-mono tracking-wider text-accent dark:text-accent-dark uppercase mb-4 flex items-center gap-2 font-semibold">
+            <span class="w-1.5 h-1.5 rounded-sm bg-accent dark:bg-accent-dark" aria-hidden="true"></span>
             On This Page
           </h3>
           <ul class="space-y-1 text-xs font-mono border-l border-border dark:border-border-dark">

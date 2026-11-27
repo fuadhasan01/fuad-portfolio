@@ -14,40 +14,45 @@
 
 ---
 
-## Design System Overhaul (Figma Reference Redesign)
+## Design System Overhaul (Impeccable "Architectural Dossier" Redesign)
 
-### 1. Visual Direction & Design Tokens
-- **Reference Site:** `https://patio-saved-34629488.figma.site/` (Marcus Ashford Portfolio).
-- **Core Aesthetic:** Dark luxury engineering portfolio featuring high-contrast editorial typography, deep obsidian black canvases, monospace metadata tags, and electric chartreuse/lime accents.
+### 1. Visual Direction & Design Tokens (`DESIGN.md`)
+- **Design Archetype:** Direction 1 — "The Architectural Dossier" (Curated technical publication with industrial restraint and structural clarity).
+- **Core Aesthetic:** Industrial restraint, high-contrast grotesque display typography, warm technical amber accents, disciplined 6-8px corner radii, and zero AI decorative slop (no pulsing dots, no floating glass badges, no eyebrow kickers, no side-tab borders, no fake bash prompts).
 - **Typography:**
-  - Display / Headings: `Instrument Serif` (400 weight, italic emphasis).
-  - Body & Paragraphs: `DM Sans` (warm, legible editorial text).
-  - Metadata, Badges & Labels: `JetBrains Mono` (precise monospaced engineering feel).
+  - Display / Headings: `Cabinet Grotesk` (Variable 400–900, Fontshare CDN) — structural, authoritative, humanist-industrial.
+  - Body & Paragraphs: `DM Sans` (Google Fonts, 400/500) — optimal readability across density.
+  - Metadata, Coordinates & Code: `JetBrains Mono` (Google Fonts, 400/500/700) — strictly for code, metrics, and tabular coordinates.
 - **Color Palette:**
-  - Canvas: `#09090E` (Obsidian Black) / Light: `#FBFBFA`
-  - Surface: `#111118` / Light: `#FFFFFF`
-  - Secondary: `#1A1A24` / Light: `#F4F2EE`
-  - Primary Text: `#F0EDE8` (Warm Ivory) / Light: `#111116`
-  - Muted Text: `#8A8A9A` / Light: `#5E5E6E`
-  - Accent: `#C8F73E` (Electric Lime / Chartreuse) in dark mode; `#2563EB` (Deep Royal Blue) in light mode.
-  - Borders: `rgba(240, 237, 232, 0.08)` (Subtle 8% ivory line work).
+  - Canvas: `#0C0D12` (Dark) / `#F8F9FA` (Light)
+  - Surface: `#151720` (Dark) / `#FFFFFF` (Light)
+  - Secondary: `#1D202B` (Dark) / `#F0F0EE` (Light)
+  - Primary Text: `#F4F3EF` (Warm Bone) / `#111217` (Deep Ink)
+  - Muted Text: `#9496A1` (Dark) / `#5A5D6B` (Light)
+  - Accent: Unified Technical Amber (`#F59E0B` in dark mode; `#D97706` in light mode).
+  - Borders: `rgba(244, 243, 239, 0.10)` (Dark) / `rgba(17, 18, 23, 0.08)` (Light).
 
 ### 2. Components & Pages Redesigned
-- **Header & Footer:** Minimalist fixed navbar with `FH` monogram, tracking-wide navigation links, "Hire Me" border button, and square border box social icons with monospace abbreviations.
+- **Header & Footer:** Hairline border bar with geometric brandmark, `Fuad Hasan • Systems & Full Stack` identity, active amber underline indicators, "Get in Touch" border button, and accessible SVG social channels.
 - **Home (`src/pages/index.astro`):**
-  - Hero with clamp `Instrument Serif` headline (`Fuad Hasan`), quick metadata, social icon boxes, bento metrics row (`3+` projects, `2+` years, `3.6/4.0` CGPA), and "See work ↓".
-  - Selected Work: Numbered list rows (`01`, `02`, `03`) with verified action links and monospace technology pills.
-  - About: 12-column split with dedicated 4:5 portrait frame (`profile.avatarUrl`), editorial narrative, focus areas, and 4 technical skill domains.
-  - Experience: Clean minimalist timeline rows with date on left and role/company on right.
-  - Terminal Quote: Sleek `fuad@workstation ~` card with architectural quote.
-  - Contact Callout: "Let's build something worth building." headline with direct email CTA.
+  - Hero with `Cabinet Grotesk` headline (`Fuad Hasan`), substantive engineering status line without pulsing dot, natural framed portrait with zero glow halo, primary CTAs (`View Work ↓`, `Download CV ↗`), and brand SVGs (GitHub, LinkedIn, LeetCode, Email).
+  - Capabilities Ledger: 4 structured engineering domains (Backend Services, Transactional Integrity, Database Engineering, Frontend Architecture) replacing generic vanity counters.
+  - Selected Work: Architectural dossier rows with clean inline stack strings.
+  - Philosophy: Authoritative editorial blockquote replacing fake `fuad@workstation ~` shell box.
+  - Writing & Contact: Publication list and architectural inquiry card with amber feedback.
 - **Projects & Case Studies (`src/pages/projects/` & `src/layouts/CaseStudyLayout.astro`):**
-  - Monospace category filter pills, `Instrument Serif` titles, and two-column case study hero layouts with status indicators and verified source/demo CTAs.
+  - Dossier cards with 8px radii, muted stack lines, verified source/demo actions, and full accessible link names.
 - **Blog & Articles (`src/pages/blog/` & `src/layouts/ArticleLayout.astro`):**
-  - Minimalist search input, topic filters, reading time, sticky table of contents, and responsive code blocks.
+  - Authoritative article layout, amber quote callout container borders (replacing banned side-tab borders), table of contents, and semantic metadata.
 - **About, Experience, Contact & 404:**
-  - About page updated with dedicated 4:5 portrait image space alongside background & philosophy narrative.
-  - Unified display typography, credential boxes, copy-to-clipboard email feedback, and public sanitized CV download.
+  - About: Narrative dossier, clean skills matrix without pill badge fatigue, honors and academic record.
+  - Experience: Full career ledger with horizontal dividers and clean role/company structure (toy vertical dotted-line timeline eliminated).
+  - Contact: High-trust inquiry card with direct email, sanitized resume download, and verified profiles.
+- **Verification & QA Status:**
+  - `impeccable detect`: 0 errors / 0 hard slop violations across entire codebase.
+  - `npm test`: 5/5 unit tests passed.
+  - `node tests/e2e/verify-hero-and-theme.mjs`: 43/43 assertions passed (Dark mode default, theme toggle persistence, real brand SVGs, 1440px desktop geometry, 1024/768/390/360 responsive viewports with 0 horizontal overflow).
+  - `node tests/e2e/p6-verification.mjs`: 49/49 assertions passed (0 WCAG 2.2 AA violations across all 9 routes, Lighthouse Performance: 97, A11y: 100, Best Practices: 100, SEO: 100).
 
 ---
 

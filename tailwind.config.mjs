@@ -6,40 +6,47 @@ export default {
     extend: {
       colors: {
         canvas: {
-          light: '#FBFBFA',
-          dark: '#09090E'
+          light: '#F8F9FA',
+          dark: '#0C0D12'
         },
         surface: {
           light: '#FFFFFF',
-          dark: '#111118'
+          dark: '#151720'
         },
         secondary: {
-          light: '#F4F2EE',
-          dark: '#1A1A24'
+          light: '#F0F0EE',
+          dark: '#1D202B'
         },
         primary: {
-          DEFAULT: '#111116',
-          dark: '#F0EDE8'
+          DEFAULT: '#111217',
+          dark: '#F4F3EF'
         },
         muted: {
-          DEFAULT: '#5E5E6E',
-          dark: '#8A8A9A'
+          DEFAULT: '#5A5D6B',
+          dark: '#9496A1'
         },
         accent: {
-          DEFAULT: '#2563EB',
-          hover: '#1D4ED8',
-          dark: '#C8F73E', // Reference signature electric chartreuse
-          'dark-hover': '#D6FA5E'
+          DEFAULT: '#D97706', // Technical Amber (Light)
+          hover: '#B45309',
+          dark: '#F59E0B',     // Technical Phosphor Amber (Dark)
+          'dark-hover': '#D97706'
         },
         border: {
-          DEFAULT: 'rgba(17, 17, 22, 0.08)',
-          dark: 'rgba(240, 237, 232, 0.08)'
+          DEFAULT: 'rgba(17, 18, 23, 0.08)',
+          dark: 'rgba(244, 243, 239, 0.10)'
         }
       },
       fontFamily: {
-        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-        sans: ['"DM Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        display: ['"Cabinet Grotesk"', '"DM Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        sans: ['"DM Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+      },
+      borderRadius: {
+        sm: '4px',
+        DEFAULT: '6px',
+        md: '6px',
+        lg: '8px',
+        xl: '10px'
       },
       maxWidth: {
         'prose-article': '760px'
@@ -48,5 +55,3 @@ export default {
   },
   plugins: []
 };
-
-

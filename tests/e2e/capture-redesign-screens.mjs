@@ -82,28 +82,42 @@ async function capture() {
     const page = await context.newPage();
 
     for (const r of routes) {
-      if (vp.name !== 'desktop' && r.name !== 'home' && r.name !== 'case-study' && r.name !== 'article') {
-        // Capture only desktop + mobile for all, and all viewports for home & articles
-        if (vp.name !== 'mobile') continue;
-      }
-
       await page.goto(`http://localhost:${PORT}${r.path}`, { waitUntil: 'networkidle' });
-      await page.evaluate(() => document.documentElement.classList.add('dark'));
+      await page.evaluate(() => {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      });
       await page.waitForTimeout(100);
 
-      const filename = `${r.name}-${vp.name}-dark.png`;
-      await page.screenshot({ path: path.join(OUTPUT_DIR, filename), fullPage: r.name !== 'home' });
-      console.log(`Saved: ${filename}`);
+      const filenameDark = `${r.name}-${vp.name}-dark.png`;
+      await page.screenshot({ path: path.join(OUTPUT_DIR, filenameDark), fullPage: true });
+      console.log(`Saved: ${filenameDark}`);
 
-      if (vp.name === 'desktop') {
+      // Capture light mode for desktop & mobile
+      if (vp.name === 'desktop' || vp.name === 'mobile') {
         await page.evaluate(() => {
           document.documentElement.classList.remove('dark');
           document.documentElement.classList.add('light');
         });
         await page.waitForTimeout(100);
         const filenameLight = `${r.name}-${vp.name}-light.png`;
-        await page.screenshot({ path: path.join(OUTPUT_DIR, filenameLight), fullPage: r.name !== 'home' });
+        await page.screenshot({ path: path.join(OUTPUT_DIR, filenameLight), fullPage: true });
         console.log(`Saved: ${filenameLight}`);
+      }
+    }
+
+    // Capture accent variations on desktop
+    if (vp.name === 'desktop') {
+      const accents = ['amber', 'green', 'blue', 'lavender', 'rose'];
+      for (const acc of accents) {
+        await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle' });
+        await page.evaluate((accent) => {
+          document.documentElement.setAttribute('data-accent', accent);
+        }, acc);
+        await page.waitForTimeout(100);
+        const accentFilename = `accent-${acc}-desktop-dark.png`;
+        await page.screenshot({ path: path.join(OUTPUT_DIR, accentFilename), fullPage: false });
+        console.log(`Saved: ${accentFilename}`);
       }
     }
 

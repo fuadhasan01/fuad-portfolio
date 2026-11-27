@@ -16,7 +16,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 ---
 
 <article
-  class="flex flex-col justify-between rounded-lg bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark hover:border-accent dark:hover:border-accent-dark transition-colors group h-full overflow-hidden shadow-sm"
+  class="flex flex-col justify-between rounded-lg bg-surface border border-border-card hover:border-accent transition-colors group h-full overflow-hidden shadow-sm"
   data-blog-card
   data-category={post.data.category}
   data-title={post.data.title.toLowerCase()}
@@ -27,7 +27,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
     <!-- Cover Image Thumbnail -->
     <a
       href={`/blog/${post.id}`}
-      class="block aspect-[16/9] overflow-hidden bg-secondary-light dark:bg-secondary-dark border-b border-border dark:border-border-dark focus-ring"
+      class="block aspect-[16/9] overflow-hidden bg-alt border-b border-border focus-ring"
       tabindex="-1"
       aria-hidden="true"
     >
@@ -36,52 +36,55 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
         alt={post.data.coverAlt}
         width="600"
         height="338"
-        class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-300"
+        class="w-full h-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
         loading="lazy"
       />
     </a>
 
-    <div class="p-6">
+    <div class="p-5 sm:p-6">
       <!-- Category & Reading Time -->
-      <div class="flex items-center justify-between gap-2 mb-3 text-xs font-mono">
-        <span class="text-accent dark:text-accent-dark font-medium uppercase tracking-wider">
+      <div class="flex items-center justify-between gap-2 mb-2.5 text-xs font-mono">
+        <span class="text-accent font-medium uppercase tracking-wider">
           {post.data.category}
         </span>
-        <span class="text-muted dark:text-muted-dark">
+        <span class="text-muted">
           {readingTime.text}
         </span>
       </div>
 
       <!-- Article Title -->
-      <h3 class="font-display text-xl font-bold text-primary dark:text-primary-dark mb-2.5 leading-snug">
-        <a href={`/blog/${post.id}`} class="hover:text-accent dark:hover:text-accent-dark focus-ring rounded">
+      <h3 class="font-heading text-lg sm:text-xl font-bold text-heading mb-2 leading-snug">
+        <a href={`/blog/${post.id}`} class="hover:text-accent focus-ring rounded">
           {post.data.title}
         </a>
       </h3>
 
       <!-- Excerpt -->
-      <p class="text-sm text-muted dark:text-muted-dark font-sans leading-relaxed line-clamp-3 mb-4">
+      <p class="text-sm text-muted leading-relaxed line-clamp-3 mb-4 font-sans">
         {post.data.excerpt}
       </p>
 
-      <!-- Tags list without pill fatigue -->
-      <p class="text-xs font-mono text-muted dark:text-muted-dark border-t border-border dark:border-border-dark pt-3">
-        {post.data.tags.map((t) => `#${t}`).join(' ')}
-      </p>
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-1.5 pt-3 border-t border-border">
+        {post.data.tags.map((tag) => (
+          <span class="chip-tag text-[11px] py-0.5 px-2">
+            {tag}
+          </span>
+        ))}
+      </div>
     </div>
   </div>
 
-  <!-- Footer Metadata -->
-  <div class="px-6 py-3.5 border-t border-border dark:border-border-dark flex items-center justify-between text-xs font-mono">
-    <time datetime={post.data.pubDate.toISOString()} class="text-muted dark:text-muted-dark">
+  <div class="px-5 sm:px-6 py-3 border-t border-border flex items-center justify-between text-xs font-mono bg-subtle/30">
+    <time datetime={post.data.pubDate.toISOString()} class="text-muted">
       {formattedDate}
     </time>
     <a
       href={`/blog/${post.id}`}
-      class="text-accent dark:text-accent-dark hover:underline focus-ring rounded inline-flex items-center gap-1 font-medium"
+      class="text-accent hover:underline focus-ring rounded inline-flex items-center gap-1 font-medium"
       aria-label={`Read article: ${post.data.title}`}
     >
-      Read article &rarr;
+      <span>Read article</span> <span aria-hidden="true">&rarr;</span>
     </a>
   </div>
 </article>

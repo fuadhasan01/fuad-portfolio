@@ -6,71 +6,278 @@
 
 @layer base {
   :root {
-    --color-canvas: 248 249 250;
-    --color-surface: 255 255 255;
-    --color-secondary: 240 240 238;
-    --color-primary: 17 18 23;
-    --color-muted: 90 93 107;
-    --color-accent: 217 119 6;
-    --color-border: 17 18 23 / 0.08;
+    /* Tania Rascia Warm Paper Neutral Scale */
+    --beige-0: #F8F4E6;
+    --beige-1: #F1EAD5;
+    --beige-2: #ECE4CA;
+    --beige-25: #E5DCBD;
+    --beige-3: #DED4B2;
+    --beige-4: #C6BA93;
+
+    --gray-0: #FBFBFB;
+    --gray-1: #EEEEEE;
+    --gray-2: #E4E4E7;
+    --gray-3: #D4D4D8;
+    --gray-5: #A1A1A8;
+    --gray-55: #5A5A61;
+    --gray-6: #4E4E55;
+    --gray-7: #323239;
+    --gray-8: #28282E;
+    --gray-9: #202025;
+    --gray-10: #1D1D22;
+    --gray-11: #16161A;
+
+    /* Theme Accents (Light / Dark pairs) */
+    --theme-amber-light: #B26A34;
+    --theme-amber-dark: #FEDE91;
+
+    --theme-green-light: #2B9476;
+    --theme-green-dark: #94D294;
+
+    --theme-blue-light: #2A67A5;
+    --theme-blue-dark: #6DB3F5;
+
+    --theme-lavender-light: #6A3EBA;
+    --theme-lavender-dark: #E5AAF5;
+
+    --theme-rose-light: #B12D6C;
+    --theme-rose-dark: #F2777A;
+
+    /* Active Accent Defaults (Amber) */
+    --accent-light: var(--theme-amber-light);
+    --accent-dark: var(--theme-amber-dark);
+    --color-primary: var(--accent-light);
+    --color-primary-hover: var(--accent-light);
+
+    /* Light Mode Semantic Canvas & Surfaces */
+    --color-bg: var(--beige-0);
+    --color-bg-alt: var(--beige-1);
+    --color-bg-subtle: var(--beige-2);
+    --color-bg-card: var(--beige-1);
+    --color-bg-hover: var(--beige-2);
+
+    --color-text: var(--gray-8);
+    --color-text-emphasized: var(--gray-10);
+    --color-text-muted: var(--gray-55);
+
+    --color-border: var(--beige-25);
+    --color-border-card: var(--beige-3);
+    --color-border-strong: var(--beige-4);
+
+    --border-radius: 8px;
+    --transition: 150ms ease;
+
+    /* Tailwind Variable Mappings */
+    --color-canvas: 248 244 230;
+    --color-surface: 241 234 213;
+    --color-secondary: 236 228 202;
   }
 
+  /* Accent Color Variants */
+  html[data-accent="amber"] {
+    --accent-light: var(--theme-amber-light);
+    --accent-dark: var(--theme-amber-dark);
+  }
+  html[data-accent="green"] {
+    --accent-light: var(--theme-green-light);
+    --accent-dark: var(--theme-green-dark);
+  }
+  html[data-accent="blue"] {
+    --accent-light: var(--theme-blue-light);
+    --accent-dark: var(--theme-blue-dark);
+  }
+  html[data-accent="lavender"] {
+    --accent-light: var(--theme-lavender-light);
+    --accent-dark: var(--theme-lavender-dark);
+  }
+  html[data-accent="rose"] {
+    --accent-light: var(--theme-rose-light);
+    --accent-dark: var(--theme-rose-dark);
+  }
+
+  /* Dark Mode Semantic Canvas & Surfaces */
   .dark {
-    --color-canvas: 12 13 18;
-    --color-surface: 21 23 32;
-    --color-secondary: 29 32 43;
-    --color-primary: 244 243 239;
-    --color-muted: 148 150 161;
-    --color-accent: 245 158 11;
-    --color-border: 244 243 239 / 0.10;
+    --color-primary: var(--accent-dark);
+    --color-primary-hover: var(--accent-dark);
+
+    --color-bg: var(--gray-9);
+    --color-bg-alt: var(--gray-11);
+    --color-bg-subtle: var(--gray-10);
+    --color-bg-card: var(--gray-8);
+    --color-bg-hover: var(--gray-7);
+
+    --color-text: var(--gray-3);
+    --color-text-emphasized: var(--gray-0);
+    --color-text-muted: var(--gray-5);
+
+    --color-border: var(--gray-7);
+    --color-border-card: var(--gray-7);
+    --color-border-strong: var(--gray-6);
+
+    --color-canvas: 32 32 37;
+    --color-surface: 40 40 46;
+    --color-secondary: 22 22 26;
   }
 
   html {
     scroll-behavior: smooth;
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color-scheme: light dark;
   }
 
   body {
-    background-color: #F8F9FA;
-    color: #111217;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 16px;
+    transition: background-color var(--transition), color var(--transition);
   }
 
-  .dark body {
-    background-color: #0C0D12;
-    color: #F4F3EF;
-  }
-
-  h1, h2, h3, h4, h5, h6, .font-display {
-    font-family: 'Cabinet Grotesk', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    letter-spacing: -0.03em;
+  h1, h2, h3, h4, h5, h6, .font-heading, .font-display {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--color-text-emphasized);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
   }
 
   code, pre, .font-mono {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
   }
 }
 
-/* Themed text selection from signature amber palette */
-::selection {
-  background-color: #F59E0B;
-  color: #0C0D12;
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition), background var(--transition);
 }
 
-.dark ::selection {
-  background-color: #F59E0B;
-  color: #0C0D12;
+.content-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: text-decoration-color var(--transition), background var(--transition);
+}
+
+.content-link:hover {
+  text-decoration-color: var(--color-primary);
+  background: var(--color-bg-hover);
+  border-radius: 4px;
+}
+
+/* Tania Rascia Button System */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.925rem;
+  padding: 7px 14px;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  gap: 0.4rem;
+  transition: all var(--transition);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary);
+  color: #16161A;
+  border-color: var(--color-primary);
+}
+
+.dark .btn-primary:hover {
+  color: #16161A;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.925rem;
+  padding: 7px 14px;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  gap: 0.4rem;
+  transition: all var(--transition);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-emphasized);
+  background: var(--color-bg-hover);
+}
+
+/* Tags */
+.chip-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+  color: var(--color-text);
+  transition: all var(--transition);
+}
+
+.chip-tag::before {
+  content: '#';
+  color: var(--color-primary);
+  margin-right: 2px;
+}
+
+.chip-tag:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Card Container */
+.tania-card {
+  position: relative;
+  background: var(--color-bg-card);
+  border: 1.5px solid var(--color-border-card);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  transition: border-color var(--transition);
+}
+
+.tania-card:hover {
+  border-color: var(--color-primary);
+}
+
+/* Themed text selection */
+::selection {
+  background-color: var(--color-primary);
+  color: #16161A;
 }
 
 /* Accessibility focus ring utility */
 .focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 focus-visible:ring-offset-2 dark:focus-visible:ring-amber-500 dark:focus-visible:ring-offset-[#0C0D12];
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  --tw-ring-color: var(--color-primary);
+  --tw-ring-offset-color: var(--color-bg);
 }
 
-/* Ensure syntax highlighted code comments meet WCAG 2.2 AA contrast (> 4.5:1) */
+/* Code comments contrast WCAG AA (>4.5:1) */
 .astro-code span[style*="color:#6A737D"],
 .astro-code span[style*="color: #6A737D"],
 .prose pre code span[style*="color:#6A737D"],

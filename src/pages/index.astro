@@ -12,45 +12,45 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
 ---
 
 <BaseLayout>
-  <!-- Hero Section: Architectural Dossier Introduction -->
-  <section class="pt-10 sm:pt-14 md:pt-16 pb-16 px-6 md:px-12 max-w-6xl mx-auto" aria-label="Introduction">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+  <!-- Hero Section: Compact Personal Introduction -->
+  <section class="pb-12 border-b border-border" aria-label="Introduction">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
       <!-- Hero Left: Identity, Position, Scope & CTAs -->
-      <div class="lg:col-span-7 flex flex-col justify-center">
+      <div class="md:col-span-8 flex flex-col justify-center">
         <!-- Availability & Engineering Status Note -->
-        <div class="inline-flex items-center gap-2 mb-4 text-xs font-mono tracking-wider uppercase text-muted dark:text-muted-dark">
-          <span class="w-1.5 h-1.5 rounded-sm bg-accent dark:bg-accent-dark shrink-0" aria-hidden="true"></span>
+        <div class="inline-flex items-center gap-2 mb-3 text-xs font-mono tracking-wider uppercase text-muted">
+          <span class="w-2 h-2 rounded-full bg-accent shrink-0" aria-hidden="true"></span>
           <span>Available for select engagements &amp; roles</span>
         </div>
 
         <!-- Prominent Headline Name & Title -->
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem] leading-[1.02] tracking-tight mb-5 text-primary dark:text-primary-dark font-display font-extrabold">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold tracking-tight mb-3 text-heading">
           Fuad Hasan
         </h1>
 
-        <p class="text-xl sm:text-2xl text-accent dark:text-accent-dark font-display font-semibold mb-4 leading-snug">
+        <p class="text-lg sm:text-xl text-accent font-heading font-semibold mb-3 leading-snug">
           Building resilient systems that don't fall down.
         </p>
 
         <!-- Professional Narrative -->
-        <p class="text-base sm:text-lg text-muted dark:text-muted-dark max-w-xl leading-relaxed font-sans mb-6">
+        <p class="text-sm sm:text-base text-body max-w-xl leading-relaxed font-sans mb-4">
           Full Stack Software Engineer focused on C#, ASP.NET Core, Angular, SQL Server, and distributed systems. Specializing in transactional consistency, query performance profiling, and maintainable domain architecture.
         </p>
 
         <!-- Academic & Location Credentials -->
-        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-muted dark:text-muted-dark mb-8">
-          <span class="text-primary dark:text-primary-dark font-medium">BSc in CSE • UIU (Summa / Honors)</span>
-          <span class="text-border dark:text-border-dark" aria-hidden="true">•</span>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-muted mb-6">
+          <span class="text-heading font-medium">BSc in CSE • UIU (Summa / Honors)</span>
+          <span class="text-border" aria-hidden="true">•</span>
           <span>Dhaka, Bangladesh</span>
-          <span class="text-border dark:text-border-dark" aria-hidden="true">•</span>
-          <span class="text-accent dark:text-accent-dark font-medium">Lead Engineer @ ESS</span>
+          <span class="text-border" aria-hidden="true">•</span>
+          <span class="text-accent font-medium">Lead Engineer @ ESS</span>
         </div>
 
         <!-- Actions: Primary CTAs + Brand Social Links -->
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="flex flex-wrap items-center gap-3">
           <a
             href="#work"
-            class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold rounded bg-primary dark:bg-primary-dark text-surface dark:text-canvas-dark hover:bg-accent dark:hover:bg-accent-dark transition-colors focus-ring"
+            class="btn-primary"
           >
             View Work &darr;
           </a>
@@ -58,31 +58,31 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-medium rounded border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-accent dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring"
+            class="btn-secondary"
           >
             Download CV &nearr;
           </a>
 
           <!-- Social Icons (GitHub, LinkedIn, LeetCode, Email) -->
-          <SocialLinks size="md" includeEmail={true} includeRss={false} />
+          <SocialLinks size="sm" includeEmail={true} includeRss={false} />
         </div>
       </div>
 
-      <!-- Hero Right: Architectural Portrait Frame (Clean, Dignified, No Glowing Halos) -->
-      <div class="lg:col-span-5 flex justify-center lg:justify-end">
-        <div class="w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-[340px]">
-          <div class="aspect-[4/5] rounded-lg overflow-hidden border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
+      <!-- Hero Right: Profile Image Frame (Two-column desktop balance) -->
+      <div class="md:col-span-4 flex justify-center md:justify-end">
+        <div class="w-full max-w-[200px] sm:max-w-[220px]">
+          <div class="aspect-[4/5] rounded-lg overflow-hidden border border-border-card bg-surface shadow-sm">
             <img
               src={profile.avatarUrl}
               alt="Portrait of Fuad Hasan"
-              width="480"
-              height="600"
-              class="w-full h-full object-cover object-center grayscale contrast-105 hover:grayscale-0 transition-all duration-300"
+              width="440"
+              height="550"
+              class="w-full h-full object-cover object-center"
               loading="eager"
               fetchpriority="high"
             />
           </div>
-          <div class="mt-2.5 flex items-center justify-between text-[11px] font-mono text-muted dark:text-muted-dark px-1">
+          <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-muted px-0.5">
             <span>FUAD HASAN</span>
             <span>DHAKA, BD</span>
           </div>
@@ -90,75 +90,79 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
       </div>
     </div>
 
-    <!-- Architectural Capability Ledger (Replaces Vanity Bento Counters) -->
-    <div class="mt-14 sm:mt-18 border-t border-border dark:border-border-dark pt-8">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+    <!-- Architectural Capability Ledger -->
+    <div class="mt-10 pt-6 border-t border-border">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
         <div>
-          <p class="text-xs font-mono uppercase text-accent dark:text-accent-dark font-medium tracking-wider mb-1">Distributed Systems</p>
-          <p class="text-sm font-sans text-primary dark:text-primary-dark">Transactional Outbox, MassTransit, RabbitMQ</p>
+          <p class="text-xs font-mono uppercase text-accent font-semibold tracking-wider mb-1">Distributed Systems</p>
+          <p class="text-xs sm:text-sm font-sans text-body">Transactional Outbox, MassTransit, RabbitMQ</p>
         </div>
         <div>
-          <p class="text-xs font-mono uppercase text-accent dark:text-accent-dark font-medium tracking-wider mb-1">Database Tuning</p>
-          <p class="text-sm font-sans text-primary dark:text-primary-dark">SQL Server, PostgreSQL, Query Profiling &amp; Indexing</p>
+          <p class="text-xs font-mono uppercase text-accent font-semibold tracking-wider mb-1">Database Tuning</p>
+          <p class="text-xs sm:text-sm font-sans text-body">SQL Server, PostgreSQL, Query Profiling &amp; Indexing</p>
         </div>
         <div>
-          <p class="text-xs font-mono uppercase text-accent dark:text-accent-dark font-medium tracking-wider mb-1">Domain Architecture</p>
-          <p class="text-sm font-sans text-primary dark:text-primary-dark">Clean Architecture, CQRS, Modular Core</p>
+          <p class="text-xs font-mono uppercase text-accent font-semibold tracking-wider mb-1">Domain Architecture</p>
+          <p class="text-xs sm:text-sm font-sans text-body">Clean Architecture, CQRS, Modular Core</p>
         </div>
         <div>
-          <p class="text-xs font-mono uppercase text-accent dark:text-accent-dark font-medium tracking-wider mb-1">Frontend Contracts</p>
-          <p class="text-sm font-sans text-primary dark:text-primary-dark">Angular, Strict TypeScript, Reactive RxJS</p>
+          <p class="text-xs font-mono uppercase text-accent font-semibold tracking-wider mb-1">Frontend Contracts</p>
+          <p class="text-xs sm:text-sm font-sans text-body">Angular, Strict TypeScript, Reactive RxJS</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Selected Work Section: Architectural System Dossiers -->
-  <section id="work" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-border dark:border-border-dark" aria-labelledby="work-heading">
-    <div class="flex items-baseline justify-between mb-12">
-      <h2 id="work-heading" class="text-3xl sm:text-4xl text-primary dark:text-primary-dark font-display font-bold">
+  <!-- Selected Work Section -->
+  <section id="work" class="py-12 border-b border-border" aria-labelledby="work-heading">
+    <div class="flex items-baseline justify-between mb-8">
+      <h2 id="work-heading" class="text-2xl sm:text-3xl text-heading font-heading font-bold">
         Selected Systems &amp; Case Studies
       </h2>
-      <a href="/projects" class="text-xs font-mono text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
+      <a href="/projects" class="text-xs font-mono text-accent hover:underline">
         All projects &rarr;
       </a>
     </div>
 
     <!-- Project List Rows -->
-    <div class="divide-y divide-border dark:divide-border-dark border-y border-border dark:border-border-dark">
+    <div class="divide-y divide-border border-y border-border">
       {
         projects.map((project, idx) => {
           const num = String(idx + 1).padStart(2, '0');
           return (
-            <article class="py-8 md:py-10 transition-colors hover:bg-surface-light/40 dark:hover:bg-surface-dark/40 px-3 -mx-3 rounded" data-project-card>
-              <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
+            <article class="py-6 transition-colors hover:bg-alt/40 px-2 -mx-2 rounded-lg" data-project-card>
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
                 <!-- Index & Timeline -->
-                <div class="md:col-span-2 flex items-baseline gap-3 text-xs font-mono text-muted dark:text-muted-dark">
-                  <span class="font-bold text-accent dark:text-accent-dark">{num}</span>
+                <div class="md:col-span-2 flex items-baseline gap-2.5 text-xs font-mono text-muted">
+                  <span class="font-bold text-accent">{num}</span>
                   <span>{project.data.timeline || '2024'}</span>
                 </div>
 
                 <!-- Main Content -->
                 <div class="md:col-span-7">
-                  <h3 class="text-2xl font-display font-bold text-primary dark:text-primary-dark mb-2">
-                    <a href={`/projects/${project.id}`} class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">
+                  <h3 class="text-lg sm:text-xl font-heading font-bold text-heading mb-1.5">
+                    <a href={`/projects/${project.id}`} class="hover:text-accent transition-colors focus-ring rounded">
                       {project.data.title}
                     </a>
                   </h3>
-                  <p class="text-sm text-muted dark:text-muted-dark mb-4 leading-relaxed font-sans">
+                  <p class="text-sm text-body mb-3 leading-relaxed font-sans">
                     {project.data.summary}
                   </p>
-                  <!-- Technical Stack without Pill Fatigue -->
-                  <p class="text-xs font-mono text-muted dark:text-muted-dark">
-                    <span class="text-primary dark:text-primary-dark font-medium">Stack:</span> {project.data.technologies.slice(0, 5).join(' • ')}
-                  </p>
+                  <!-- Technical Stack Tags -->
+                  <div class="flex flex-wrap gap-1.5">
+                    {project.data.technologies.slice(0, 5).map((tech) => (
+                      <span class="chip-tag text-[11px] py-0.5 px-2">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <!-- Actions -->
-                <div class="md:col-span-3 flex md:flex-col items-center md:items-end justify-between md:justify-start gap-3 font-mono text-xs">
+                <div class="md:col-span-3 flex md:flex-col items-center md:items-end justify-between md:justify-start gap-2 font-mono text-xs">
                   <a
                     href={`/projects/${project.id}`}
-                    class="text-accent dark:text-accent-dark font-medium hover:underline focus-ring"
+                    class="text-accent font-medium hover:underline focus-ring"
                     aria-label={`Read Case Study: ${project.data.title}`}
                   >
                     <span>Read Case Study</span> <span aria-hidden="true">&rarr;</span>
@@ -168,7 +172,7 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
                       href={project.data.repositoryUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring"
+                      class="text-muted hover:text-heading transition-colors focus-ring"
                       aria-label={`Source Code: ${project.data.title} on GitHub (opens in new tab)`}
                     >
                       <span>Source Code</span> <span aria-hidden="true">&nearr;</span>
@@ -179,7 +183,7 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
                       href={project.data.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring"
+                      class="text-muted hover:text-heading transition-colors focus-ring"
                       aria-label={`Live Demo: ${project.data.title} (opens in new tab)`}
                     >
                       <span>Live Demo</span> <span aria-hidden="true">&nearr;</span>
@@ -195,23 +199,23 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
   </section>
 
   <!-- About Section: Engineering Scope & Core Domains -->
-  <section id="about" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-border dark:border-border-dark" aria-labelledby="about-heading">
-    <div class="flex items-baseline justify-between mb-12">
-      <h2 id="about-heading" class="text-3xl sm:text-4xl text-primary dark:text-primary-dark font-display font-bold">
+  <section id="about" class="py-12 border-b border-border" aria-labelledby="about-heading">
+    <div class="flex items-baseline justify-between mb-8">
+      <h2 id="about-heading" class="text-2xl sm:text-3xl text-heading font-heading font-bold">
         Engineering Philosophy
       </h2>
       <a
         href="/about"
-        class="text-xs font-mono uppercase tracking-wider text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring"
+        class="text-xs font-mono text-accent hover:underline focus-ring"
       >
         Full Story &rarr;
       </a>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
       <!-- Left: Editorial Narrative -->
-      <div class="lg:col-span-7 space-y-5 text-muted dark:text-muted-dark font-sans leading-relaxed text-sm md:text-base">
-        <p class="text-lg md:text-xl text-primary dark:text-primary-dark font-medium leading-relaxed">
+      <div class="md:col-span-7 space-y-4 text-body font-sans leading-relaxed text-sm sm:text-base">
+        <p class="text-base sm:text-lg text-heading font-medium leading-relaxed">
           I build systems designed to last. My work centers on the intersection of transactional correctness, query performance, and domain clarity.
         </p>
         <p>
@@ -223,83 +227,87 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
       </div>
 
       <!-- Right: Technical Capabilities Grid -->
-      <div class="lg:col-span-5 p-6 rounded-lg border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark">
-        <p class="text-xs font-mono uppercase tracking-wider text-accent dark:text-accent-dark mb-4 font-semibold">
+      <div class="md:col-span-5 p-5 rounded-lg border border-border-card bg-surface">
+        <p class="text-xs font-mono uppercase tracking-wider text-accent mb-3 font-semibold">
           Core Domains &amp; Competencies
         </p>
 
-        <div class="space-y-4 text-xs font-mono">
+        <div class="space-y-3.5 text-xs font-mono">
           <div>
-            <p class="text-primary dark:text-primary-dark font-semibold uppercase mb-1">Languages</p>
-            <p class="text-muted dark:text-muted-dark font-sans">C# (.NET 8/9), TypeScript, JavaScript, SQL (T-SQL, PL/pgSQL), C++</p>
+            <p class="text-heading font-semibold uppercase mb-0.5">Languages</p>
+            <p class="text-muted font-sans text-xs">C# (.NET 8/9), TypeScript, JavaScript, SQL (T-SQL, PL/pgSQL), C++</p>
           </div>
           <div>
-            <p class="text-primary dark:text-primary-dark font-semibold uppercase mb-1">Backend &amp; Architecture</p>
-            <p class="text-muted dark:text-muted-dark font-sans">ASP.NET Core Web API, Clean Architecture, CQRS, MassTransit, RabbitMQ, Transactional Outbox, EF Core</p>
+            <p class="text-heading font-semibold uppercase mb-0.5">Backend &amp; Architecture</p>
+            <p class="text-muted font-sans text-xs">ASP.NET Core Web API, Clean Architecture, CQRS, MassTransit, RabbitMQ, Transactional Outbox, EF Core</p>
           </div>
           <div>
-            <p class="text-primary dark:text-primary-dark font-semibold uppercase mb-1">Databases &amp; Storage</p>
-            <p class="text-muted dark:text-muted-dark font-sans">Microsoft SQL Server, PostgreSQL, Redis Caching, Query Profiling &amp; Index Optimization</p>
+            <p class="text-heading font-semibold uppercase mb-0.5">Databases &amp; Storage</p>
+            <p class="text-muted font-sans text-xs">Microsoft SQL Server, PostgreSQL, Redis Caching, Query Profiling &amp; Index Optimization</p>
           </div>
           <div>
-            <p class="text-primary dark:text-primary-dark font-semibold uppercase mb-1">Frontend &amp; Platform</p>
-            <p class="text-muted dark:text-muted-dark font-sans">Angular, RxJS, Tailwind CSS, Docker, CI/CD Workflows, Postman</p>
+            <p class="text-heading font-semibold uppercase mb-0.5">Frontend &amp; Platform</p>
+            <p class="text-muted font-sans text-xs">Angular, RxJS, Tailwind CSS, Docker, CI/CD Workflows, Postman</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Authoritative Architecture Statement (No Fake Bash Chrome) -->
-  <section class="py-16 px-6 md:px-12 max-w-6xl mx-auto" aria-label="Architecture Principle">
-    <blockquote class="border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark p-8 md:p-12 rounded-lg">
-      <p class="text-xl md:text-2xl text-primary dark:text-primary-dark font-display font-semibold leading-relaxed mb-4">
+  <!-- Authoritative Architecture Statement -->
+  <section class="py-10 border-b border-border" aria-label="Architecture Principle">
+    <blockquote class="border border-border bg-alt p-6 sm:p-8 rounded-lg">
+      <p class="text-base sm:text-lg text-heading font-heading font-medium leading-relaxed mb-3">
         "The measure of an architecture is not how effortlessly it passes happy-path tests — it's how reliably it preserves transactional consistency, isolates failures, and recovers when the unexpected happens in production."
       </p>
-      <footer class="text-xs font-mono text-muted dark:text-muted-dark uppercase tracking-wider">
-        — Fuad Hasan, On System Dependability
+      <footer class="text-xs font-mono text-muted uppercase tracking-wider">
+        &mdash; Fuad Hasan, On System Dependability
       </footer>
     </blockquote>
   </section>
 
   <!-- Experience Section: Career Ledger -->
-  <section id="experience" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-border dark:border-border-dark" aria-labelledby="exp-heading">
-    <div class="flex items-baseline justify-between mb-12">
-      <h2 id="exp-heading" class="text-3xl sm:text-4xl text-primary dark:text-primary-dark font-display font-bold">
+  <section id="experience" class="py-12 border-b border-border" aria-labelledby="exp-heading">
+    <div class="flex items-baseline justify-between mb-8">
+      <h2 id="exp-heading" class="text-2xl sm:text-3xl text-heading font-heading font-bold">
         Professional Experience
       </h2>
       <a
         href="/resume/Fuad_Hasan_Resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-xs font-mono text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring"
+        class="text-xs font-mono text-accent hover:underline focus-ring"
       >
         Full résumé &nearr;
       </a>
     </div>
 
-    <div class="divide-y divide-border dark:divide-border-dark border-y border-border dark:border-border-dark">
+    <div class="divide-y divide-border border-y border-border">
       {
         experiences.map((exp) => (
-          <div class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10">
-            <div class="md:col-span-3 text-xs font-mono text-muted dark:text-muted-dark">
-              <p class="font-medium text-primary dark:text-primary-dark">{exp.startDate} — {exp.endDate}</p>
-              <p class="mt-1">{exp.location}</p>
+          <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4">
+            <div class="md:col-span-3 text-xs font-mono text-muted">
+              <p class="font-medium text-heading">{exp.startDate} &mdash; {exp.endDate}</p>
+              <p class="mt-0.5">{exp.location}</p>
             </div>
 
             <div class="md:col-span-9">
-              <h3 class="text-xl md:text-2xl text-primary dark:text-primary-dark font-display font-bold mb-1">
+              <h3 class="text-lg sm:text-xl text-heading font-heading font-bold mb-1">
                 {exp.role}
               </h3>
-              <p class="text-accent dark:text-accent-dark text-sm font-mono font-medium mb-3">
+              <p class="text-accent text-sm font-mono font-medium mb-2.5">
                 {exp.company}
               </p>
-              <p class="text-muted dark:text-muted-dark leading-relaxed text-sm mb-4 font-sans max-w-3xl">
+              <p class="text-body leading-relaxed text-sm mb-3 font-sans">
                 {exp.contributions[0]}
               </p>
-              <p class="text-xs font-mono text-muted dark:text-muted-dark">
-                <span class="text-primary dark:text-primary-dark font-medium">Applied:</span> {exp.technologies.join(' • ')}
-              </p>
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                {exp.technologies.map((tech) => (
+                  <span class="chip-tag text-[11px] py-0.5 px-2">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))
@@ -308,39 +316,39 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
   </section>
 
   <!-- Technical Writing / Recent Articles -->
-  <section id="writing" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-border dark:border-border-dark" aria-labelledby="writing-heading">
-    <div class="flex items-baseline justify-between mb-12">
-      <h2 id="writing-heading" class="text-3xl sm:text-4xl text-primary dark:text-primary-dark font-display font-bold">
+  <section id="writing" class="py-12 border-b border-border" aria-labelledby="writing-heading">
+    <div class="flex items-baseline justify-between mb-8">
+      <h2 id="writing-heading" class="text-2xl sm:text-3xl text-heading font-heading font-bold">
         Technical Writing &amp; Notes
       </h2>
-      <a href="/blog" class="text-xs font-mono text-muted dark:text-muted-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
+      <a href="/blog" class="text-xs font-mono text-accent hover:underline">
         All articles &rarr;
       </a>
     </div>
 
-    <div class="divide-y divide-border dark:divide-border-dark border-y border-border dark:border-border-dark">
+    <div class="divide-y divide-border border-y border-border">
       {
         recentPosts.map((post) => (
-          <article class="py-7 transition-colors hover:bg-surface-light/40 dark:hover:bg-surface-dark/40 px-3 -mx-3 rounded">
-            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
-              <h3 class="text-xl md:text-2xl font-display font-bold text-primary dark:text-primary-dark">
-                <a href={`/blog/${post.id}`} class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">
+          <article class="py-5 transition-colors hover:bg-alt/40 px-2 -mx-2 rounded-lg">
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1.5">
+              <h3 class="text-base sm:text-lg font-heading font-bold text-heading">
+                <a href={`/blog/${post.id}`} class="hover:text-accent transition-colors focus-ring rounded">
                   {post.data.title}
                 </a>
               </h3>
-              <time datetime={post.data.pubDate.toISOString()} class="text-xs font-mono text-muted dark:text-muted-dark shrink-0">
+              <time datetime={post.data.pubDate.toISOString()} class="text-xs font-mono text-muted shrink-0">
                 {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
               </time>
             </div>
-            <p class="text-sm text-muted dark:text-muted-dark line-clamp-2 max-w-3xl mb-3 font-sans">
+            <p class="text-sm text-body line-clamp-2 mb-2 font-sans">
               {post.data.excerpt}
             </p>
-            <div class="flex items-center gap-3 text-xs font-mono text-muted dark:text-muted-dark">
-              <span class="text-accent dark:text-accent-dark font-medium">{post.data.category}</span>
+            <div class="flex items-center gap-3 text-xs font-mono text-muted">
+              <span class="text-accent font-medium">{post.data.category}</span>
               <span aria-hidden="true">•</span>
               <span>{getReadingTime(post.body || '').text}</span>
               <span aria-hidden="true">•</span>
-              <a href={`/blog/${post.id}`} class="text-accent dark:text-accent-dark hover:underline">
+              <a href={`/blog/${post.id}`} class="text-accent hover:underline">
                 Read article &rarr;
               </a>
             </div>
@@ -351,32 +359,32 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
   </section>
 
   <!-- Contact & Collaboration Hub -->
-  <section id="contact" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-border dark:border-border-dark" aria-labelledby="contact-heading">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
+  <section id="contact" class="py-12" aria-labelledby="contact-heading">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
       <div>
-        <h2 id="contact-heading" class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-primary dark:text-primary-dark mb-5 leading-tight">
+        <h2 id="contact-heading" class="text-2xl sm:text-3xl font-heading font-bold text-heading mb-3 leading-tight">
           Let's discuss architecture and engineering.
         </h2>
-        <p class="text-muted dark:text-muted-dark leading-relaxed mb-8 font-sans text-sm md:text-base">
+        <p class="text-body leading-relaxed mb-6 font-sans text-sm sm:text-base">
           I am currently open to full-time engineering roles, technical architecture collaborations, and distributed systems discussions.
         </p>
 
-        <div class="space-y-3 font-mono text-xs">
+        <div class="space-y-2.5 font-mono text-xs">
           <div class="flex items-center gap-4">
-            <span class="text-muted dark:text-muted-dark w-16 shrink-0 uppercase tracking-wider">Email</span>
-            <a href="mailto:contact@fuadhasan.dev" class="text-sm text-primary dark:text-primary-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring font-sans">
+            <span class="text-muted w-16 shrink-0 uppercase tracking-wider">Email</span>
+            <a href="mailto:contact@fuadhasan.dev" class="text-sm text-heading hover:text-accent transition-colors focus-ring font-sans">
               contact@fuadhasan.dev
             </a>
           </div>
           <div class="flex items-center gap-4">
-            <span class="text-muted dark:text-muted-dark w-16 shrink-0 uppercase tracking-wider">GitHub</span>
-            <a href="https://github.com/fuadhasan01" target="_blank" rel="noopener noreferrer" class="text-sm text-primary dark:text-primary-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring font-sans">
+            <span class="text-muted w-16 shrink-0 uppercase tracking-wider">GitHub</span>
+            <a href="https://github.com/fuadhasan01" target="_blank" rel="noopener noreferrer" class="text-sm text-heading hover:text-accent transition-colors focus-ring font-sans">
               github.com/fuadhasan01
             </a>
           </div>
           <div class="flex items-center gap-4">
-            <span class="text-muted dark:text-muted-dark w-16 shrink-0 uppercase tracking-wider">LinkedIn</span>
-            <a href="https://linkedin.com/in/fuadhasan01" target="_blank" rel="noopener noreferrer" class="text-sm text-primary dark:text-primary-dark hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring font-sans">
+            <span class="text-muted w-16 shrink-0 uppercase tracking-wider">LinkedIn</span>
+            <a href="https://linkedin.com/in/fuadhasan01" target="_blank" rel="noopener noreferrer" class="text-sm text-heading hover:text-accent transition-colors focus-ring font-sans">
               linkedin.com/in/fuadhasan01
             </a>
           </div>
@@ -384,26 +392,26 @@ const recentPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.p
       </div>
 
       <!-- Quick Message Action Panel -->
-      <div class="p-8 bg-surface-light dark:bg-surface-dark border border-border dark:border-border-dark rounded-lg flex flex-col justify-between gap-6 shadow-sm">
+      <div class="p-6 bg-surface border border-border-card rounded-lg flex flex-col justify-between gap-5 shadow-sm">
         <div>
-          <h3 class="text-xl font-display font-bold text-primary dark:text-primary-dark mb-2">
+          <h3 class="text-base font-heading font-bold text-heading mb-1.5">
             Direct Engineering Inquiry
           </h3>
-          <p class="text-sm text-muted dark:text-muted-dark leading-relaxed font-sans">
+          <p class="text-sm text-body leading-relaxed font-sans">
             Need an engineer for high-performance C# / .NET backends, distributed messaging, or structured Angular web applications?
           </p>
         </div>
 
-        <div class="space-y-3">
+        <div class="space-y-2.5">
           <a
             href="mailto:contact@fuadhasan.dev?subject=Engineering%20Inquiry%20-%20Fuad%20Hasan"
-            class="w-full inline-flex items-center justify-center py-3 px-4 text-xs font-mono uppercase tracking-wider font-semibold rounded bg-accent dark:bg-accent-dark text-white dark:text-canvas-dark hover:opacity-95 transition-opacity focus-ring"
+            class="w-full btn-primary text-center"
           >
             Send Email (mailto) &rarr;
           </a>
           <a
             href="/contact"
-            class="w-full inline-flex items-center justify-center py-2.5 px-4 text-xs font-mono text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark border border-border dark:border-border-dark rounded transition-colors focus-ring"
+            class="w-full btn-secondary text-center"
           >
             View Full Contact Information
           </a>

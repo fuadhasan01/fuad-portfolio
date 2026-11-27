@@ -1,182 +1,194 @@
 ---
-name: Fuad Hasan Portfolio
-description: Architectural Dossier Design System for Fuad Hasan, Full Stack & Backend Systems Engineer
-colors:
-  primary: "#111217"
-  primary-dark: "#F4F3EF"
-  neutral-bg: "#F8F9FA"
-  neutral-bg-dark: "#0C0D12"
-  surface: "#FFFFFF"
-  surface-dark: "#151720"
-  secondary: "#F0F0EE"
-  secondary-dark: "#1D202B"
-  accent: "#D97706"
-  accent-dark: "#F59E0B"
-  accent-hover: "#B45309"
-  accent-dark-hover: "#D97706"
-  muted: "#5A5D6B"
-  muted-dark: "#9496A1"
-  border: "rgba(17, 18, 23, 0.08)"
-  border-dark: "rgba(244, 243, 239, 0.10)"
-typography:
-  display:
-    fontFamily: "Cabinet Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "3.75rem"
-    fontWeight: 800
-    lineHeight: 1.05
-    letterSpacing: "-0.035em"
-  headline:
-    fontFamily: "Cabinet Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "2.25rem"
-    fontWeight: 700
-    lineHeight: 1.15
-    letterSpacing: "-0.025em"
-  title:
-    fontFamily: "Cabinet Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "1.25rem"
-    fontWeight: 700
-    lineHeight: 1.3
-    letterSpacing: "-0.015em"
-  body:
-    fontFamily: "DM Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.6
-    letterSpacing: "0em"
-  mono:
-    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, monospace"
-    fontSize: "0.8125rem"
-    fontWeight: 500
-    lineHeight: 1.5
-    letterSpacing: "0em"
-rounded:
-  sm: "4px"
-  md: "6px"
-  lg: "8px"
-spacing:
-  xs: "4px"
-  sm: "8px"
-  md: "16px"
-  lg: "24px"
-  xl: "32px"
-  xxl: "48px"
-components:
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.surface}"
-    rounded: "{rounded.md}"
-    padding: "10px 20px"
-  button-primary-hover:
-    backgroundColor: "{colors.accent}"
-  button-accent:
-    backgroundColor: "{colors.accent}"
-    textColor: "#FFFFFF"
-    rounded: "{rounded.md}"
-    padding: "10px 20px"
+schema: 1
+archetype: "digital-garden-developer-documentation"
+reference: "https://www.taniarascia.com/"
+author: "Fuad Hasan"
+updated: "2026-11-28"
+modes:
+  persuade: "Personal identity, authentic craftsmanship, and proven technical work"
+  read: "Unobstructed technical reading with calm type rhythm, comfortable line length, and warm paper/charcoal tones"
+  operate: "Compact, functional navigation, accessible controls, and persistent sidebar"
+tokens:
+  radii:
+    none: "0px"
+    sm: "4px"
+    md: "6px"
+    lg: "8px"
+  transitions:
+    fast: "120ms ease"
+    base: "150ms ease"
+  layout:
+    sidebar_width: "250px"
+    content_width: "760px"
+    content_wide: "1020px"
+    post_sidebar_width: "240px"
+    navbar_height: "56px"
+  breakpoints:
+    sm: "600px"
+    md: "800px"
+    lg: "1020px"
+    xl: "1360px"
 ---
 
-# Design System: Fuad Hasan Portfolio
+# Design System Specification — Fuad Hasan Portfolio
 
-## Overview
+## 1. Overview & Creative North Star
 
-**Creative North Star: "The Architectural Dossier"**
+This design system establishes an authentic personal developer website inspired by **Tania Rascia's website (taniarascia.com)**. It balances a **digital garden** with a **technical documentation** layout.
 
-A design language rooted in structural engineering discipline, industrial restraint, and mathematical clarity. Drawing inspiration from high-end architectural monographs (such as *El Croquis*) and classic Bell Labs / DEC systems documentation, the system communicates the senior-track authority of a backend and full-stack software engineer specializing in distributed reliability, transactional boundaries, and database query profiling.
+### Visual Philosophy
+- **Authentic Developer Identity:** Replaces all generic AI tropes (neon gradient text, pulsing green dots, floating glass badges, vanity metric bento counters, and toy bash prompts) with structural honesty.
+- **Warm Tactility:** Replaces cold stark white with a warm paper canvas (`#F8F4E6`) in light mode, and sterile blue-black with a warm charcoal (`#202025`) in dark mode.
+- **Content-First Cadence:** Compact components, calm headings, natural whitespace, readable 65–75ch prose line lengths, and purposeful monospace coordinates.
+- **Persistent Two-Column Layout:** A dedicated left sidebar on desktop (`>= 1020px`) hosts identity, navigation, socials, theme toggle, and accent selector; main content breathes freely with a balanced reading width.
 
-The system completely rejects generic AI template aesthetics: zero pulsing availability dots, zero neon chartreuse accents, zero fake terminal shell prompt boxes, zero decorative glassmorphism, zero pill badge fatigue, and zero overused decorative serifs. In their place stands an uncompromising dedication to structural layout, readable typography, and authentic technical signal.
+---
 
-**Key Characteristics:**
-- **Restrained Materiality:** Solid, opaque surfaces with hairline architectural rules (`1px border`); no gratuitous blurs or zero-offset colored shadows.
-- **Unified Color Personality:** A single signature accent—**Technical Amber (`#D97706` / `#F59E0B`)**—that feels natural, mature, and purposeful in both Dark and Light modes.
-- **Architectural Typography:** Bold, precise Grotesque headings (**Cabinet Grotesk**) paired with a high-legibility humanist body face (**DM Sans**), with **JetBrains Mono** reserved exclusively for code, measurements, and tabular data.
-- **Content as Structure:** Project case studies are formatted as technical system dossiers detailing architectural trade-offs, concurrency models, and database internals rather than generic marketing cards.
+## 2. Color Palette & Semantic Tokens
 
-## Colors
+### Core Neutral Palette
 
-The palette establishes a dignified, high-contrast visual environment that respects the viewer's focus across both ambient lighting conditions.
+```
+/* Light Mode (Warm Paper) */
+Canvas Background:        #F8F4E6  (--color-bg)
+Alternate / Code Surface: #F1EAD5  (--color-bg-alt)
+Input & Tag Surface:      #ECE4CA  (--color-bg-subtle)
+Card Background:          #F1EAD5  (--color-bg-card)
+Card Border:              #DED4B2  (--color-border-card)
+Standard Border:          #E5DCBD  (--color-border)
+Strong / Hover Border:    #C6BA93  (--color-border-strong)
+Primary Text:             #28282E  (--color-text)
+Emphasized Heading Text:  #1D1D22  (--color-text-emphasized)
+Muted Metadata Text:      #5A5A61  (--color-text-muted)
 
-| Token | Light Mode (`:root`) | Dark Mode (`.dark`) | Semantic Role |
+/* Dark Mode (Soft Charcoal) */
+Canvas Background:        #202025  (--color-bg)
+Alternate / Code Surface: #16161A  (--color-bg-alt)
+Input & Tag Surface:      #1D1D22  (--color-bg-subtle)
+Card Background:          #28282E  (--color-bg-card)
+Card Border:              #323239  (--color-border-card)
+Standard Border:          #323239  (--color-border)
+Strong / Hover Border:    #4E4E55  (--color-border-strong)
+Primary Text:             #D4D4D8  (--color-text)
+Emphasized Heading Text:  #FBFBFB  (--color-text-emphasized)
+Muted Metadata Text:      #A1A1A8  (--color-text-muted)
+```
+
+### Accent Color Customization System
+
+Visitors can select from five coherent accent colors, persisted via `localStorage` and applied through the CSS custom property `--color-primary`:
+
+| Accent Name | Light Mode Value | Dark Mode Value | Semantic Role |
 |---|---|---|---|
-| `canvas` | `#F8F9FA` (Architect Drafting Paper) | `#0C0D12` (Graphite Slate) | Base background canvas. Low glare, comfortable for extended technical reading. |
-| `surface` | `#FFFFFF` (Pure Crisp White) | `#151720` (Warm Concrete Charcoal) | Container, panel, and ledger card surfaces. |
-| `secondary` | `#F0F0EE` (Subtle Warm Tint) | `#1D202B` (Muted Steel Slate) | Code blocks, table headers, and neutral hover states. |
-| `primary` | `#111217` (Deep Obsidian Ink) | `#F4F3EF` (Warm Bone White) | Primary typography, headlines, and high-emphasis elements. |
-| `muted` | `#5A5D6B` (Architectural Slate) | `#9496A1` (Cool Silver Grey) | Secondary descriptions, timestamps, and supporting text. All meet WCAG AA (≥ 4.5:1). |
-| `accent` | `#D97706` (Technical Amber) | `#F59E0B` (Warm Phosphor Amber) | Interactive focus states, key links, and signature highlights. Unified chromatic identity. |
-| `border` | `rgba(17, 18, 23, 0.08)` | `rgba(244, 243, 239, 0.10)` | Hairline structural dividers and container bounds. |
+| **Amber (Default)** | `#B26A34` | `#FEDE91` | Warm technical tone, links, primary CTA outline, active state |
+| **Green** | `#2B9476` | `#94D294` | Botanical calm, system health, active highlights |
+| **Blue** | `#2A67A5` | `#6DB3F5` | Classical engineering, analytical precision |
+| **Lavender** | `#6A3EBA` | `#E5AAF5` | Creative, reflective, editorial highlights |
+| **Rose** | `#B12D6C` | `#F2777A` | Vivid accent, warm contrast |
 
-## Typography
+All accent combinations meet WCAG AA contrast standards (minimum 4.5:1 for body links and 3:1 for large text/interactive borders) against their respective canvas surfaces.
 
-Typographic scale is strictly calibrated to preserve natural reading rhythm and avoid exaggerated display extremes.
+---
+
+## 3. Typography System
+
+The typography creates a natural rhythm inspired by technical documentation:
+
+- **Display & Headings:** `Outfit` (Variable 500, 600, 700) — clean geometric sans with warm humanist curves.
+- **Body & Prose:** `DM Sans` / `Google Sans Flex` (Variable 400, 500) — maximum reading clarity, balanced x-height.
+- **Monospace & Metadata:** `JetBrains Mono` / `Google Sans Code` (400, 500) — reserved strictly for dates, code, tags, versioning, and tabular data.
+
+### Typographic Hierarchy & Scale
 
 ```
-Display:      3.5rem – 4.5rem (56–72px)  • Cabinet Grotesk Bold (800)       • Tracking -0.03em
-Headline:     2.0rem – 2.5rem (32–40px)  • Cabinet Grotesk SemiBold (700)   • Tracking -0.025em
-Title:        1.25rem – 1.5rem (20–24px) • Cabinet Grotesk SemiBold (700)   • Tracking -0.015em
-Body:         1.0rem (16px), 1.6 leading • DM Sans Regular (400)             • Line length 65–75ch
-Technical:    0.8125rem (13px)           • JetBrains Mono Medium (500)       • Tabular figures
+Display H1:    2.4rem (38–40px) • SemiBold (600) / Bold (700) • Line Height 1.2
+Section H2:    1.8rem (28–30px) • SemiBold (600)               • Line Height 1.25
+Subsection H3: 1.4rem (22–24px) • Medium (500) / SemiBold     • Line Height 1.3
+Minor H4:      1.15rem (18–20px)• SemiBold (600)               • Line Height 1.35
+Body Prose:    1.0rem–1.05rem (16–17px) • Regular (400)        • Line Height 1.6 • Max 65–75ch
+Sidebar Text:  0.9rem–0.95rem (14–15px) • Medium (500)         • Line Height 1.4
+Metadata / Tag:0.8rem–0.85rem (13–14px) • Monospace Medium    • Line Height 1.2
 ```
 
-**Typography Rules:**
-- Never use monospace as a costume for ordinary narrative text or decorative section kickers.
-- Eyebrow / kicker labels above headings are forbidden: let the headline carry its own meaning.
-- Headings use sentence casing or standard title casing; no forced all-caps on major titles.
+---
 
-## Layout & Spatial System
+## 4. Layout Architecture & Spatial Grid
 
-- **Baseline Grid:** 8px base rhythm with 16px, 24px, 32px, 48px, and 64px vertical spacing increments.
-- **Container Max-Width:** `max-w-5xl` (1024px) for editorial balance; `max-w-6xl` (1152px) for structured dossier grids.
-- **Pacing:** Generous separation above sections (`py-16 sm:py-20`), tighter grouping within components.
-- **Responsive Transitions:** Fluid single-column collapse on viewports `< 768px`; disciplined 2-column or 3-column architectural splits on desktop.
+### Persistent Two-Column Desktop Layout (`>= 1020px`)
+- **Left Sidebar (`250px`):** Sticky (`position: sticky; top: 0; height: 100vh; overflow-y: auto;`), border-right (`1px solid var(--color-border)`).
+  - Avatar / Profile Image: `52px` rounded square with subtle border.
+  - Personal Identity: Name (`Fuad Hasan`), designation (`Full Stack Software Engineer`), short narrative note.
+  - Primary Navigation: Stacked vertical links with hover background and active state indicators.
+  - Secondary Links: GitHub, LinkedIn, LeetCode, Email, Resume PDF.
+  - Controls: Dark/Light mode toggle button and 5-circle Accent Color Dropdown.
+- **Main Content Area:**
+  - Standard reading pages (Articles, Case Studies, About): `max-w-[760px]`.
+  - Wider overview pages (Projects catalog, Blog listing): `max-w-[1020px]`.
+  - Padding: `2rem` horizontal, `2.5rem` vertical.
+- **Optional Contextual Right Sidebar (`>= 1360px`):**
+  - Reserved for long articles and detailed case studies (`240px`).
+  - Contains sticky Table of Contents and article metadata.
 
-## Elevation & Depth
+### Mobile & Tablet Layout (`< 1020px`)
+- **Top Mobile Navbar (`56px`):** Sticky header with site name, theme toggle, accent picker, and mobile menu button.
+- **Mobile Menu Overlay:** Dropdown navigation panel preserving all navigation links, social channels, and resume link.
+- **Content:** Fluid single column with `1.25rem` horizontal padding; zero horizontal overflow.
 
-- **Zero-Blur Zero-Offset Halo Ban:** Glowing colored shadows behind images or cards are strictly banned.
-- **Structural Elevation:** Depth is achieved through tonal surface contrast (`canvas` vs. `surface`) and crisp hairline borders (`1px border`).
-- **Tactile Shadows:** Where elevation is necessary on elevated elements (e.g. active dialogs), use offset, soft-blur neutral shadows: `0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04)`.
+---
 
-## Shapes & Form Language
+## 5. Component Design Language
 
-- **Corner Radii:** Restrained industrial radii (`rounded-md` / `rounded-lg`, 6px–8px). Bubble-like `rounded-2xl` and `rounded-3xl` cards are eliminated.
-- **Buttons:** Sharp, solid, and tactile. High contrast with clear label actions (`"View Case Studies ↓"`, `"Get in Touch"`, `"Download CV ↗"`).
-- **Badges & Tags:** Eliminated pill badge fatigue. Technologies and parameters are displayed as clean, comma-delimited text or compact monospace specification tables.
+### Buttons
+- **Primary Button:** Transparent background, `1.5px solid var(--color-primary)`, text color `var(--color-primary)`, `border-radius: 8px`, `padding: 8px 14px`. Hover: Background `var(--color-primary)`, text color white (light) or charcoal (dark).
+- **Secondary Button:** Surface background (`var(--color-bg-subtle)`), subtle neutral border (`var(--color-border)`), primary text. Hover: border tints toward `var(--color-primary)`.
+- **No gradient pills, no glowing shadows, no bounce animations.**
 
-## Components
+### Links
+- Color: `var(--color-primary)`.
+- Underline: Deliberate semi-transparent underline (`text-decoration-color: color-mix(in srgb, var(--color-primary) 45%, transparent)`), expanding to full accent color and subtle background tint on hover.
 
-### 1. Header & Navigation
-- Clear brand identity: `"Fuad Hasan"` in clean Cabinet Grotesk SemiBold, with role indicator `"Systems & Full Stack"`.
-- Navigation items with subtle underline indicator on active route.
-- Professional action CTA: `"Get in Touch"` (replaces the freelance `"Hire Me"` button).
-- Synchronized, zero-flash theme toggle with accessible tooltip.
+### Cards (Project Cards, Experience Cards)
+- Background: Solid tinted surface (`var(--color-bg-card)`).
+- Border: Crisp `1.5px` border (`var(--color-border-card)`).
+- Corner Radius: `8px`.
+- Padding: `1rem` internal spacing.
+- Hover: Border color transitions to `var(--color-primary)` with `150ms ease`.
 
-### 2. System Dossier (Projects)
-- Replaces generic 3-column cards with structured technical dossiers.
-- Header: Title, project timeline, and core architectural domain.
-- Summary: Specific problem domain and engineering challenge.
-- Specification Table: Architecture pattern (e.g. CQRS, Outbox), Primary Database, Message Broker, and Frontend.
-- Action Bar: Direct case study link and verified GitHub repository.
+### Tags & Badges
+- Monospace font (`JetBrains Mono`), `0.8rem` font size.
+- Preceded by a subtle `#` in accent color: `#tag`.
+- Background: `var(--color-bg-subtle)`, border `1px solid var(--color-border)`.
+- Subtle `6px` radius. Never oversized pills.
 
-### 3. Career Ledger (Experience)
-- Replaces the toy dotted line timeline with a publication-grade ledger.
-- Horizontal dividing rules with clear date bands (`2024 — Present`).
-- Clear company hierarchy and verified engineering bullet points.
+### Blockquotes & Callouts
+- Left border: `4px solid var(--color-primary)`.
+- Background: `var(--color-bg-alt)`.
+- Padding: `1rem 1.25rem`. Rounded right corners (`6px`).
 
-### 4. Technical Writing (Blog)
-- Clean chronological list with publication date, category, title, excerpt, and reading time.
-- Syntax highlighted code blocks with high-contrast comments (WCAG AA compliant).
+---
 
-## Do's and Don'ts
+## 6. Interaction & Motion Rules
 
-### Do
-- Use technical amber (`#D97706` / `#F59E0B`) consistently for key actions and highlights.
-- Ground all claims in real architectural case studies and verified repos.
-- Ensure all text-to-background contrast ratios exceed 4.5:1.
-- Provide explicit keyboard focus rings (`focus-visible:ring-2 focus-visible:ring-amber-500`).
-- Test all pages across 360px, 390px, 768px, 1024px, and 1440px viewports.
+- **Micro-interactions Only:** All transitions are strictly `120ms–150ms ease` for color, background, and border properties.
+- **No Scroll-Triggered Fade-Ins:** Content is immediately readable upon scroll.
+- **Reduced Motion Support:** `@media (prefers-reduced-motion: reduce)` disables all transitions.
 
-### Don't
-- Never add pulsing green dots, glowing halos, or fake Linux bash prompts.
-- Never wrap every single technology keyword in a rounded border pill capsule.
-- Never use generic display serifs or gradient text.
-- Never create conflicting color schemes between light and dark modes.
-- Never invent unverified career achievements, testimonials, or metrics.
+---
+
+## 7. Strict Do's and Don'ts
+
+### Do:
+- Use warm paper (`#F8F4E6`) in light mode and soft charcoal (`#202025`) in dark mode.
+- Respect content hierarchy: allow the written text and real work to lead.
+- Keep the left sidebar sticky and accessible on desktop screens.
+- Use 8px radii consistently across buttons, inputs, tags, and cards.
+- Provide accessible names and visible focus rings (`2px solid var(--color-primary)`).
+
+### Don't:
+- Do not use purple/blue neon gradient text or glowing backgrounds.
+- Do not use frosted-glass cards (`backdrop-blur` with semitransparent white/black).
+- Do not use pulsing green status dots or toy badge stickers.
+- Do not use fake terminal prompts (`fuad@workstation ~`).
+- Do not use bento grid vanity metric counters (`3+ projects`, `2+ years`).
+- Do not use uppercase section kickers (`// 01. ABOUT ME`).
+- Do not invent, alter, or remove any original portfolio text or data.

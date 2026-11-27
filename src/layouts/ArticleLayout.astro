@@ -31,6 +31,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
   description={post.data.excerpt}
   image={post.data.cover}
   article={true}
+  wide={true}
   articleData={{
     headline: post.data.title,
     description: post.data.excerpt,
@@ -39,57 +40,57 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
     image: post.data.cover
   }}
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-    <!-- Breadcrumb (wireframe_article.png) -->
-    <nav class="flex items-center space-x-2 font-mono text-xs text-muted dark:text-muted-dark uppercase tracking-wider mb-8" aria-label="Breadcrumb">
-      <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">Home</a>
-      <span aria-hidden="true" class="text-border dark:text-border-dark">/</span>
-      <a href="/blog" class="hover:text-accent dark:hover:text-accent-dark transition-colors focus-ring rounded">Blog</a>
-      <span aria-hidden="true" class="text-border dark:text-border-dark">/</span>
-      <span class="text-primary dark:text-primary-dark font-medium truncate" aria-current="page">{post.data.category}</span>
+  <div>
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 font-mono text-xs text-muted uppercase tracking-wider mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-accent transition-colors focus-ring rounded">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/blog" class="hover:text-accent transition-colors focus-ring rounded">Blog</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-heading font-medium truncate" aria-current="page">{post.data.category}</span>
     </nav>
 
     <!-- Article Header -->
-    <header class="mb-10 max-w-4xl">
-      <div class="flex items-center gap-3 mb-4 font-mono text-xs">
-        <span class="text-accent dark:text-accent-dark font-medium uppercase tracking-wider">
+    <header class="mb-8">
+      <div class="flex items-center gap-2.5 mb-3 font-mono text-xs">
+        <span class="text-accent font-semibold uppercase tracking-wider">
           {post.data.category}
         </span>
-        <span class="text-border dark:text-border-dark" aria-hidden="true">•</span>
-        <span class="text-muted dark:text-muted-dark">
+        <span class="text-muted" aria-hidden="true">•</span>
+        <span class="text-muted">
           {readingTime.text}
         </span>
       </div>
 
-      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-5 leading-tight">
+      <h1 class="font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-heading mb-4 leading-tight">
         {post.data.title}
       </h1>
 
-      <p class="text-base sm:text-lg text-muted dark:text-muted-dark font-sans leading-relaxed mb-6 max-w-3xl">
+      <p class="text-sm sm:text-base text-body font-sans leading-relaxed mb-5 max-w-3xl">
         {post.data.excerpt}
       </p>
 
       <!-- Metadata Bar -->
-      <div class="flex flex-wrap items-center gap-3 sm:gap-4 font-mono text-xs text-muted dark:text-muted-dark py-4 border-y border-border dark:border-border-dark">
-        <time datetime={post.data.pubDate.toISOString()} class="text-primary dark:text-primary-dark font-medium">
+      <div class="flex flex-wrap items-center gap-3 sm:gap-4 font-mono text-xs text-muted py-3 border-y border-border">
+        <time datetime={post.data.pubDate.toISOString()} class="text-heading font-medium">
           {formattedDate}
         </time>
-        <span aria-hidden="true" class="text-border dark:text-border-dark">•</span>
+        <span aria-hidden="true">•</span>
         <div class="flex flex-wrap gap-2" aria-label="Article tags">
           {post.data.tags.map((tag) => (
-            <span>#{tag}</span>
+            <span class="chip-tag text-[11px] py-0.5 px-2">#{tag}</span>
           ))}
         </div>
       </div>
     </header>
 
-    <!-- Split 2-Column Grid (wireframe_article.png) with min-w-0 for grid overflow containment -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    <!-- Split 2-Column Grid with min-w-0 for grid overflow containment -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Left Column: Article Body (lg:col-span-8 min-w-0 prevents code overflow) -->
-      <main class="lg:col-span-8 min-w-0 max-w-full">
+      <div class="lg:col-span-8 min-w-0 max-w-full">
         <!-- Hero Cover Image -->
         {post.data.cover && (
-          <figure class="mb-10 rounded-lg overflow-hidden border border-border dark:border-border-dark bg-secondary-light dark:bg-secondary-dark shadow-sm">
+          <figure class="mb-8 rounded-lg overflow-hidden border border-border-card bg-surface shadow-sm">
             <img
               src={post.data.cover}
               alt={post.data.coverAlt}
@@ -99,7 +100,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
               loading="eager"
             />
             {post.data.coverAlt && (
-              <figcaption class="p-3 text-center font-mono text-xs text-slate-300 dark:text-slate-400 bg-slate-900/90 border-t border-slate-800">
+              <figcaption class="p-2.5 text-center font-mono text-xs text-muted bg-alt border-t border-border">
                 {post.data.coverAlt}
               </figcaption>
             )}
@@ -110,29 +111,29 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
         <TableOfContents headings={headings} variant="mobile" />
 
         <!-- Markdown Body (Uses our dedicated .article-content and .prose typography) -->
-        <article class="article-content prose max-w-none">
+        <article class="article-content max-w-none">
           <slot />
         </article>
 
         <!-- Article Footer: Back Link -->
-        <div class="mt-14 pt-8 border-t border-border dark:border-border-dark flex items-center justify-between font-mono text-xs">
+        <div class="mt-12 pt-6 border-t border-border flex items-center justify-between font-mono text-xs">
           <a
             href="/blog"
-            class="inline-flex items-center gap-2 uppercase tracking-wider text-accent dark:text-accent-dark hover:underline focus-ring rounded font-medium"
+            class="inline-flex items-center gap-1.5 text-accent hover:underline focus-ring rounded font-medium"
           >
             <span aria-hidden="true">&larr;</span> Back to all articles
           </a>
           <a
-            href="#top"
-            class="uppercase tracking-wider text-muted dark:text-muted-dark hover:text-primary dark:hover:text-primary-dark transition-colors focus-ring rounded"
+            href="#main-content"
+            class="text-muted hover:text-heading transition-colors focus-ring rounded"
           >
             Back to top &uarr;
           </a>
         </div>
-      </main>
+      </div>
 
       <!-- Right Column: Sticky Sidebar (lg:col-span-4) -->
-      <aside class="hidden lg:block lg:col-span-4 min-w-0 sticky top-24 space-y-6">
+      <aside class="hidden lg:block lg:col-span-4 min-w-0 sticky top-6 space-y-5">
         <!-- Desktop TOC: ONLY renders the desktop sidebar card -->
         <TableOfContents headings={headings} variant="desktop" />
         {allPosts.length > 0 && (

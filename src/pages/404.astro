@@ -6,33 +6,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Page Not Found (404) | Fuad Hasan"
   description="The page you were looking for could not be found."
 >
-  <div class="max-w-2xl mx-auto px-6 py-28 text-center">
-    <span class="inline-flex items-center px-3 py-1 rounded font-mono text-xs font-semibold text-accent dark:text-accent-dark mb-6 uppercase tracking-wider">
-      404 // ROUTE NOT FOUND
+  <div class="py-20 text-center max-w-lg mx-auto">
+    <span class="inline-flex items-center px-2.5 py-0.5 rounded font-mono text-xs font-semibold text-accent mb-4 uppercase tracking-wider bg-subtle">
+      404 // Route Not Found
     </span>
-    <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight text-primary dark:text-primary-dark mb-4 leading-tight">
+    <h1 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-heading mb-3">
       Page Not Found
     </h1>
-    <p class="text-base text-muted dark:text-muted-dark mb-10 leading-relaxed font-sans max-w-md mx-auto">
+    <p class="text-sm sm:text-base text-muted mb-8 leading-relaxed font-sans">
       The coordinates you navigated to do not correspond to an active route on this system.
     </p>
 
-    <div class="flex flex-wrap items-center justify-center gap-3 font-mono text-xs">
+    <div class="flex flex-wrap items-center justify-center gap-2.5 font-mono text-xs">
       <a
         href="/"
-        class="inline-flex items-center justify-center px-5 py-2.5 rounded bg-accent dark:bg-accent-dark text-white dark:text-canvas-dark hover:opacity-95 transition-opacity focus-ring uppercase tracking-wider font-semibold"
+        class="btn-primary"
       >
         Return Home
       </a>
       <a
         href="/projects"
-        class="inline-flex items-center justify-center px-5 py-2.5 rounded border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-primary dark:hover:border-primary-dark transition-colors focus-ring uppercase tracking-wider"
+        class="btn-secondary"
       >
         Explore Projects
       </a>
       <a
         href="/blog"
-        class="inline-flex items-center justify-center px-5 py-2.5 rounded border border-border dark:border-border-dark text-primary dark:text-primary-dark hover:border-primary dark:hover:border-primary-dark transition-colors focus-ring uppercase tracking-wider"
+        class="btn-secondary"
       >
         Read Blog
       </a>

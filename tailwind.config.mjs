@@ -6,50 +6,84 @@ export default {
     extend: {
       colors: {
         canvas: {
-          light: '#F8F9FA',
-          dark: '#0C0D12'
+          light: '#F8F4E6',
+          dark: '#202025',
+          DEFAULT: 'var(--color-bg)'
         },
         surface: {
-          light: '#FFFFFF',
-          dark: '#151720'
+          light: '#F1EAD5',
+          dark: '#28282E',
+          DEFAULT: 'var(--color-bg-card)'
         },
-        secondary: {
-          light: '#F0F0EE',
-          dark: '#1D202B'
+        alt: {
+          light: '#F1EAD5',
+          dark: '#16161A',
+          DEFAULT: 'var(--color-bg-alt)'
+        },
+        subtle: {
+          light: '#ECE4CA',
+          dark: '#1D1D22',
+          DEFAULT: 'var(--color-bg-subtle)'
         },
         primary: {
-          DEFAULT: '#111217',
-          dark: '#F4F3EF'
+          light: '#1D1D22',
+          dark: '#FBFBFB',
+          DEFAULT: 'var(--color-text-emphasized)'
+        },
+        body: {
+          light: '#28282E',
+          dark: '#D4D4D8',
+          DEFAULT: 'var(--color-text)'
         },
         muted: {
-          DEFAULT: '#5A5D6B',
-          dark: '#9496A1'
+          light: '#5A5A61',
+          dark: '#A1A1A8',
+          DEFAULT: 'var(--color-text-muted)'
         },
         accent: {
-          DEFAULT: '#D97706', // Technical Amber (Light)
-          hover: '#B45309',
-          dark: '#F59E0B',     // Technical Phosphor Amber (Dark)
-          'dark-hover': '#D97706'
+          DEFAULT: 'var(--color-primary)',
+          hover: 'var(--color-primary-hover)'
         },
         border: {
-          DEFAULT: 'rgba(17, 18, 23, 0.08)',
-          dark: 'rgba(244, 243, 239, 0.10)'
+          light: '#E5DCBD',
+          dark: '#323239',
+          DEFAULT: 'var(--color-border)'
+        },
+        'border-card': {
+          light: '#DED4B2',
+          dark: '#323239',
+          DEFAULT: 'var(--color-border-card)'
+        },
+        'border-strong': {
+          light: '#C6BA93',
+          dark: '#4E4E55',
+          DEFAULT: 'var(--color-border-strong)'
         }
       },
       fontFamily: {
-        display: ['"Cabinet Grotesk"', '"DM Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        heading: ['"Outfit"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        display: ['"Outfit"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
         sans: ['"DM Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+        mono: ['"JetBrains Mono"', 'Menlo', 'Monaco', 'Consolas', 'monospace']
       },
       borderRadius: {
         sm: '4px',
-        DEFAULT: '6px',
+        DEFAULT: '8px',
         md: '6px',
         lg: '8px',
-        xl: '10px'
+        xl: '12px'
       },
       maxWidth: {
+        'content': '760px',
+        'content-wide': '1020px',
+        'sidebar': '250px',
         'prose-article': '760px'
+      },
+      screens: {
+        sm: '600px',
+        md: '800px',
+        lg: '1020px',
+        xl: '1360px'
       }
     }
   },

@@ -14,7 +14,7 @@ const { categories, totalCount } = Astro.props;
     <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter projects by category">
       <button
         type="button"
-        class="filter-pill px-3 py-1 text-xs font-mono transition-colors focus-ring border border-accent dark:border-accent-dark text-accent dark:text-accent-dark bg-transparent font-medium"
+        class="filter-pill px-3 py-1 text-xs font-mono rounded-md transition-colors focus-ring border border-accent text-accent bg-alt font-medium"
         data-filter="all"
         aria-pressed="true"
       >
@@ -24,7 +24,7 @@ const { categories, totalCount } = Astro.props;
         categories.map((category) => (
           <button
             type="button"
-            class="filter-pill px-3 py-1 text-xs font-mono transition-colors focus-ring border border-border dark:border-border-dark text-muted dark:text-muted-dark hover:border-primary dark:hover:border-primary-dark hover:text-primary dark:hover:text-primary-dark"
+            class="filter-pill px-3 py-1 text-xs font-mono rounded-md transition-colors focus-ring border border-border text-muted hover:border-accent hover:text-accent"
             data-filter={category}
             aria-pressed="false"
           >
@@ -37,10 +37,10 @@ const { categories, totalCount } = Astro.props;
     <!-- Live Results Counter -->
     <div
       id="project-filter-count"
-      class="text-xs text-muted dark:text-muted-dark whitespace-nowrap font-mono"
+      class="text-xs text-muted whitespace-nowrap font-mono"
       aria-live="polite"
     >
-      Showing <span id="visible-count" class="font-semibold text-primary dark:text-primary-dark">{totalCount}</span> of {totalCount} projects
+      Showing <span id="visible-count" class="font-semibold text-heading">{totalCount}</span> of {totalCount} projects
     </div>
   </div>
 </div>

@@ -28,26 +28,26 @@ const related = posts
 
 {
   related.length > 0 && (
-    <div class="mt-8 p-6 rounded-lg border border-border dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
-      <h3 class="text-xs font-mono tracking-wider text-accent dark:text-accent-dark uppercase mb-4 flex items-center gap-2 font-semibold">
-        <span class="w-1.5 h-1.5 rounded-sm bg-accent dark:bg-accent-dark"></span>
+    <div class="mt-6 p-5 rounded-lg border border-border-card bg-surface shadow-sm">
+      <h3 class="text-xs font-mono tracking-wider text-heading uppercase mb-3 flex items-center gap-2 font-semibold">
+        <span class="w-1.5 h-1.5 rounded-sm bg-accent"></span>
         Related Reading
       </h3>
-      <div class="space-y-5">
+      <div class="space-y-4">
         {related.map((post) => {
           const rt = getReadingTime(post.body || '');
           return (
-            <div class="group border-b border-border/50 dark:border-border-dark/50 pb-4 last:border-b-0 last:pb-0">
-              <span class="text-xs font-mono uppercase tracking-wider text-accent dark:text-accent-dark block mb-1">
+            <div class="group border-b border-border pb-3.5 last:border-b-0 last:pb-0">
+              <span class="text-xs font-mono uppercase tracking-wider text-accent block mb-1">
                 {post.data.category}
               </span>
               <a
                 href={`/blog/${post.id}`}
-                class="font-display text-sm font-bold text-primary dark:text-primary-dark group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2 block mb-1.5 focus-ring rounded leading-snug"
+                class="font-heading text-sm font-bold text-heading group-hover:text-accent transition-colors line-clamp-2 block mb-1 focus-ring rounded leading-snug"
               >
                 {post.data.title}
               </a>
-              <span class="text-xs font-mono text-muted dark:text-muted-dark">
+              <span class="text-xs font-mono text-muted">
                 {rt.text}
               </span>
             </div>

@@ -1,6 +1,7 @@
 ---
 import SEOHead, { type ArticleData } from '../components/common/SEOHead.astro';
-import SiteHeader from '../components/navigation/SiteHeader.astro';
+import SiteSidebar from '../components/navigation/SiteSidebar.astro';
+import MobileHeader from '../components/navigation/MobileHeader.astro';
 import SiteFooter from '../components/navigation/SiteFooter.astro';
 import '../styles/global.css';
 
@@ -10,9 +11,11 @@ interface Props {
   image?: string;
   article?: boolean;
   articleData?: ArticleData;
+  wide?: boolean;
 }
 
-const { title, description, image, article = false, articleData } = Astro.props;
+const { title, description, image, article = false, articleData, wide = false } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -20,22 +23,38 @@ const { title, description, image, article = false, articleData } = Astro.props;
   <head>
     <SEOHead title={title} description={description} image={image} article={article} articleData={articleData} />
   </head>
-  <body class="bg-canvas-light dark:bg-canvas-dark text-primary dark:text-primary-dark transition-colors duration-200">
-    <!-- Skip to main content for accessibility -->
+  <body class="bg-canvas text-body transition-colors duration-150 antialiased">
+    <!-- Skip to main content for keyboard accessibility -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-accent text-white font-medium rounded-lg shadow-lg focus-ring"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 z-50 px-4 py-2 bg-primary text-canvas font-medium rounded-md shadow-md focus-ring"
     >
       Skip to main content
     </a>
 
-    <SiteHeader />
+    <div class="min-h-screen flex flex-col lg:flex-row">
+      <!-- Desktop Persistent Sidebar (>= 1020px) -->
+      <SiteSidebar currentPath={currentPath} />
 
-    <main id="main-content" class="flex-grow">
-      <slot />
-    </main>
+      <!-- Main Column (Mobile Header + Content + Footer) -->
+      <div class="flex-1 flex flex-col min-w-0">
+        <!-- Mobile Header (< 1020px) -->
+        <MobileHeader currentPath={currentPath} />
 
-    <SiteFooter />
+        <!-- Main Content Area -->
+        <main
+          id="main-content"
+          class:list={[
+            'flex-1 w-full mx-auto px-5 sm:px-8 lg:px-10 py-8 lg:py-12',
+            wide ? 'max-w-content-wide' : 'max-w-content'
+          ]}
+        >
+          <slot />
+        </main>
+
+        <!-- Compact Footer -->
+        <SiteFooter />
+      </div>
+    </div>
   </body>
 </html>
-

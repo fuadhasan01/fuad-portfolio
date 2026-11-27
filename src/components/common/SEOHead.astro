@@ -104,16 +104,11 @@ const articleSchema = article
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="canonical" href={canonicalUrl} />
 
-<!-- Web Fonts: Cabinet Grotesk (Display), DM Sans (Body), JetBrains Mono (Technical) -->
+<!-- Web Fonts: Outfit (Headings), DM Sans (Body), JetBrains Mono (Technical) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preconnect" href="https://api.fontshare.com" />
 <link
-  href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap"
-  rel="stylesheet"
-/>
-<link
-  href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400..700&display=swap"
   rel="stylesheet"
 />
 
@@ -145,18 +140,23 @@ const articleSchema = article
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 )}
 
-<!-- Zero-flash theme initialization script (Default: Dark Mode) -->
+<!-- Zero-flash theme & accent initialization script (Default: Dark Mode + Amber Accent) -->
 <script is:inline>
   (function() {
     try {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'light') {
         document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
       } else {
         document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
       }
+      const savedAccent = localStorage.getItem('accent') || 'amber';
+      document.documentElement.setAttribute('data-accent', savedAccent);
     } catch (_) {
       document.documentElement.classList.add('dark');
+      document.documentElement.setAttribute('data-accent', 'amber');
     }
   })();
 </script>

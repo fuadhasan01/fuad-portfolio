@@ -40,12 +40,12 @@
 .prose h5,
 .article-content h6,
 .prose h6 {
-  color: #111217;
-  font-family: 'Cabinet Grotesk', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 700;
+  color: var(--color-text-emphasized);
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
   line-height: 1.25;
-  letter-spacing: -0.02em;
-  scroll-margin-top: 5.5rem; /* Offset for 64px sticky header */
+  letter-spacing: -0.015em;
+  scroll-margin-top: 5.5rem; /* Offset for sticky header */
 }
 
 .dark .article-content h1,
@@ -60,7 +60,7 @@
 .dark .prose h5,
 .dark .article-content h6,
 .dark .prose h6 {
-  color: #F4F3EF;
+  color: var(--color-text-emphasized);
 }
 
 /* H1 (Article Title inside content if present) */
@@ -206,31 +206,20 @@
 /* Links */
 .article-content a:not(.code-copy-btn):not(.toc-link),
 .prose a:not(.code-copy-btn):not(.toc-link) {
-  color: #2563EB;
+  color: var(--color-primary);
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
-  text-decoration-color: rgba(37, 99, 235, 0.4);
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
   font-weight: 500;
   transition: all 0.15s ease-in-out;
 }
 
 .article-content a:not(.code-copy-btn):not(.toc-link):hover,
 .prose a:not(.code-copy-btn):not(.toc-link):hover {
-  text-decoration-color: #2563EB;
-  color: #1D4ED8;
-}
-
-.dark .article-content a:not(.code-copy-btn):not(.toc-link),
-.dark .prose a:not(.code-copy-btn):not(.toc-link) {
-  color: #C8F73E;
-  text-decoration-color: rgba(200, 247, 62, 0.4);
-}
-
-.dark .article-content a:not(.code-copy-btn):not(.toc-link):hover,
-.dark .prose a:not(.code-copy-btn):not(.toc-link):hover {
-  text-decoration-color: #C8F73E;
-  color: #D6FA5E;
+  text-decoration-color: var(--color-primary);
+  background: var(--color-bg-hover);
+  border-radius: 3px;
 }
 
 /* Unordered Lists */
@@ -261,13 +250,13 @@
 
 .article-content li::marker,
 .prose li::marker {
-  color: #2563EB;
+  color: var(--color-primary);
   font-weight: 600;
 }
 
 .dark .article-content li::marker,
 .dark .prose li::marker {
-  color: #C8F73E;
+  color: var(--color-primary);
 }
 
 /* Nested lists */
@@ -294,24 +283,24 @@
   list-style-type: square;
 }
 
-/* Blockquotes: Clean full border container, no side-tab anti-pattern */
+/* Blockquotes: Tania Rascia documentation style with clean bordered container */
 .article-content blockquote,
 .prose blockquote {
   margin: 2rem 0;
   padding: 1.25rem 1.5rem;
-  border: 1px solid rgba(217, 119, 6, 0.25);
-  background-color: #F0F0EE;
-  border-radius: 6px;
-  color: #2D3139;
-  font-style: italic;
-  font-size: 1.0625rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--border-radius);
+  color: var(--color-text-emphasized);
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 .dark .article-content blockquote,
 .dark .prose blockquote {
-  border-color: rgba(245, 158, 11, 0.25);
-  background-color: #151720;
-  color: #C2C5D1;
+  border-color: var(--color-border);
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-emphasized);
 }
 
 .article-content blockquote p,
@@ -331,19 +320,19 @@
   font-size: 0.85em;
   font-weight: 500;
   padding: 0.2em 0.45em;
-  border-radius: 0.35rem;
-  background-color: #ECEAE4;
-  color: #111116;
-  border: 1px solid rgba(17, 17, 22, 0.08);
+  border-radius: 4px;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-emphasized);
+  border: 1px solid var(--color-border);
   white-space: break-spaces;
   word-break: break-word;
 }
 
 .dark .article-content :not(pre) > code,
 .dark .prose :not(pre) > code {
-  background-color: #1A1A26;
-  color: #E6E4DD;
-  border-color: rgba(240, 237, 232, 0.08);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-emphasized);
+  border-color: var(--color-border);
 }
 
 /* Horizontal Rules */

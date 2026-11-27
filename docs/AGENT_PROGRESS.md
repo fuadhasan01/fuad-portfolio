@@ -14,45 +14,54 @@
 
 ---
 
-## Design System Overhaul (Impeccable "Architectural Dossier" Redesign)
+## Complete Redesign — Inspired by Tania Rascia (Authentic Developer Digital Garden)
 
-### 1. Visual Direction & Design Tokens (`DESIGN.md`)
-- **Design Archetype:** Direction 1 — "The Architectural Dossier" (Curated technical publication with industrial restraint and structural clarity).
-- **Core Aesthetic:** Industrial restraint, high-contrast grotesque display typography, warm technical amber accents, disciplined 6-8px corner radii, and zero AI decorative slop (no pulsing dots, no floating glass badges, no eyebrow kickers, no side-tab borders, no fake bash prompts).
+### 1. Visual Direction & Design System Architecture (`DESIGN.md`)
+- **Core Archetype:** Tania Rascia inspired personal developer website, digital garden, and technical documentation layout.
+- **Visual Identity:** Warm, compact, content-focused, technically sophisticated, zero AI slop, no generic bento grids, no marketing hype, authentic software engineer layout.
+- **Desktop Layout:** Two-column composition with persistent sticky left sidebar (`w-[260px]`) housing Fuad's avatar, bio, active nav with dot indicator, Connect links, Résumé PDF, Theme switch, and 5-accent color selector.
+- **Mobile Navigation (`< 1020px`):** Clean sticky top bar with avatar monogram, name, accent picker, theme switch, and accessible mobile drawer with Escape / click-outside close handlers.
 - **Typography:**
-  - Display / Headings: `Cabinet Grotesk` (Variable 400–900, Fontshare CDN) — structural, authoritative, humanist-industrial.
-  - Body & Paragraphs: `DM Sans` (Google Fonts, 400/500) — optimal readability across density.
-  - Metadata, Coordinates & Code: `JetBrains Mono` (Google Fonts, 400/500/700) — strictly for code, metrics, and tabular coordinates.
-- **Color Palette:**
-  - Canvas: `#0C0D12` (Dark) / `#F8F9FA` (Light)
-  - Surface: `#151720` (Dark) / `#FFFFFF` (Light)
-  - Secondary: `#1D202B` (Dark) / `#F0F0EE` (Light)
-  - Primary Text: `#F4F3EF` (Warm Bone) / `#111217` (Deep Ink)
-  - Muted Text: `#9496A1` (Dark) / `#5A5D6B` (Light)
-  - Accent: Unified Technical Amber (`#F59E0B` in dark mode; `#D97706` in light mode).
-  - Borders: `rgba(244, 243, 239, 0.10)` (Dark) / `rgba(17, 18, 23, 0.08)` (Light).
+  - Headings / Display: `Outfit` (Google Fonts, 600/700/800) — geometric, clean, modern, warm.
+  - Body & Paragraphs: `DM Sans` (Google Fonts, 400/500) — high legibility, comfortable reading density.
+  - Code & Metadata: `JetBrains Mono` (Google Fonts, 400/500/700) — strict monospace for code blocks, tech tags, and dates.
+- **Theme & Color System:**
+  - **Light Mode Palette:** Warm paper canvas (`#F8F4E6`), subtle alt background (`#F0EAD6`), soft borders (`#E5DCBE`), deep charcoal text (`#202025`), muted text (`#5A5D6B`).
+  - **Dark Mode Palette:** Soft charcoal canvas (`#202025`), card/surface (`#282830`), alt background (`#1C1C22`), subtle borders (`#3A3A46`), warm off-white text (`#E2E2E6`), muted text (`#9496A1`).
+  - **5-Accent System:** Interactive accent selector supporting 5 accessible color schemes with `data-accent="..."` and `localStorage` persistence:
+    - Amber (Default): `#B26A34` (light) / `#FEDE91` (dark)
+    - Green: `#2B9476` (light) / `#94D294` (dark)
+    - Blue: `#2A67A5` (light) / `#6DB3F5` (dark)
+    - Lavender: `#6A3EBA` (light) / `#E5AAF5` (dark)
+    - Rose: `#B12D6C` (light) / `#F2777A` (dark)
+  - **Zero FOUC:** Inline theme and accent initialization script in `<head>` runs before CSS parsing to eliminate flashing.
 
 ### 2. Components & Pages Redesigned
-- **Header & Footer:** Hairline border bar with geometric brandmark, `Fuad Hasan • Systems & Full Stack` identity, active amber underline indicators, "Get in Touch" border button, and accessible SVG social channels.
-- **Home (`src/pages/index.astro`):**
-  - Hero with `Cabinet Grotesk` headline (`Fuad Hasan`), substantive engineering status line without pulsing dot, natural framed portrait with zero glow halo, primary CTAs (`View Work ↓`, `Download CV ↗`), and brand SVGs (GitHub, LinkedIn, LeetCode, Email).
-  - Capabilities Ledger: 4 structured engineering domains (Backend Services, Transactional Integrity, Database Engineering, Frontend Architecture) replacing generic vanity counters.
-  - Selected Work: Architectural dossier rows with clean inline stack strings.
-  - Philosophy: Authoritative editorial blockquote replacing fake `fuad@workstation ~` shell box.
-  - Writing & Contact: Publication list and architectural inquiry card with amber feedback.
-- **Projects & Case Studies (`src/pages/projects/` & `src/layouts/CaseStudyLayout.astro`):**
-  - Dossier cards with 8px radii, muted stack lines, verified source/demo actions, and full accessible link names.
-- **Blog & Articles (`src/pages/blog/` & `src/layouts/ArticleLayout.astro`):**
-  - Authoritative article layout, amber quote callout container borders (replacing banned side-tab borders), table of contents, and semantic metadata.
-- **About, Experience, Contact & 404:**
-  - About: Narrative dossier, clean skills matrix without pill badge fatigue, honors and academic record.
-  - Experience: Full career ledger with horizontal dividers and clean role/company structure (toy vertical dotted-line timeline eliminated).
-  - Contact: High-trust inquiry card with direct email, sanitized resume download, and verified profiles.
-- **Verification & QA Status:**
-  - `impeccable detect`: 0 errors / 0 hard slop violations across entire codebase.
-  - `npm test`: 5/5 unit tests passed.
-  - `node tests/e2e/verify-hero-and-theme.mjs`: 43/43 assertions passed (Dark mode default, theme toggle persistence, real brand SVGs, 1440px desktop geometry, 1024/768/390/360 responsive viewports with 0 horizontal overflow).
-  - `node tests/e2e/p6-verification.mjs`: 49/49 assertions passed (0 WCAG 2.2 AA violations across all 9 routes, Lighthouse Performance: 97, A11y: 100, Best Practices: 100, SEO: 100).
+- **Shared Components:**
+  - `SiteSidebar.astro`: Sticky left desktop navigation with avatar, bio, routes, connect channels, resume link, theme toggle, and accent selector.
+  - `MobileHeader.astro`: Sticky responsive mobile navigation bar with brand, controls, and accessible drawer.
+  - `AccentPicker.astro`: Accessible 5-color accent picker with live theme switching and keyboard support.
+  - `ButtonLink.astro`: Tania `.btn-primary` and `.btn-secondary` buttons with restrained borders and subtle active feedback.
+  - `ProjectCard.astro` & `ProjectFilter.astro`: Documentation ledger cards with live architectural diagrams, tags, verified repo/demo links.
+  - `BlogCard.astro`, `BlogFilter.astro`, `TableOfContents.astro`: Article cards with metadata, reading time, sticky table of contents, and related articles.
+- **Pages Overhauled:**
+  - `/` (Home): Compact personal intro, 2-column hero balance (H1 left, photo right), capability ledger, dossier work rows, philosophy narrative, experience ledger, blog list, contact hub.
+  - `/about`: Compact portrait frame, philosophy narrative, technical skills matrix with chip tags, education and honors.
+  - `/experience`: Career ledger with duration, company, role, responsibilities, and stack tags.
+  - `/projects`: Wide layout with filter bar and 3-column project grid.
+  - `/projects/[slug]`: Split hero with status indicator, clean meta grid, chip tags, prose container.
+  - `/blog`: Wide layout with search and topic filter bar and article cards grid.
+  - `/blog/[slug]`: 2-column documentation layout (article body + sticky right TOC & related articles).
+  - `/contact`: Direct email card with copy feedback, engineering profile cards, resume download.
+  - `/404`: Compact 404 with recovery navigation buttons.
+
+### 3. Verification & Quality Gates
+- **Strict Content Preservation:** 100% of names, roles, bio, experience, projects, skills, education, contact, articles, and routes preserved verbatim.
+- **Typecheck & Production Build:** `npx astro check && npm run build` -> 0 errors, 0 warnings, 13 static pages generated.
+- **Unit Tests:** `npm test` (`vitest run`) -> 5/5 passed.
+- **E2E Hero & Theme Verification:** `node tests/e2e/verify-hero-and-theme.mjs` -> 43/43 assertions passed (Dark mode default, theme toggle persistence, real SVG icons, no placeholders, 1440px desktop geometry, 1024/768/390/360 responsive viewports with 0 horizontal overflow).
+- **E2E P6 Quality & Axe Verification:** `node tests/e2e/p6-verification.mjs` -> 49/49 assertions passed (0 WCAG 2.2 AA violations across all 9 routes, Lighthouse Performance: 96-98, A11y: 98-100, Best Practices: 100, SEO: 100).
+- **Screenshots:** 53 responsive screenshots captured across viewports (1440, 1024, 768, 390px), light/dark themes, and all 5 accent colors in `tests/screenshots/redesign/`.
 
 ---
 

@@ -97,6 +97,15 @@
     transition: background-color var(--transition), color var(--transition);
   }
 
+  /* Clean sidebar scrollbar suppression */
+  aside[aria-label="Site Sidebar"] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  aside[aria-label="Site Sidebar"]::-webkit-scrollbar {
+    display: none;
+  }
+
   h1, h2, h3, h4, h5, h6, .font-heading, .font-display {
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: var(--color-text-emphasized);
